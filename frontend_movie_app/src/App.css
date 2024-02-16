@@ -1,11 +1,6 @@
-.App {
-  text-align: center;
-}
+/* 
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
+
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
@@ -35,4 +30,1587 @@
   to {
     transform: rotate(360deg);
   }
-}
+} */
+
+
+/* {
+  "status": true,
+  "message": "Success",
+  "timestamp": 1708014437557,
+  "data": [
+    {
+      "id": "tt2356777",
+      "isAdult": false,
+      "canRateTitle": {
+        "isRatable": true
+      },
+      "originalTitleText": {
+        "text": "True Detective"
+      },
+      "primaryImage": {
+        "id": "rm3969993729",
+        "imageUrl": "https://m.media-amazon.com/images/M/MV5BNTEzMzBiNGYtYThiZS00MzBjLTk5ZWItM2FmMzU3Y2RjYTVlXkEyXkFqcGdeQXVyMjkwOTAyMDU@._V1_.jpg",
+        "imageWidth": 2025,
+        "imageHeight": 3000
+      },
+      "ratingsSummary": {
+        "aggregateRating": 8.9,
+        "topRanking": {
+          "rank": 38
+        },
+        "voteCount": 635857
+      },
+      "releaseYear": {
+        "year": 2014,
+        "endYear": null
+      },
+      "titleEpisode": null,
+      "titleText": {
+        "text": "True Detective"
+      },
+      "titleType": {
+        "id": "tvSeries",
+        "text": "TV Series",
+        "displayableProperty": {
+          "value": {
+            "plainText": "TV Series"
+          }
+        },
+        "categories": [
+          {
+            "id": "tv",
+            "text": "TV",
+            "value": "tv"
+          }
+        ],
+        "canHaveEpisodes": true,
+        "isSeries": true,
+        "isEpisode": false
+      },
+      "series": null,
+      "watchOptionsByCategory": {
+        "categorizedWatchOptionsList": [
+          {
+            "watchOptions": [
+              {
+                "provider": {
+                  "id": "amzn1.imdb.w2w.provider.prime_video.hbomaxus",
+                  "categoryType": "SUBSCRIPTION",
+                  "description": {
+                    "value": "with Prime Video Channels"
+                  },
+                  "name": {
+                    "value": "Max"
+                  },
+                  "refTagFragment": "hbomax",
+                  "logos": {
+                    "icon": {
+                      "url": "https://m.media-amazon.com/images/M/3e152962-a236-46be-aa94-2a48296d7129._V1_.png",
+                      "width": 500,
+                      "height": 500
+                    },
+                    "slate": {
+                      "url": "https://m.media-amazon.com/images/M/7cdcbf4e-6afe-4136-be75-cd6f2d237c63._V1_.png",
+                      "width": 1280,
+                      "height": 720
+                    }
+                  }
+                },
+                "title": {
+                  "value": "Watch on Max"
+                },
+                "description": {
+                  "value": "S1-4 with Prime Video Channels"
+                },
+                "shortDescription": {
+                  "value": "S1-4"
+                },
+                "link": "aiv://aiv/view?gti=amzn1.dv.gti.8c8cc3a6-e765-4f4e-9001-a72161cb8137"
+              },
+              {
+                "provider": {
+                  "id": "amzn1.imdb.w2w.provider.hbo_max",
+                  "categoryType": "SUBSCRIPTION",
+                  "description": {
+                    "value": "with subscription"
+                  },
+                  "name": {
+                    "value": "Max"
+                  },
+                  "refTagFragment": "hbomax",
+                  "logos": {
+                    "icon": {
+                      "url": "https://m.media-amazon.com/images/M/7660eee6-3846-43e9-aadd-bff7846554fb._V1_.png",
+                      "width": 500,
+                      "height": 500
+                    },
+                    "slate": {
+                      "url": "https://m.media-amazon.com/images/M/609ae2bb-6e79-45ae-bd76-75da3afac406._V1_.png",
+                      "width": 1280,
+                      "height": 720
+                    }
+                  }
+                },
+                "title": {
+                  "value": "Watch on Max"
+                },
+                "description": {
+                  "value": "S1-4 with subscription"
+                },
+                "shortDescription": {
+                  "value": "S1-4"
+                },
+                "link": "https://play.max.com/show/9a4a3645-74e0-4e4d-9f35-31464b402357"
+              }
+            ]
+          },
+          {
+            "watchOptions": [
+              {
+                "provider": {
+                  "id": "amzn1.imdb.w2w.provider.prime_video",
+                  "categoryType": "RENT_OR_BUY",
+                  "description": null,
+                  "name": {
+                    "value": "Prime Video"
+                  },
+                  "refTagFragment": "pvt_aiv",
+                  "logos": {
+                    "icon": {
+                      "url": "https://m.media-amazon.com/images/M/4c192978-331f-429e-9c97-02d5ed9d436e._V1_.png",
+                      "width": 500,
+                      "height": 500
+                    },
+                    "slate": {
+                      "url": "https://m.media-amazon.com/images/M/b63dfed5-e4fa-434c-be14-d2dc2b60fbae._V1_.png",
+                      "width": 1280,
+                      "height": 720
+                    }
+                  }
+                },
+                "title": {
+                  "value": "Watch on Prime Video"
+                },
+                "description": {
+                  "value": "buy from $19.99"
+                },
+                "shortDescription": {
+                  "value": "from $19.99"
+                },
+                "link": "aiv://aiv/view?gti=amzn1.dv.gti.8c8cc3a6-e765-4f4e-9001-a72161cb8137"
+              },
+              {
+                "provider": {
+                  "id": "amzn1.imdb.w2w.provider.amazon",
+                  "categoryType": "RENT_OR_BUY",
+                  "description": {
+                    "value": "Amazon"
+                  },
+                  "name": {
+                    "value": "Amazon"
+                  },
+                  "refTagFragment": "amazon",
+                  "logos": {
+                    "icon": {
+                      "url": "https://m.media-amazon.com/images/M/b26d1036-b801-4e57-8ce8-70c40cea751f._V1_.png",
+                      "width": 500,
+                      "height": 500
+                    },
+                    "slate": {
+                      "url": "https://m.media-amazon.com/images/M/b6a99b0d-356a-4dae-9ffc-248e123b204b._V1_.png",
+                      "width": 1280,
+                      "height": 720
+                    }
+                  }
+                },
+                "title": {
+                  "value": "Search on Amazon"
+                },
+                "description": {
+                  "value": "search for Blu-ray and DVD"
+                },
+                "shortDescription": {
+                  "value": "search Amazon"
+                },
+                "link": "com.amazon.mobile.shopping://amazon.com/s?i=movies-tv&k=True+Detective"
+              }
+            ]
+          }
+        ]
+      },
+      "plot": {
+        "id": "po2271637",
+        "author": null,
+        "plotText": {
+          "plainText": "Anthology series in which police investigations unearth the personal and professional secrets of those involved, both within and outside the law."
+        },
+        "correctionLink": {
+          "url": "https://m.imdb.com/title/tt2356777/contribution/plot/po2271637/edit"
+        },
+        "reportingLink": {
+          "url": "https://m.imdb.com/title/tt2356777/contribution/plot/po2271637/report"
+        }
+      },
+      "releaseDate": {
+        "day": 12,
+        "month": 1,
+        "year": 2014,
+        "country": {
+          "id": "US",
+          "text": "United States"
+        },
+        "restriction": null,
+        "releaseAttributes": []
+      },
+      "titleCertificate": {
+        "rating": "TV-MA",
+        "certificateCountry": {
+          "id": "US",
+          "text": "United States"
+        },
+        "ratingReason": null
+      },
+      "titleRuntime": {
+        "seconds": 3300,
+        "displayableProperty": {
+          "qualifiersInMarkdownList": null
+        }
+      },
+      "chartMeterRanking": {
+        "currentRank": 1,
+        "rankChange": {
+          "changeDirection": "FLAT",
+          "difference": 0
+        }
+      }
+    },
+    {
+      "id": "tt15009428",
+      "isAdult": false,
+      "canRateTitle": {
+        "isRatable": true
+      },
+      "originalTitleText": {
+        "text": "Argylle"
+      },
+      "primaryImage": {
+        "id": "rm3225833985",
+        "imageUrl": "https://m.media-amazon.com/images/M/MV5BZDM3YTg4MGUtZmUxNi00YmEyLTllNTctNjYyNjZlZGViNmFhXkEyXkFqcGdeQXVyMTUzMTg2ODkz._V1_.jpg",
+        "imageWidth": 3158,
+        "imageHeight": 5000
+      },
+      "ratingsSummary": {
+        "aggregateRating": 6,
+        "topRanking": null,
+        "voteCount": 21193
+      },
+      "releaseYear": {
+        "year": 2024,
+        "endYear": null
+      },
+      "titleEpisode": null,
+      "titleText": {
+        "text": "Argylle"
+      },
+      "titleType": {
+        "id": "movie",
+        "text": "Movie",
+        "displayableProperty": {
+          "value": {
+            "plainText": ""
+          }
+        },
+        "categories": [
+          {
+            "id": "movie",
+            "text": "Movie",
+            "value": "movie"
+          }
+        ],
+        "canHaveEpisodes": false,
+        "isSeries": false,
+        "isEpisode": false
+      },
+      "series": null,
+      "watchOptionsByCategory": {
+        "categorizedWatchOptionsList": []
+      },
+      "plot": {
+        "id": "po6109958",
+        "author": null,
+        "plotText": {
+          "plainText": "A reclusive author who writes espionage novels about a secret agent and a global spy syndicate realizes the plot of the new book she's writing starts to mirror real-world events, in real time."
+        },
+        "correctionLink": {
+          "url": "https://m.imdb.com/title/tt15009428/contribution/plot/po6109958/edit"
+        },
+        "reportingLink": {
+          "url": "https://m.imdb.com/title/tt15009428/contribution/plot/po6109958/report"
+        }
+      },
+      "releaseDate": {
+        "day": 2,
+        "month": 2,
+        "year": 2024,
+        "country": {
+          "id": "US",
+          "text": "United States"
+        },
+        "restriction": null,
+        "releaseAttributes": []
+      },
+      "titleCertificate": {
+        "rating": "PG-13",
+        "certificateCountry": {
+          "id": "US",
+          "text": "United States"
+        },
+        "ratingReason": "Rated PG-13 for strong violence and action and some strong language."
+      },
+      "titleRuntime": {
+        "seconds": 8340,
+        "displayableProperty": {
+          "qualifiersInMarkdownList": null
+        }
+      },
+      "chartMeterRanking": {
+        "currentRank": 2,
+        "rankChange": {
+          "changeDirection": "UP",
+          "difference": 3
+        }
+      }
+    },
+    {
+      "id": "tt14044212",
+      "isAdult": false,
+      "canRateTitle": {
+        "isRatable": true
+      },
+      "originalTitleText": {
+        "text": "Mr. & Mrs. Smith"
+      },
+      "primaryImage": {
+        "id": "rm2458340609",
+        "imageUrl": "https://m.media-amazon.com/images/M/MV5BMDE0M2YyM2UtODRmNC00YjAyLWIwMjktOTAwMDBiYjBhMGZmXkEyXkFqcGdeQXVyMjkwOTAyMDU@._V1_.jpg",
+        "imageWidth": 1944,
+        "imageHeight": 2880
+      },
+      "ratingsSummary": {
+        "aggregateRating": 6.9,
+        "topRanking": {
+          "rank": 1802
+        },
+        "voteCount": 18314
+      },
+      "releaseYear": {
+        "year": 2024,
+        "endYear": null
+      },
+      "titleEpisode": null,
+      "titleText": {
+        "text": "Mr. & Mrs. Smith"
+      },
+      "titleType": {
+        "id": "tvSeries",
+        "text": "TV Series",
+        "displayableProperty": {
+          "value": {
+            "plainText": "TV Series"
+          }
+        },
+        "categories": [
+          {
+            "id": "tv",
+            "text": "TV",
+            "value": "tv"
+          }
+        ],
+        "canHaveEpisodes": true,
+        "isSeries": true,
+        "isEpisode": false
+      },
+      "series": null,
+      "watchOptionsByCategory": {
+        "categorizedWatchOptionsList": [
+          {
+            "watchOptions": [
+              {
+                "provider": {
+                  "id": "amzn1.imdb.w2w.provider.prime_video.PRIME",
+                  "categoryType": "SUBSCRIPTION",
+                  "description": {
+                    "value": "included with Prime"
+                  },
+                  "name": {
+                    "value": "Prime Video"
+                  },
+                  "refTagFragment": "pvs_piv",
+                  "logos": {
+                    "icon": {
+                      "url": "https://m.media-amazon.com/images/M/e062ea53-945a-42cb-8d15-6405531687ec._V1_.png",
+                      "width": 500,
+                      "height": 500
+                    },
+                    "slate": {
+                      "url": "https://m.media-amazon.com/images/M/75f35a85-7a6e-4f1f-bf8b-e4c8556bc4e4._V1_.png",
+                      "width": 1280,
+                      "height": 720
+                    }
+                  }
+                },
+                "title": {
+                  "value": "Watch on Prime Video"
+                },
+                "description": {
+                  "value": "S1 included with Prime"
+                },
+                "shortDescription": {
+                  "value": "S1"
+                },
+                "link": "aiv://aiv/resume?gti=amzn1.dv.gti.af316d6d-1270-4dba-882f-33fc6a17ea4f"
+              }
+            ]
+          }
+        ]
+      },
+      "plot": {
+        "id": "po5567101",
+        "author": null,
+        "plotText": {
+          "plainText": "Two strangers land jobs with a spy agency that offers them a life of espionage, wealth, and travel. The catch: new identities in an arranged marriage."
+        },
+        "correctionLink": {
+          "url": "https://m.imdb.com/title/tt14044212/contribution/plot/po5567101/edit"
+        },
+        "reportingLink": {
+          "url": "https://m.imdb.com/title/tt14044212/contribution/plot/po5567101/report"
+        }
+      },
+      "releaseDate": {
+        "day": 2,
+        "month": 2,
+        "year": 2024,
+        "country": {
+          "id": "US",
+          "text": "United States"
+        },
+        "restriction": null,
+        "releaseAttributes": [
+          {
+            "text": "internet"
+          }
+        ]
+      },
+      "titleCertificate": {
+        "rating": "TV-MA",
+        "certificateCountry": {
+          "id": "US",
+          "text": "United States"
+        },
+        "ratingReason": null
+      },
+      "titleRuntime": {
+        "seconds": 2700,
+        "displayableProperty": {
+          "qualifiersInMarkdownList": null
+        }
+      },
+      "chartMeterRanking": {
+        "currentRank": 3,
+        "rankChange": {
+          "changeDirection": "UP",
+          "difference": 11
+        }
+      }
+    },
+    {
+      "id": "tt14230458",
+      "isAdult": false,
+      "canRateTitle": {
+        "isRatable": true
+      },
+      "originalTitleText": {
+        "text": "Poor Things"
+      },
+      "primaryImage": {
+        "id": "rm3634323201",
+        "imageUrl": "https://m.media-amazon.com/images/M/MV5BNGIyYWMzNjktNDE3MC00YWQyLWEyMmEtN2ZmNzZhZDk3NGJlXkEyXkFqcGdeQXVyMTUzMTg2ODkz._V1_.jpg",
+        "imageWidth": 1350,
+        "imageHeight": 2000
+      },
+      "ratingsSummary": {
+        "aggregateRating": 8.4,
+        "topRanking": {
+          "rank": 94
+        },
+        "voteCount": 86237
+      },
+      "releaseYear": {
+        "year": 2023,
+        "endYear": null
+      },
+      "titleEpisode": null,
+      "titleText": {
+        "text": "Poor Things"
+      },
+      "titleType": {
+        "id": "movie",
+        "text": "Movie",
+        "displayableProperty": {
+          "value": {
+            "plainText": ""
+          }
+        },
+        "categories": [
+          {
+            "id": "movie",
+            "text": "Movie",
+            "value": "movie"
+          }
+        ],
+        "canHaveEpisodes": false,
+        "isSeries": false,
+        "isEpisode": false
+      },
+      "series": null,
+      "watchOptionsByCategory": {
+        "categorizedWatchOptionsList": []
+      },
+      "plot": {
+        "id": "po5780485",
+        "author": null,
+        "plotText": {
+          "plainText": "The incredible tale about the fantastical evolution of Bella Baxter, a young woman brought back to life by the brilliant and unorthodox scientist Dr. Godwin Baxter."
+        },
+        "correctionLink": {
+          "url": "https://m.imdb.com/title/tt14230458/contribution/plot/po5780485/edit"
+        },
+        "reportingLink": {
+          "url": "https://m.imdb.com/title/tt14230458/contribution/plot/po5780485/report"
+        }
+      },
+      "releaseDate": {
+        "day": 27,
+        "month": 2,
+        "year": 2024,
+        "country": {
+          "id": "US",
+          "text": "United States"
+        },
+        "restriction": null,
+        "releaseAttributes": [
+          {
+            "text": "internet"
+          }
+        ]
+      },
+      "titleCertificate": {
+        "rating": "R",
+        "certificateCountry": {
+          "id": "US",
+          "text": "United States"
+        },
+        "ratingReason": "Rated R for strong and pervasive sexual content, graphic nudity, disturbing material, gore, and language"
+      },
+      "titleRuntime": {
+        "seconds": 8460,
+        "displayableProperty": {
+          "qualifiersInMarkdownList": null
+        }
+      },
+      "chartMeterRanking": {
+        "currentRank": 4,
+        "rankChange": {
+          "changeDirection": "FLAT",
+          "difference": 0
+        }
+      }
+    },
+    {
+      "id": "tt2640044",
+      "isAdult": false,
+      "canRateTitle": {
+        "isRatable": true
+      },
+      "originalTitleText": {
+        "text": "Masters of the Air"
+      },
+      "primaryImage": {
+        "id": "rm1044925697",
+        "imageUrl": "https://m.media-amazon.com/images/M/MV5BYzgwNTI2YjAtMDM5Zi00MTAzLThkMmUtNTEyYWY1ODA2ZDdjXkEyXkFqcGdeQXVyMzQ2MDI5NjU@._V1_.jpg",
+        "imageWidth": 2000,
+        "imageHeight": 3000
+      },
+      "ratingsSummary": {
+        "aggregateRating": 7.9,
+        "topRanking": {
+          "rank": 871
+        },
+        "voteCount": 11126
+      },
+      "releaseYear": {
+        "year": 2024,
+        "endYear": 2024
+      },
+      "titleEpisode": null,
+      "titleText": {
+        "text": "Masters of the Air"
+      },
+      "titleType": {
+        "id": "tvMiniSeries",
+        "text": "TV Mini Series",
+        "displayableProperty": {
+          "value": {
+            "plainText": "TV Mini Series"
+          }
+        },
+        "categories": [
+          {
+            "id": "tv",
+            "text": "TV",
+            "value": "tv"
+          }
+        ],
+        "canHaveEpisodes": true,
+        "isSeries": true,
+        "isEpisode": false
+      },
+      "series": null,
+      "watchOptionsByCategory": {
+        "categorizedWatchOptionsList": [
+          {
+            "watchOptions": [
+              {
+                "provider": {
+                  "id": "amzn1.imdb.w2w.provider.appletv",
+                  "categoryType": "SUBSCRIPTION",
+                  "description": {
+                    "value": "with subscription"
+                  },
+                  "name": {
+                    "value": "Apple TV+"
+                  },
+                  "refTagFragment": "appletv",
+                  "logos": {
+                    "icon": {
+                      "url": "https://m.media-amazon.com/images/M/d2b632fd-044d-40de-a1c8-fc920e2f5d4d._V1_.png",
+                      "width": 500,
+                      "height": 500
+                    },
+                    "slate": {
+                      "url": "https://m.media-amazon.com/images/M/2b1f9c41-9007-447c-9aec-663ad10f5805._V1_.png",
+                      "width": 1280,
+                      "height": 720
+                    }
+                  }
+                },
+                "title": {
+                  "value": "Watch on Apple TV+"
+                },
+                "description": {
+                  "value": "S1 with subscription"
+                },
+                "shortDescription": {
+                  "value": "S1"
+                },
+                "link": "https://srv.clickfuse.com/ads/adclkr.php?id=100006140&url=https://tv.apple.com/us/channel/tvs.sbd.4000"
+              }
+            ]
+          }
+        ]
+      },
+      "plot": {
+        "id": "po7314692",
+        "author": null,
+        "plotText": {
+          "plainText": "During WWII, five miles above the ground and behind enemy lines, ten men inside a bomber known as a \"Flying Fortress\" battle unrelenting flocks of German fighters."
+        },
+        "correctionLink": {
+          "url": "https://m.imdb.com/title/tt2640044/contribution/plot/po7314692/edit"
+        },
+        "reportingLink": {
+          "url": "https://m.imdb.com/title/tt2640044/contribution/plot/po7314692/report"
+        }
+      },
+      "releaseDate": {
+        "day": 26,
+        "month": 1,
+        "year": 2024,
+        "country": {
+          "id": "US",
+          "text": "United States"
+        },
+        "restriction": null,
+        "releaseAttributes": [
+          {
+            "text": "internet"
+          }
+        ]
+      },
+      "titleCertificate": {
+        "rating": "TV-MA",
+        "certificateCountry": {
+          "id": "US",
+          "text": "United States"
+        },
+        "ratingReason": null
+      },
+      "titleRuntime": null,
+      "chartMeterRanking": {
+        "currentRank": 5,
+        "rankChange": {
+          "changeDirection": "DOWN",
+          "difference": 2
+        }
+      }
+    },
+    {
+      "id": "tt15837600",
+      "isAdult": false,
+      "canRateTitle": {
+        "isRatable": true
+      },
+      "originalTitleText": {
+        "text": "Griselda"
+      },
+      "primaryImage": {
+        "id": "rm1184385537",
+        "imageUrl": "https://m.media-amazon.com/images/M/MV5BNTZlNjRiOGYtZjVlYy00Y2Y2LThjNmItNmVkY2U0ZjVjOGU4XkEyXkFqcGdeQXVyMDM2NDM2MQ@@._V1_.jpg",
+        "imageWidth": 1500,
+        "imageHeight": 2222
+      },
+      "ratingsSummary": {
+        "aggregateRating": 7.3,
+        "topRanking": {
+          "rank": 1551
+        },
+        "voteCount": 23738
+      },
+      "releaseYear": {
+        "year": 2024,
+        "endYear": 2024
+      },
+      "titleEpisode": null,
+      "titleText": {
+        "text": "Griselda"
+      },
+      "titleType": {
+        "id": "tvMiniSeries",
+        "text": "TV Mini Series",
+        "displayableProperty": {
+          "value": {
+            "plainText": "TV Mini Series"
+          }
+        },
+        "categories": [
+          {
+            "id": "tv",
+            "text": "TV",
+            "value": "tv"
+          }
+        ],
+        "canHaveEpisodes": true,
+        "isSeries": true,
+        "isEpisode": false
+      },
+      "series": null,
+      "watchOptionsByCategory": {
+        "categorizedWatchOptionsList": [
+          {
+            "watchOptions": [
+              {
+                "provider": {
+                  "id": "amzn1.imdb.w2w.provider.netflix",
+                  "categoryType": "SUBSCRIPTION",
+                  "description": {
+                    "value": "with subscription"
+                  },
+                  "name": {
+                    "value": "Netflix"
+                  },
+                  "refTagFragment": "netflix",
+                  "logos": {
+                    "icon": {
+                      "url": "https://m.media-amazon.com/images/M/f409199e-794d-4822-acf9-38bca16baa5e._V1_.png",
+                      "width": 500,
+                      "height": 500
+                    },
+                    "slate": {
+                      "url": "https://m.media-amazon.com/images/M/9516b142-0c88-4475-a39b-97c06546cdc5._V1_.png",
+                      "width": 1280,
+                      "height": 720
+                    }
+                  }
+                },
+                "title": {
+                  "value": "Watch on Netflix"
+                },
+                "description": {
+                  "value": "S1 with subscription"
+                },
+                "shortDescription": {
+                  "value": "S1"
+                },
+                "link": "https://www.netflix.com/watch/81133447?source=imdb"
+              }
+            ]
+          }
+        ]
+      },
+      "plot": {
+        "id": "po6286314",
+        "author": null,
+        "plotText": {
+          "plainText": "Fleeing from Medellín to Miami, Griselda Blanco creates one of the most ruthless cartels in history."
+        },
+        "correctionLink": {
+          "url": "https://m.imdb.com/title/tt15837600/contribution/plot/po6286314/edit"
+        },
+        "reportingLink": {
+          "url": "https://m.imdb.com/title/tt15837600/contribution/plot/po6286314/report"
+        }
+      },
+      "releaseDate": {
+        "day": 25,
+        "month": 1,
+        "year": 2024,
+        "country": {
+          "id": "US",
+          "text": "United States"
+        },
+        "restriction": null,
+        "releaseAttributes": [
+          {
+            "text": "internet"
+          }
+        ]
+      },
+      "titleCertificate": {
+        "rating": "TV-MA",
+        "certificateCountry": {
+          "id": "US",
+          "text": "United States"
+        },
+        "ratingReason": null
+      },
+      "titleRuntime": {
+        "seconds": 19800,
+        "displayableProperty": {
+          "qualifiersInMarkdownList": [
+            {
+              "plainText": "entire series"
+            }
+          ]
+        }
+      },
+      "chartMeterRanking": {
+        "currentRank": 6,
+        "rankChange": {
+          "changeDirection": "DOWN",
+          "difference": 4
+        }
+      }
+    },
+    {
+      "id": "tt15314262",
+      "isAdult": false,
+      "canRateTitle": {
+        "isRatable": true
+      },
+      "originalTitleText": {
+        "text": "The Beekeeper"
+      },
+      "primaryImage": {
+        "id": "rm1044402945",
+        "imageUrl": "https://m.media-amazon.com/images/M/MV5BZjQwYjU3OTYtMWVhMi00N2Y2LWEzMDgtMzViN2U4NWI1NmI3XkEyXkFqcGdeQXVyODk2NDQ3MTA@._V1_.jpg",
+        "imageWidth": 2765,
+        "imageHeight": 4096
+      },
+      "ratingsSummary": {
+        "aggregateRating": 6.4,
+        "topRanking": {
+          "rank": 3988
+        },
+        "voteCount": 47258
+      },
+      "releaseYear": {
+        "year": 2024,
+        "endYear": null
+      },
+      "titleEpisode": null,
+      "titleText": {
+        "text": "The Beekeeper"
+      },
+      "titleType": {
+        "id": "movie",
+        "text": "Movie",
+        "displayableProperty": {
+          "value": {
+            "plainText": ""
+          }
+        },
+        "categories": [
+          {
+            "id": "movie",
+            "text": "Movie",
+            "value": "movie"
+          }
+        ],
+        "canHaveEpisodes": false,
+        "isSeries": false,
+        "isEpisode": false
+      },
+      "series": null,
+      "watchOptionsByCategory": {
+        "categorizedWatchOptionsList": [
+          {
+            "watchOptions": [
+              {
+                "provider": {
+                  "id": "amzn1.imdb.w2w.provider.prime_video",
+                  "categoryType": "RENT_OR_BUY",
+                  "description": null,
+                  "name": {
+                    "value": "Prime Video"
+                  },
+                  "refTagFragment": "pvt_aiv",
+                  "logos": {
+                    "icon": {
+                      "url": "https://m.media-amazon.com/images/M/4c192978-331f-429e-9c97-02d5ed9d436e._V1_.png",
+                      "width": 500,
+                      "height": 500
+                    },
+                    "slate": {
+                      "url": "https://m.media-amazon.com/images/M/b63dfed5-e4fa-434c-be14-d2dc2b60fbae._V1_.png",
+                      "width": 1280,
+                      "height": 720
+                    }
+                  }
+                },
+                "title": {
+                  "value": "Watch on Prime Video"
+                },
+                "description": {
+                  "value": "rent from $19.99"
+                },
+                "shortDescription": {
+                  "value": "from $19.99"
+                },
+                "link": "aiv://aiv/view?gti=amzn1.dv.gti.dd928eb0-1a55-4744-bb21-9826cb5624d1"
+              }
+            ]
+          }
+        ]
+      },
+      "plot": {
+        "id": "po6183390",
+        "author": null,
+        "plotText": {
+          "plainText": "One man's brutal campaign for vengeance takes on national stakes after he is revealed to be a former operative of a powerful and clandestine organization known as \"Beekeepers\"."
+        },
+        "correctionLink": {
+          "url": "https://m.imdb.com/title/tt15314262/contribution/plot/po6183390/edit"
+        },
+        "reportingLink": {
+          "url": "https://m.imdb.com/title/tt15314262/contribution/plot/po6183390/report"
+        }
+      },
+      "releaseDate": {
+        "day": 12,
+        "month": 1,
+        "year": 2024,
+        "country": {
+          "id": "US",
+          "text": "United States"
+        },
+        "restriction": null,
+        "releaseAttributes": []
+      },
+      "titleCertificate": {
+        "rating": "R",
+        "certificateCountry": {
+          "id": "US",
+          "text": "United States"
+        },
+        "ratingReason": "Rated R for strong violence throughout, pervasive language, some sexual references and drug use."
+      },
+      "titleRuntime": {
+        "seconds": 6300,
+        "displayableProperty": {
+          "qualifiersInMarkdownList": null
+        }
+      },
+      "chartMeterRanking": {
+        "currentRank": 7,
+        "rankChange": {
+          "changeDirection": "FLAT",
+          "difference": 0
+        }
+      }
+    },
+    {
+      "id": "tt17351924",
+      "isAdult": false,
+      "canRateTitle": {
+        "isRatable": true
+      },
+      "originalTitleText": {
+        "text": "Saltburn"
+      },
+      "primaryImage": {
+        "id": "rm2914734337",
+        "imageUrl": "https://m.media-amazon.com/images/M/MV5BM2NmMDQ1ZWEtNDU4OS00MGIxLWEyMGMtMTM2YmFkYzNhYmMxXkEyXkFqcGdeQXVyMTM1NjM2ODg1._V1_.jpg",
+        "imageWidth": 1944,
+        "imageHeight": 2880
+      },
+      "ratingsSummary": {
+        "aggregateRating": 7,
+        "topRanking": {
+          "rank": 2428
+        },
+        "voteCount": 168333
+      },
+      "releaseYear": {
+        "year": 2023,
+        "endYear": null
+      },
+      "titleEpisode": null,
+      "titleText": {
+        "text": "Saltburn"
+      },
+      "titleType": {
+        "id": "movie",
+        "text": "Movie",
+        "displayableProperty": {
+          "value": {
+            "plainText": ""
+          }
+        },
+        "categories": [
+          {
+            "id": "movie",
+            "text": "Movie",
+            "value": "movie"
+          }
+        ],
+        "canHaveEpisodes": false,
+        "isSeries": false,
+        "isEpisode": false
+      },
+      "series": null,
+      "watchOptionsByCategory": {
+        "categorizedWatchOptionsList": [
+          {
+            "watchOptions": [
+              {
+                "provider": {
+                  "id": "amzn1.imdb.w2w.provider.prime_video.PRIME",
+                  "categoryType": "SUBSCRIPTION",
+                  "description": {
+                    "value": "included with Prime"
+                  },
+                  "name": {
+                    "value": "Prime Video"
+                  },
+                  "refTagFragment": "pvs_piv",
+                  "logos": {
+                    "icon": {
+                      "url": "https://m.media-amazon.com/images/M/e062ea53-945a-42cb-8d15-6405531687ec._V1_.png",
+                      "width": 500,
+                      "height": 500
+                    },
+                    "slate": {
+                      "url": "https://m.media-amazon.com/images/M/75f35a85-7a6e-4f1f-bf8b-e4c8556bc4e4._V1_.png",
+                      "width": 1280,
+                      "height": 720
+                    }
+                  }
+                },
+                "title": {
+                  "value": "Watch on Prime Video"
+                },
+                "description": {
+                  "value": "included with Prime"
+                },
+                "shortDescription": null,
+                "link": "aiv://aiv/resume?gti=amzn1.dv.gti.d6674b8e-5b88-45be-9361-63dd98818413"
+              }
+            ]
+          }
+        ]
+      },
+      "plot": {
+        "id": "po6407723",
+        "author": null,
+        "plotText": {
+          "plainText": "A student at Oxford University finds himself drawn into the world of a charming and aristocratic classmate, who invites him to his eccentric family's sprawling estate for a summer never to be forgotten."
+        },
+        "correctionLink": {
+          "url": "https://m.imdb.com/title/tt17351924/contribution/plot/po6407723/edit"
+        },
+        "reportingLink": {
+          "url": "https://m.imdb.com/title/tt17351924/contribution/plot/po6407723/report"
+        }
+      },
+      "releaseDate": {
+        "day": 22,
+        "month": 12,
+        "year": 2023,
+        "country": {
+          "id": "US",
+          "text": "United States"
+        },
+        "restriction": null,
+        "releaseAttributes": [
+          {
+            "text": "internet"
+          }
+        ]
+      },
+      "titleCertificate": {
+        "rating": "R",
+        "certificateCountry": {
+          "id": "US",
+          "text": "United States"
+        },
+        "ratingReason": "Rated R for strong sexual content, graphic nudity, language throughout, some disturbing violent content, and drug use."
+      },
+      "titleRuntime": {
+        "seconds": 7860,
+        "displayableProperty": {
+          "qualifiersInMarkdownList": null
+        }
+      },
+      "chartMeterRanking": {
+        "currentRank": 8,
+        "rankChange": {
+          "changeDirection": "DOWN",
+          "difference": 2
+        }
+      }
+    },
+    {
+      "id": "tt2802850",
+      "isAdult": false,
+      "canRateTitle": {
+        "isRatable": true
+      },
+      "originalTitleText": {
+        "text": "Fargo"
+      },
+      "primaryImage": {
+        "id": "rm696145153",
+        "imageUrl": "https://m.media-amazon.com/images/M/MV5BMjNlMTIxNDEtY2U3OC00ZGFlLTgxNzEtZDU3NTdiZTAzN2MxXkEyXkFqcGdeQXVyMTU1ODIwMTM1._V1_.jpg",
+        "imageWidth": 1638,
+        "imageHeight": 2048
+      },
+      "ratingsSummary": {
+        "aggregateRating": 8.9,
+        "topRanking": {
+          "rank": 43
+        },
+        "voteCount": 414237
+      },
+      "releaseYear": {
+        "year": 2014,
+        "endYear": 2024
+      },
+      "titleEpisode": null,
+      "titleText": {
+        "text": "Fargo"
+      },
+      "titleType": {
+        "id": "tvSeries",
+        "text": "TV Series",
+        "displayableProperty": {
+          "value": {
+            "plainText": "TV Series"
+          }
+        },
+        "categories": [
+          {
+            "id": "tv",
+            "text": "TV",
+            "value": "tv"
+          }
+        ],
+        "canHaveEpisodes": true,
+        "isSeries": true,
+        "isEpisode": false
+      },
+      "series": null,
+      "watchOptionsByCategory": {
+        "categorizedWatchOptionsList": [
+          {
+            "watchOptions": [
+              {
+                "provider": {
+                  "id": "amzn1.imdb.w2w.provider.fx_now",
+                  "categoryType": "SUBSCRIPTION",
+                  "description": {
+                    "value": "Go to fxnetworks.com"
+                  },
+                  "name": {
+                    "value": "FXNOW"
+                  },
+                  "refTagFragment": "fx_now",
+                  "logos": {
+                    "icon": {
+                      "url": "https://m.media-amazon.com/images/M/a25e9b82-bb3f-4052-a559-c1fd5c93e1dd._V1_.png",
+                      "width": 512,
+                      "height": 512
+                    },
+                    "slate": {
+                      "url": "https://m.media-amazon.com/images/M/9ef352bf-962b-4a69-b5d9-36f447b237e3._V1_.png",
+                      "width": 1280,
+                      "height": 720
+                    }
+                  }
+                },
+                "title": {
+                  "value": "Watch on FXNOW"
+                },
+                "description": {
+                  "value": "S5 Go to fxnetworks.com"
+                },
+                "shortDescription": {
+                  "value": "S5"
+                },
+                "link": "https://www.fxnetworks.com/fxnow"
+              },
+              {
+                "provider": {
+                  "id": "amzn1.imdb.w2w.provider.hulu",
+                  "categoryType": "SUBSCRIPTION",
+                  "description": {
+                    "value": "on Hulu.com and the Hulu app"
+                  },
+                  "name": {
+                    "value": "Hulu"
+                  },
+                  "refTagFragment": "hulu",
+                  "logos": {
+                    "icon": {
+                      "url": "https://m.media-amazon.com/images/M/454c994e-acf4-49ef-83d5-8fa06c8a5eab._V1_.png",
+                      "width": 512,
+                      "height": 512
+                    },
+                    "slate": {
+                      "url": "https://m.media-amazon.com/images/M/67022a68-fde3-4078-8bd0-0ebc72efe8ad._V1_.png",
+                      "width": 1280,
+                      "height": 720
+                    }
+                  }
+                },
+                "title": {
+                  "value": "Watch on Hulu"
+                },
+                "description": {
+                  "value": "S1-5 on Hulu.com and the Hulu app"
+                },
+                "shortDescription": {
+                  "value": "S1-5"
+                },
+                "link": "http://www.hulu.com?d=Amazon"
+              }
+            ]
+          },
+          {
+            "watchOptions": [
+              {
+                "provider": {
+                  "id": "amzn1.imdb.w2w.provider.prime_video",
+                  "categoryType": "RENT_OR_BUY",
+                  "description": null,
+                  "name": {
+                    "value": "Prime Video"
+                  },
+                  "refTagFragment": "pvt_aiv",
+                  "logos": {
+                    "icon": {
+                      "url": "https://m.media-amazon.com/images/M/4c192978-331f-429e-9c97-02d5ed9d436e._V1_.png",
+                      "width": 500,
+                      "height": 500
+                    },
+                    "slate": {
+                      "url": "https://m.media-amazon.com/images/M/b63dfed5-e4fa-434c-be14-d2dc2b60fbae._V1_.png",
+                      "width": 1280,
+                      "height": 720
+                    }
+                  }
+                },
+                "title": {
+                  "value": "Watch on Prime Video"
+                },
+                "description": {
+                  "value": "buy from $9.79"
+                },
+                "shortDescription": {
+                  "value": "from $9.79"
+                },
+                "link": "aiv://aiv/view?gti=amzn1.dv.gti.daa9f77f-ac11-da04-8952-8092a0bf2d51"
+              }
+            ]
+          }
+        ]
+      },
+      "plot": {
+        "id": "po2411029",
+        "author": null,
+        "plotText": {
+          "plainText": "Various chronicles of deception, intrigue, and murder in and around frozen Minnesota. All of these tales mysteriously lead back one way or another to Fargo, North Dakota."
+        },
+        "correctionLink": {
+          "url": "https://m.imdb.com/title/tt2802850/contribution/plot/po2411029/edit"
+        },
+        "reportingLink": {
+          "url": "https://m.imdb.com/title/tt2802850/contribution/plot/po2411029/report"
+        }
+      },
+      "releaseDate": {
+        "day": 15,
+        "month": 4,
+        "year": 2014,
+        "country": {
+          "id": "US",
+          "text": "United States"
+        },
+        "restriction": null,
+        "releaseAttributes": []
+      },
+      "titleCertificate": {
+        "rating": "TV-MA",
+        "certificateCountry": {
+          "id": "US",
+          "text": "United States"
+        },
+        "ratingReason": null
+      },
+      "titleRuntime": {
+        "seconds": 3180,
+        "displayableProperty": {
+          "qualifiersInMarkdownList": null
+        }
+      },
+      "chartMeterRanking": {
+        "currentRank": 9,
+        "rankChange": {
+          "changeDirection": "FLAT",
+          "difference": 0
+        }
+      }
+    },
+    {
+      "id": "tt1984119",
+      "isAdult": false,
+      "canRateTitle": {
+        "isRatable": true
+      },
+      "originalTitleText": {
+        "text": "Feud"
+      },
+      "primaryImage": {
+        "id": "rm3773975297",
+        "imageUrl": "https://m.media-amazon.com/images/M/MV5BZmQwYzM2YmQtNjQ5YS00NTdlLThmZjYtYjJhNTg1NzFkYTJiXkEyXkFqcGdeQXVyMjkwOTAyMDU@._V1_.jpg",
+        "imageWidth": 2160,
+        "imageHeight": 2700
+      },
+      "ratingsSummary": {
+        "aggregateRating": 8.4,
+        "topRanking": {
+          "rank": 325
+        },
+        "voteCount": 23129
+      },
+      "releaseYear": {
+        "year": 2017,
+        "endYear": null
+      },
+      "titleEpisode": null,
+      "titleText": {
+        "text": "Feud"
+      },
+      "titleType": {
+        "id": "tvSeries",
+        "text": "TV Series",
+        "displayableProperty": {
+          "value": {
+            "plainText": "TV Series"
+          }
+        },
+        "categories": [
+          {
+            "id": "tv",
+            "text": "TV",
+            "value": "tv"
+          }
+        ],
+        "canHaveEpisodes": true,
+        "isSeries": true,
+        "isEpisode": false
+      },
+      "series": null,
+      "watchOptionsByCategory": {
+        "categorizedWatchOptionsList": [
+          {
+            "watchOptions": [
+              {
+                "provider": {
+                  "id": "amzn1.imdb.w2w.provider.fx_now",
+                  "categoryType": "SUBSCRIPTION",
+                  "description": {
+                    "value": "Go to fxnetworks.com"
+                  },
+                  "name": {
+                    "value": "FXNOW"
+                  },
+                  "refTagFragment": "fx_now",
+                  "logos": {
+                    "icon": {
+                      "url": "https://m.media-amazon.com/images/M/a25e9b82-bb3f-4052-a559-c1fd5c93e1dd._V1_.png",
+                      "width": 512,
+                      "height": 512
+                    },
+                    "slate": {
+                      "url": "https://m.media-amazon.com/images/M/9ef352bf-962b-4a69-b5d9-36f447b237e3._V1_.png",
+                      "width": 1280,
+                      "height": 720
+                    }
+                  }
+                },
+                "title": {
+                  "value": "Watch on FXNOW"
+                },
+                "description": {
+                  "value": "S2 Go to fxnetworks.com"
+                },
+                "shortDescription": {
+                  "value": "S2"
+                },
+                "link": "https://www.fxnetworks.com/fxnow"
+              },
+              {
+                "provider": {
+                  "id": "amzn1.imdb.w2w.provider.hulu",
+                  "categoryType": "SUBSCRIPTION",
+                  "description": {
+                    "value": "on Hulu.com and the Hulu app"
+                  },
+                  "name": {
+                    "value": "Hulu"
+                  },
+                  "refTagFragment": "hulu",
+                  "logos": {
+                    "icon": {
+                      "url": "https://m.media-amazon.com/images/M/454c994e-acf4-49ef-83d5-8fa06c8a5eab._V1_.png",
+                      "width": 512,
+                      "height": 512
+                    },
+                    "slate": {
+                      "url": "https://m.media-amazon.com/images/M/67022a68-fde3-4078-8bd0-0ebc72efe8ad._V1_.png",
+                      "width": 1280,
+                      "height": 720
+                    }
+                  }
+                },
+                "title": {
+                  "value": "Watch on Hulu"
+                },
+                "description": {
+                  "value": "S1-2 on Hulu.com and the Hulu app"
+                },
+                "shortDescription": {
+                  "value": "S1-2"
+                },
+                "link": "http://www.hulu.com?d=Amazon"
+              }
+            ]
+          },
+          {
+            "watchOptions": [
+              {
+                "provider": {
+                  "id": "amzn1.imdb.w2w.provider.prime_video",
+                  "categoryType": "RENT_OR_BUY",
+                  "description": null,
+                  "name": {
+                    "value": "Prime Video"
+                  },
+                  "refTagFragment": "pvt_aiv",
+                  "logos": {
+                    "icon": {
+                      "url": "https://m.media-amazon.com/images/M/4c192978-331f-429e-9c97-02d5ed9d436e._V1_.png",
+                      "width": 500,
+                      "height": 500
+                    },
+                    "slate": {
+                      "url": "https://m.media-amazon.com/images/M/b63dfed5-e4fa-434c-be14-d2dc2b60fbae._V1_.png",
+                      "width": 1280,
+                      "height": 720
+                    }
+                  }
+                },
+                "title": {
+                  "value": "Watch on Prime Video"
+                },
+                "description": {
+                  "value": "buy from $9.99"
+                },
+                "shortDescription": {
+                  "value": "from $9.99"
+                },
+                "link": "aiv://aiv/view?gti=amzn1.dv.gti.9cad2d53-3116-41a8-83e4-aca48af0344b"
+              }
+            ]
+          }
+        ]
+      },
+      "plot": {
+        "id": "po2770019",
+        "author": null,
+        "plotText": {
+          "plainText": "An anthology series centering on famous feuds, including Bette Davis and Joan Crawford, and Truman Capote and the New York elite."
+        },
+        "correctionLink": {
+          "url": "https://m.imdb.com/title/tt1984119/contribution/plot/po2770019/edit"
+        },
+        "reportingLink": {
+          "url": "https://m.imdb.com/title/tt1984119/contribution/plot/po2770019/report"
+        }
+      },
+      "releaseDate": {
+        "day": 5,
+        "month": 3,
+        "year": 2017,
+        "country": {
+          "id": "US",
+          "text": "United States"
+        },
+        "restriction": null,
+        "releaseAttributes": []
+      },
+      "titleCertificate": {
+        "rating": "TV-MA",
+        "certificateCountry": {
+          "id": "US",
+          "text": "United States"
+        },
+        "ratingReason": null
+      },
+      "titleRuntime": {
+        "seconds": 3000,
+        "displayableProperty": {
+          "qualifiersInMarkdownList": null
+        }
+      },
+      "chartMeterRanking": {
+        "currentRank": 10,
+        "rankChange": {
+          "changeDirection": "UP",
+          "difference": 2
+        }
+      }
+    }
+  ]
+} */

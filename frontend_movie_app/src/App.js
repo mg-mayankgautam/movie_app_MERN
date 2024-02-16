@@ -1,24 +1,115 @@
-import logo from './logo.svg';
+
 import './App.css';
+import Addpost from './Addpost';
+import About from './About';
+import DisplayPost from './DisplayPost';
+import Home from './Home';
+import Login from './Login';
+import axios from 'axios';
+import Layout from './Layout';
+import SignUp from './SignUp';
+import RequireAuth from './RequireAuth';
+
+import { Route, Routes, useNavigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+
+
+
+
+
 
 function App() {
+
+
+
+
+
+  // const [newItem, setNewItem] = useState('');
+  const [posts, setPosts]     = useState([]);
+
+
+  const [postTitle, setPostTitle] = useState('');
+  const [postBody, setPostBody] = useState('');
+
+   async function handleSubmit(e) {
+      e.preventDefault();
+      console.log(postBody);
+      //const id = random.uuid();
+      const newPost = { id:crypto.randomUUID(), title: postTitle, body: postBody };
+
+      try{const data = await axios.post('http://localhost:4700/addpost',{newPost})
+      setPosts([]);
+     // const allPosts = [...posts, data.data];
+      setPosts(data.data);
+      setPostTitle('');
+      setPostBody('');
+ // console.log(data);
+  }
+      catch(err){console.log(err);}
+
+    }
+
+  
+
+  useEffect(() => {
+    const fetchPosts = async () => {
+      try {
+        const response = await axios.get('http://localhost:4700/posts');
+        console.log(response.data);
+        setPosts(response.data);
+      } catch (err) {
+        if (err.response) {
+          // Not in the 200 response range 
+          console.log(err.response.data);
+          console.log(err.response.status);
+          console.log(err.response.headers);
+        } else {
+          console.log(`Error: ${err.message}`);
+        }
+      }
+    }
+
+    fetchPosts();
+  }, [])
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+   
+        <Routes >
+        
+          <Route  path="/" element={<Layout/>}>
+                <Route index element={<Home posts={posts} />} /> 
+      
+                <Route path="login" element={<Login  />}/>
+                <Route path="signUp" element={<SignUp />}/>
+                
+
+                <Route element={<RequireAuth  />}>
+                   <Route path="addpost" element={<Addpost 
+                   handleSubmit={handleSubmit}
+                   postTitle={postTitle}
+                   setPostTitle={setPostTitle}
+                   postBody={postBody}
+                   setPostBody={setPostBody}
+                   />}/>
+                </Route>
+                    
+                    
+                    
+                
+
+
+
+                 <Route path="/post/:id" element={<DisplayPost 
+                     posts={posts}
+                   />}/>
+                 <Route path="about" element={<About/>} />
+          </Route>
+          
+        </Routes> 
+     
+       
+        
+    
   );
 }
 

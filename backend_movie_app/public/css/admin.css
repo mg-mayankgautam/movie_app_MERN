@@ -1,0 +1,42 @@
+body{
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    background-color: lightblue;
+    /* justify-content: center; */
+    /* align-items: center; */
+    height: 200vh;
+    margin-left: 30px;
+}
+
+input{
+    padding: 5px 10px;
+    height: 20px;
+    width: 150px;
+    border: none;
+    border-radius: 10px;
+}
+select{
+    padding: 5px 10px;
+    height: 30px;
+    width: 150px;
+    border: none;
+    border-radius: 10px;
+}
+
+button{
+    padding: 5px 5px;
+    height: 30px;
+    /* width: 60px; */
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    background-color: rgb(201, 52, 77);
+    color: white;
+}
+
+.team_members{
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../css/ranking.css">
+    
+</head>
+<body>
+    {{> navbar}}
+    {{!-- <div class="carousel">
+        <img src="../utils/call-of-duty-background.jpg" alt="">      
+    </div> --}}
+    
+    <div class="ranking_body">
+
+        <div class="scrims_div">
+            <h1>House of ESports Points Standings </h1>
+            <div class="scrims">
+                {{!-- <div>Scrim 1</div>
+                <div>Scrim 2</div>
+                <div>Scrim 3</div>
+                <div>Scrim 4</div> --}}
+            </div>
+
+        <div class="scrim_separator"></div>
+        </div>
+
+        <div class="select_div">
+            <div class="Team_Rankings" style="display: block;">  <h2>Team Rankings</h2></div>
+            <div class="player_Rankings" style="display: none;"><h2>player Rankings</h2></div>
+            
+            <div class="ranking_select">
+                        <select name="scrimname" class="ranking_select_child" placeholder="Select Scrim">
+                            <option value="team rankings"> team rankings    </option>
+                            <option value="player rankings">player rankings </option>
+                            
+                        </select>
+            </div>
+        </div>
+
+        <div class="leaderboard_div">
+               
+               
+               
+            <div class="leaderboard">
+                <div class="table_head">
+                        <div class="rank">Rank</div>
+                        <div class="teamname">Team</div>
+                        <div class="matchwins">Match Wins</div>
+                        <div class="played_matches">Match Played</div>
+                        <div class="positionpts">Position Pts</div>
+                        <div class="kills">Kills</div>
+                        <div class="totalpts">Total</div>
+                </div>
+                <div class="table_head responsive">
+                        <div class="rank">Rank</div>
+                        <div class="teamname">Team</div>
+                        <div class="matchwins">MW</div>
+                        <div class="played_matches">MP</div>
+                        <div class="positionpts">Ppts</div>
+                        <div class="kills">Kills</div>
+                        <div class="totalpts">Tpts</div>
+                </div>
+                 <div class="table_data">
+                       
+                </div>
+            </div>
+        </div>
+
+
+        
+               
+              
+         <div class="leaderboard_div_players" style="display:none;">
+             
+            <div class="leaderboard">
+                <div class="table_head_p">
+                        <div class="rank">Rank</div>
+                        <div class="playername">playername</div>
+                        <div class="teamname">Team</div>
+                        <div class="kills">Kills</div>
+                        <div class="damage">Damage</div>
+                       
+                </div>
+                <div class="table_head_p responsive">
+                        <div class="rank">Rank</div>
+                        <div class="playername">player</div>
+                        <div class="teamname">Team</div>
+                        <div class="kills">Kills</div>
+                        <div class="damage">Dmg</div>
+                       
+                </div>
+                 <div class="table_data_players">
+                       
+                </div>
+            </div>
+        </div>
+
+
+        
+    </div>
+<script defer src="./scripts/ranking.js"></script>
+<script defer src="./scripts/common.js"></script>
+
+</body>
+</html>

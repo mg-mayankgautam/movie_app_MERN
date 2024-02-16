@@ -11,3 +11,27 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.App{
+
+  background-color: rgba(255, 121, 215, 0.798);
+  min-height: 100vh;
+  
+    text-align: center;
+  
+}
+
+.Nav{background-color: aqua;
+display: flex;
+min-width: 100vw;
+}
+
+.navitems{display: flex;
+list-style: none;
+justify-content: space-around;
+/* flex-grow: 1; */
+}
+
+.post{
+  border: 5px solid black;
+}
