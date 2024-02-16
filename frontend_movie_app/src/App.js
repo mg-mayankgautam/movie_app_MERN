@@ -1,13 +1,13 @@
 
 import './App.css';
-import Addpost from './Addpost';
-import About from './About';
-import DisplayPost from './DisplayPost';
-import Home from './Home';
-import Login from './Login';
+import Addpost from './components/Addpost';
+import About from './components/About';
+import DisplayPost from './components/DisplayPost';
+import Home from './components/Home';
+import Login from './components/Login';
 import axios from 'axios';
 import Layout from './Layout';
-import SignUp from './SignUp';
+import SignUp from './components/SignUp';
 import RequireAuth from './RequireAuth';
 
 import { Route, Routes, useNavigate } from 'react-router-dom';

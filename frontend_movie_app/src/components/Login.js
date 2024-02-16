@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import useAuth from './hook/useAuth';
+import useAuth from '../hook/useAuth';
 import { useState } from 'react';
 
 const Login = () => {
