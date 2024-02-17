@@ -55,7 +55,7 @@ function App() {
     const fetchPosts = async () => {
       try {
         const response = await axios.get('http://localhost:4700/posts');
-        console.log(response.data);
+       // console.log(response.data);
         setPosts(response.data);
       } catch (err) {
         if (err.response) {
