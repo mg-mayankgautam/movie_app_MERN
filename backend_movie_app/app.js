@@ -54,27 +54,24 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 
-
-
-
-
-
-
-// const landingpageRouter = require('./routes/landingpage.js');
-// app.use('/addpost', landingpageRouter);
-
-
-// const adminpageRouter = require('./routes/adminpage.js');
-// app.use('/admin', adminpageRouter);
-
-
-
 // const adminhomeRouter = require('./routes/adminhome.js');
 // app.use('/adminhome', adminhomeRouter);
 
 
+
+// const AuthRouter = require('./routes/authentication.js');
+// app.use('/', AuthRouter);
+
+
+const landingpageRouter = require('./routes/landingpage.js');
+app.use('/', landingpageRouter);
+
+
+
+
+
+
 const dataDB = require("./models/dataDB.js");
-const moviesDB = require("./models/moviesDB.js");
 
 app.post('/addpost', async (req, res ) =>{
 
@@ -91,7 +88,7 @@ app.post('/addpost', async (req, res ) =>{
      .then(()=>{
         
         
-     console.log('question addes success');
+     console.log('question added success');
         res.redirect('/posts');
       })
        .catch(err =>{console.log(err);});
@@ -99,104 +96,14 @@ app.post('/addpost', async (req, res ) =>{
     
     });
 
-app.get('/posts',async(req, res)=>{
 
-    // const URL = 'https://search.imdbot.workers.dev/?tt=tt15009428';
-   
-
-
-    // try{
-    // const res = await fetch(URL);
-    // const moviefromapi= res.json();}
-    // catch(e){console.log(e)}
-
-
-    // fetch(URL)
-    // .then((res)=>{
-    //     return res.json();
-    // })
-    // .then((moviefromapi)=>{
-    //   //  console.log(moviefromapi);
-
-    //                   let newmovie = new moviesDB ({moviefromapi});
-    //                   newmovie.save()
-    //                   .then(()=>{
-                        
-                        
-    //                   console.log('movie added success');
-                        
-    //                     })
-    //                     .catch(err =>{console.log(err);});
-        
-    // })
-    // .catch((err)=>{
-    //     console.log(err);
-    // })
-
-
-
-
-
-
-     
-
-   //console.log('reached here',moviefromapi);
-  // const moviename = moviefromapi.short.name;
- //= await moviesDB.find({moviename});
- let movie= await moviesDB.find({}, {'moviefromapi.short.name':1})
-
- let name = movie.map(e=>({ id: e._id.toString(), name: e.moviefromapi.short.name}));
-
-//  ,e.moviefromapi.short.name
- console.log(name);
-
-
- 
-res.send(name);
-
-
-})    
-    
-const usersDB = require("./models/usersDB.js");
-
-app.post('/signUp',async(req, res)=>{
-
-    const {Username,Password}=req.body; 
-    console.log(req.body);
-
-    let newUser = new usersDB ({Username,Password});
-    newUser.save()
-     .then(()=>{
-        
-        
-     console.log('user addes success');
-        // res.redirect('/');
-      })
-       .catch(err =>{console.log(err);});
-    
-
-});
-
-app.post('/login',async(req, res)=>{
-
-    const {Username,Password}=req.body; 
-    // console.log(req.body);
-
-    let user = await usersDB.findOne({Username,Password});
-   console.log(user);
 
     
-    if(user){res.send(true)}
-    else if(!user){res.send(false)}
-
-});
-
-
-
-
 // app.listen(PORT, () => {
 //     console.log(`http://localhost:` + PORT);
 // })
+
+
 
 
 //////USE BELOW CODE WITH MONGOOSE  
@@ -214,6 +121,3 @@ mongoose.connect(process.env.MONGODB_URL ,{
     })
     .catch(err => {console.error(err);});
 
-
-
-    
