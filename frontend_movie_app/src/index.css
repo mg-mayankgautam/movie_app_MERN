@@ -136,11 +136,19 @@ code {
 }
 
 .DisplayPost{
+<<<<<<< HEAD
     display: flex;
     justify-content: space-around;
     gap: 20px;
     margin: 130px 50px 50px;
     max-width: 800px;
+=======
+  display: flex;
+  justify-content: space-around;
+  gap: 20px;
+  margin: 130px 50px 50px;
+  max-width: 800px;
+>>>>>>> 9099bf4e048d3701170173f1cd30a23196c7ab34
 }
 
 .AboutMovie{
@@ -156,9 +164,17 @@ code {
 .movieinfo{
   display: flex;
   gap: 10px;
-  align-items: center;
+  align-items: baseline;
 }
-.movieinfo>h2{margin: 0 0;}
+.movieinfo>h1{
+  margin: 0 0;
+}
+
+.directors{
+  display: flex;
+  gap: 5px;
+}
+
 .MainPoster{
   height: 400px;
   /* width: 128px; */

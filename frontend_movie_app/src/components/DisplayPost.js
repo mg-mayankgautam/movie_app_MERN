@@ -10,12 +10,13 @@ const [Plot, setPlot] = useState('')
 const [Release_data, setRelease_data] = useState('')
 const [Runtime, setRuntime] = useState('')
 const [MoviePoster, setMoviePoster] = useState('')
-
+const [actors, setActors] = useState('');
+const [directors, setDirectors] = useState('');
 
 
   const { id } = useParams();
   const post = posts.find(post => (post.id).toString() === id);
- console.log(post);
+//  console.log(post);
 
 useEffect(() => {
     const getmoviedata = async () => {
@@ -24,13 +25,15 @@ useEffect(() => {
           //console.log('url',URL);
           const response = await axios.get(URL);
 
-          console.log(response.data);
+          console.log(response.data.director);
           setmoviename(response.data.name)
           setPlot(response.data.plot.plainText)
         
           setRelease_data(response.data.release_data)
           setRuntime(response.data.runtime)
           setMoviePoster(response.data.url)
+          setActors(response.data.actors)
+          setDirectors(response.data.director)
           
         } catch (err) {
           if (err.response) {
@@ -51,6 +54,9 @@ useEffect(() => {
 console.log(moviename);
 
   return ( 
+console.log({directors});
+  return (    
+      
   <main className='DisplayPost'>
 
     <div>
@@ -67,6 +73,24 @@ console.log(moviename);
           <div>{Runtime}</div>
           <div>cast</div>
           <div>genre</div>
+      <div className='movieinfo'>
+          <h1>{moviename.text}</h1>
+          <div>{Release_data.year}</div>
+          <div className='directors'>
+               <p> Directed By: </p>
+                {directors.map(director => (
+                        <p>{director.name}</p>
+                  ))}
+          </div>
+      </div>
+        <div>{Plot}</div>
+        <div>{Runtime}</div>
+        <div>
+                Cast: {actors.map(actor => (
+                        <p>{actor.name}</p>
+                  ))}
+        </div>
+        <div>genre</div>
     </div>
 
   {/* {post &&
