@@ -49,8 +49,20 @@ useEffect(() => {
 
 
 console.log(moviename);
+<<<<<<< HEAD
   return (    
       
+=======
+  return (
+  <>
+     <div> {moviename.text}</div>
+     <div> {Plot}</div>
+     <div> {Release_data.year}</div>
+     <div> {Runtime}</div>
+      <div>{MoviePoster}</div>
+      
+      
+>>>>>>> 71f249c1fd0cc029d2680cdbf86e069dfc9af6d3
   <main className='DisplayPost'>
 
     <div>
@@ -58,6 +70,7 @@ console.log(moviename);
     </div>
 
     <div className='AboutMovie'>
+<<<<<<< HEAD
       <div className='movieinfo'>
         <h1>{moviename.text}</h1>
         <div>{Release_data.year}</div>
@@ -65,6 +78,14 @@ console.log(moviename);
       </div>
         <div>{Plot}</div>
         <div>{Runtime}</div>
+=======
+        <div className='movieinfo'>
+            <h2>Dune: Part Two</h2>
+            <div>2024</div>
+            <div>Directed By: director</div>
+        </div>
+        <div>plot</div>
+>>>>>>> 71f249c1fd0cc029d2680cdbf86e069dfc9af6d3
         <div>cast</div>
         <div>genre</div>
     </div>
@@ -87,6 +108,7 @@ console.log(moviename);
           } */}
   
   </main>
+  </>
   )
 }
 
