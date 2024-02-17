@@ -3,15 +3,19 @@ import { useParams, Link } from "react-router-dom";
 import { useEffect,useState } from 'react';
 import axios from 'axios';
 import uuid from 'uuid';
+import UserPanel from './UserPanel';
+
+
 const DisplayPost = ({posts}) => {
 
 const [moviename, setmoviename] = useState('')
 const [Plot, setPlot] = useState('')
-const [Release_data, setRelease_data] = useState('')
+const [Release_date, setRelease_date] = useState('')
 const [Runtime, setRuntime] = useState('')
 const [MoviePoster, setMoviePoster] = useState('')
 const [actors, setactors] = useState('');
 const [Directors, setDirectors] = useState('');
+const [Genres, setGenres] = useState('');
 
 
   const { id } = useParams();
@@ -28,13 +32,12 @@ useEffect(() => {
           //console.log(response.data);
           setmoviename(response.data.name)
           setPlot(response.data.plot.plainText)
-        
-          setRelease_data(response.data.release_data)
+          setRelease_date(response.data.release_date)
           setRuntime(response.data.runtime)
           setMoviePoster(response.data.url)
           setactors(response.data.actors)
-          setDirectors('')
           setDirectors(response.data.director)
+          setGenres(response.data.genres)
           
         } catch (err) {
           if (err.response) {
@@ -59,15 +62,15 @@ console.log(Directors);
       
   <main className='DisplayPost'>
 
-    <div>
-        <img src={MoviePoster} alt="MainPoster"  className='MainPoster' />
-    </div>
+    <article className='MainPoster'>
+        <img src={MoviePoster} alt="poster"  className='movieImg' />
+    </article>
 
-    <div className='AboutMovie'>
+    <article className='AboutMovie'>
 
-      <div className='movieinfo'>
-          <h1>{moviename.text}</h1>
-          <div>{Release_data.year}</div>
+      <section className='movieInfo'>
+          <div className='movieTitle'>{moviename.text}</div>
+          <div>{Release_date.year}</div>
           <div className='directors'>
                <p> Directed By: </p>
                 
@@ -79,16 +82,31 @@ console.log(Directors);
                   }
                   {/* {Directors && Directors[0].name} */}
           </div>
-      </div>
-        <div>{Plot}</div>
-        <div>{Runtime}</div>
-        <div>
-                 Cast: {actors && actors.map(actor => (
-                        <p key={id}>{actor.name}</p>
-                  ))} 
-        </div>
-        <div>genre</div>
-    </div>
+      </section>
+
+      <section className='movieAllinfo'>
+          <div>
+                <div className='moviePlot'>{Plot}</div>
+                <p>{Runtime}</p>
+
+                <div className='CastGenre'>
+                    <div>
+                        Cast: {actors && actors.map(actor => (
+                                <div key={crypto.randomUUID()}>{actor.name}</div>
+                          ))} 
+                    </div>
+                    <div>
+                        Genres: 
+                        {/* {Genres && Genres.map(Genre => (
+                                <p key={Genre.id}>{Genre.text}</p>
+                          ))}  */}
+                    </div>
+                </div>
+          </div>
+          
+          <UserPanel/>
+      </section>
+    </article>
 
   {/* {post &&
         <>

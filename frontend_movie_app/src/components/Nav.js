@@ -63,10 +63,10 @@ const Nav = () => {
               <Link to="/"><img src={logo} alt='Logo' className='logo' /></Link>
               </div>
             <ul className='navpages' >
-                <li><Link to="/">Home</Link></li>
-                <li><Link to="/addpost">Post</Link></li>
-                <li><Link to="/login">Login</Link></li>
-                <li><Link to="/about">About</Link></li>
+                <li><Link to="/">HOME</Link></li>
+                <li><Link to="/addpost">POST</Link></li>
+                <li><Link to="/login">LOGIN</Link></li>
+                <li><Link to="/about">ABOUT</Link></li>
             </ul>
 
             <Search>
@@ -74,7 +74,7 @@ const Nav = () => {
               <SearchIcon/>
             </SearchIconWrapper>
             <StyledInputBase
-              placeholder="Search…"
+              placeholder=""
               inputProps={{ 'aria-label': 'search' }}
             />
           </Search>
