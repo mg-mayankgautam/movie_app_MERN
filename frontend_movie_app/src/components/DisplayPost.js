@@ -1,9 +1,17 @@
 import React from 'react'
 import { useParams, Link } from "react-router-dom";
-import { useEffect } from 'react';
+import { useEffect,useState } from 'react';
 import axios from 'axios';
 
 const DisplayPost = ({posts}) => {
+
+const [moviename, setmoviename] = useState('')
+const [Plot, setPlot] = useState('')
+const [Release_data, setRelease_data] = useState('')
+const [Runtime, setRuntime] = useState('')
+const [MoviePoster, setMoviePoster] = useState('')
+
+
 
   const { id } = useParams();
   //const post = posts.find(post => (post.id).toString() === id);
@@ -16,7 +24,13 @@ useEffect(() => {
           //console.log('url',URL);
           const response = await axios.get(URL);
 
-          console.log(response);
+          console.log(response.data);
+          setmoviename(response.data.name)
+          setPlot(response.data.plot.plainText)
+        
+          setRelease_data(response.data.release_data)
+          setRuntime(response.data.runtime)
+          setMoviePoster(response.data.url)
           
         } catch (err) {
           if (err.response) {
@@ -34,8 +48,17 @@ useEffect(() => {
 }, [])
 
 
+console.log(moviename);
   return (
   <>
+     <div> {moviename.text}</div>
+     <div> {Plot}</div>
+     <div> {Release_data.year}</div>
+     <div> {Runtime}</div>
+      <div>{MoviePoster}</div>
+      
+      
+
   {/* {post &&
                     <>
                         <h2>{post.name}</h2>
