@@ -14,8 +14,8 @@ const [MoviePoster, setMoviePoster] = useState('')
 
 
   const { id } = useParams();
-  //const post = posts.find(post => (post.id).toString() === id);
- // console.log(post);
+  const post = posts.find(post => (post.id).toString() === id);
+ console.log(post);
 
 useEffect(() => {
     const getmoviedata = async () => {
@@ -50,6 +50,7 @@ useEffect(() => {
 
 console.log(moviename);
   return (
+<<<<<<< HEAD
   <>
      <div> {moviename.text}</div>
      <div> {Plot}</div>
@@ -58,25 +59,43 @@ console.log(moviename);
       <div>{MoviePoster}</div>
       
       
+=======
+  <main className='DisplayPost'>
+
+    <div>
+        <img src="" alt="MainPoster"  className='MainPoster' />
+    </div>
+
+    <div className='AboutMovie'>
+      <div className='movieinfo'>
+        <h2>Dune: Part Two</h2>
+        <div>2024</div>
+        <div>Directed By: director</div>
+      </div>
+        <div>plot</div>
+        <div>cast</div>
+        <div>genre</div>
+    </div>
+>>>>>>> fc11b943a175585d5fb3a288a0b5e48f76a7fde0
 
   {/* {post &&
-                    <>
+        <>
                         <h2>{post.name}</h2>
                       
                      
-                    </>
-                }
-                {!post &&
-                    <>
-                        <h2>Post Not Found</h2>
-                        <p>Well, that's disappointing.</p>
-                        <p>
-                            <Link to='/'>Visit Our Homepage</Link>
-                        </p>
-                    </>
-                } */}
+        </>
+  }
+  {!post &&
+        <>
+            <h2>Post Not Found</h2>
+            <p>Well, that's disappointing.</p>
+            <p>
+                <Link to='/'>Visit Our Homepage</Link>
+            </p>
+        </>
+          } */}
   
-  </>
+  </main>
   )
 }
 
