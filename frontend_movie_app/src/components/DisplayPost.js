@@ -10,12 +10,13 @@ const [Plot, setPlot] = useState('')
 const [Release_data, setRelease_data] = useState('')
 const [Runtime, setRuntime] = useState('')
 const [MoviePoster, setMoviePoster] = useState('')
-
+const [actors, setActors] = useState('');
+const [directors, setDirectors] = useState('');
 
 
   const { id } = useParams();
   const post = posts.find(post => (post.id).toString() === id);
- console.log(post);
+//  console.log(post);
 
 useEffect(() => {
     const getmoviedata = async () => {
@@ -24,13 +25,15 @@ useEffect(() => {
           //console.log('url',URL);
           const response = await axios.get(URL);
 
-          console.log(response.data);
+          console.log(response.data.director);
           setmoviename(response.data.name)
           setPlot(response.data.plot.plainText)
         
           setRelease_data(response.data.release_data)
           setRuntime(response.data.runtime)
           setMoviePoster(response.data.url)
+          setActors(response.data.actors)
+          setDirectors(response.data.director)
           
         } catch (err) {
           if (err.response) {
@@ -48,21 +51,9 @@ useEffect(() => {
 }, [])
 
 
-console.log(moviename);
-<<<<<<< HEAD
+console.log({directors});
   return (    
       
-=======
-  return (
-  <>
-     <div> {moviename.text}</div>
-     <div> {Plot}</div>
-     <div> {Release_data.year}</div>
-     <div> {Runtime}</div>
-      <div>{MoviePoster}</div>
-      
-      
->>>>>>> 71f249c1fd0cc029d2680cdbf86e069dfc9af6d3
   <main className='DisplayPost'>
 
     <div>
@@ -70,23 +61,23 @@ console.log(moviename);
     </div>
 
     <div className='AboutMovie'>
-<<<<<<< HEAD
       <div className='movieinfo'>
-        <h1>{moviename.text}</h1>
-        <div>{Release_data.year}</div>
-        <div>Directed By: Director</div>
+          <h1>{moviename.text}</h1>
+          <div>{Release_data.year}</div>
+          <div className='directors'>
+               <p> Directed By: </p>
+                {directors.map(director => (
+                        <p>{director.name}</p>
+                  ))}
+          </div>
       </div>
         <div>{Plot}</div>
         <div>{Runtime}</div>
-=======
-        <div className='movieinfo'>
-            <h2>Dune: Part Two</h2>
-            <div>2024</div>
-            <div>Directed By: director</div>
+        <div>
+                Cast: {actors.map(actor => (
+                        <p>{actor.name}</p>
+                  ))}
         </div>
-        <div>plot</div>
->>>>>>> 71f249c1fd0cc029d2680cdbf86e069dfc9af6d3
-        <div>cast</div>
         <div>genre</div>
     </div>
 
@@ -108,7 +99,6 @@ console.log(moviename);
           } */}
   
   </main>
-  </>
   )
 }
 

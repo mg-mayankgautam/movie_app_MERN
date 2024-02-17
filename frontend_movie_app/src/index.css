@@ -38,7 +38,7 @@ code {
   width: 100%;
   padding: 0px 30px;
   /* margin-bottom: 20px; */
-  /* height: 20px; */
+  height: 70px;
   position: absolute;
   top: 0;
   z-index: 1;
@@ -136,16 +136,10 @@ code {
 
 .DisplayPost{
   display: flex;
-<<<<<<< HEAD
   justify-content: space-around;
   gap: 20px;
-  margin: 50px 50px;
-=======
-  justify-content: space-evenly;
-  gap: 40px;
   margin: 130px 50px 50px;
   max-width: 800px;
->>>>>>> 71f249c1fd0cc029d2680cdbf86e069dfc9af6d3
 }
 
 .AboutMovie{
@@ -160,9 +154,17 @@ code {
 .movieinfo{
   display: flex;
   gap: 10px;
-  align-items: center;
+  align-items: baseline;
 }
-.movieinfo>h2{margin: 0 0;}
+.movieinfo>h1{
+  margin: 0 0;
+}
+
+.directors{
+  display: flex;
+  gap: 5px;
+}
+
 .MainPoster{
   height: 400px;
   /* width: 128px; */
