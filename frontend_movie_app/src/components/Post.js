@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 
 const Post = ({ post }) => {
 
-    console.log(post.id);
+   // console.log(post.id);
     return (
 
         
@@ -10,7 +10,7 @@ const Post = ({ post }) => {
            
             <Link to={`/post/${post.id}`}>
            
-                <img className='movieposter' src= "https://white-cinema.be/wp-content/uploads/2023/12/Anyone_4x5_NL.jpg" />
+                <img className='movieposter' src= {post.img} />
 
                 {/* <p>{post.name}</p> */}
                 {/* <p className="postDate">{post.datetime}</p> */}

@@ -66,39 +66,39 @@ app.use(express.static(path.join(__dirname, 'public')));
 const landingpageRouter = require('./routes/landingpage.js');
 app.use('/', landingpageRouter);
 
-
+const moviepageRouter= require('./routes/moviepage.js');
+app.use('/movie',moviepageRouter);
 
 
 
 
 const dataDB = require("./models/dataDB.js");
 
-app.post('/addpost', async (req, res ) =>{
+// app.post('/addpost', async (req, res ) =>{
 
-   // console.log('this is the incoming post',req.body);
+//    // console.log('this is the incoming post',req.body);
 
 
-    const title= req.body.newPost.title;
-    const body= req.body.newPost.body;
-   // console.log('this is the incoming  isnide',req.body.newPost.title);
+//     const title= req.body.newPost.title;
+//     const body= req.body.newPost.body;
+//    // console.log('this is the incoming  isnide',req.body.newPost.title);
     
 
-     let newdata = new dataDB ({title,body});
-     newdata.save()
-     .then(()=>{
+//      let newdata = new dataDB ({title,body});
+//      newdata.save()
+//      .then(()=>{
         
         
-     console.log('question added success');
-        res.redirect('/posts');
-      })
-       .catch(err =>{console.log(err);});
+//      console.log('question added success');
+//         res.redirect('/posts');
+//       })
+//        .catch(err =>{console.log(err);});
     
     
-    });
+//     });
 
-<<<<<<< HEAD
 
-    const download = require('image-downloader');
+const download = require('image-downloader');
 
     
 
@@ -116,16 +116,13 @@ app.post('/addpost', async (req, res ) =>{
 //  const path ='./utils'
 // downloadImage(url,path);
 
-app.get('/posts',async(req, res)=>{
+// app.get('/posts',async(req, res)=>{
 
     // const URL = 'https://search.imdbot.workers.dev/?tt=tt15009428';
    
 
 
-    // try{
-    // const res = await fetch(URL);
-    // const moviefromapi= res.json();}
-    // catch(e){console.log(e)}
+ 
 
 
     // fetch(URL)
@@ -140,7 +137,19 @@ app.get('/posts',async(req, res)=>{
     //                   .then(()=>{
                         
                         
-    //                   console.log('movie added success');
+    //                   console.log('movie image link',moviefromapi.short.image);
+
+
+    //                             const options = {
+    //                          url: `${moviefromapi.short.image}`,
+    //                          dest: path.resolve('public/posters'),            
+    //                             };
+      
+    //                         download.image(options)
+    //                           .then(({ filename }) => {
+    //                             console.log('Saved to', filename); 
+    //                           })
+    //                           .catch((err) => console.error(err));
                         
     //                     })
     //                     .catch(err =>{console.log(err);});
@@ -149,6 +158,7 @@ app.get('/posts',async(req, res)=>{
     // .catch((err)=>{
     //     console.log(err);
     // })
+
 
    
     // const options = {
@@ -168,68 +178,66 @@ app.get('/posts',async(req, res)=>{
    //console.log('reached here',moviefromapi);
   // const moviename = moviefromapi.short.name;
  //= await moviesDB.find({moviename});
- let movie= await moviesDB.find({}, {'moviefromapi.short.name':1})
+//  let movie= await moviesDB.find({}, {'moviefromapi.short.name':1})
 
- let name = movie.map(e=>({ id: e._id.toString(), name: e.moviefromapi.short.name, img:`http://localhost:4700/utils/${e._id.toString()}.jpg`}));
-
- 
-//  ,e.moviefromapi.short.name
- console.log(name);
-
+//  let name = movie.map(e=>({ id: e._id.toString(), name: e.moviefromapi.short.name, img:`http://localhost:4700/utils/${e._id.toString()}.jpg`}));
 
  
-res.send(name);
+// //  ,e.moviefromapi.short.name
+//  console.log(name);
 
 
-})    
+ 
+// res.send(name);
+
+
+//})    
     
-const usersDB = require("./models/usersDB.js");
+// const usersDB = require("./models/usersDB.js");
 
-app.post('/signUp',async(req, res)=>{
+// app.post('/signUp',async(req, res)=>{
 
-    const {Username,Password}=req.body; 
-    console.log(req.body);
+//     const {Username,Password}=req.body; 
+//     console.log(req.body);
 
-    let newUser = new usersDB ({Username,Password});
-    newUser.save()
-     .then(()=>{
+//     let newUser = new usersDB ({Username,Password});
+//     newUser.save()
+//      .then(()=>{
         
         
-     console.log('user addes success');
-        // res.redirect('/');
-      })
-       .catch(err =>{console.log(err);});
+//      console.log('user addes success');
+//         // res.redirect('/');
+//       })
+//        .catch(err =>{console.log(err);});
     
 
-});
+// });
 
-app.post('/login',async(req, res)=>{
+// app.post('/login',async(req, res)=>{
 
-    const {Username,Password}=req.body; 
-    // console.log(req.body);
+//     const {Username,Password}=req.body; 
+//     // console.log(req.body);
 
-    let user = await usersDB.findOne({Username,Password});
-   console.log(user);
-
-    
-    if(user){res.send(true)}
-    else if(!user){res.send(false)}
-
-});
-
-
-app.get('/getimage',async(req, res)=>{
-
-//res.send(MV5BNDYzYzc0MDYtMGM2MC00YzNjLWJhMjYtYzJhMWViMjgxZTcwXkEyXkFqcGdeQXVyMTUzMTg2ODkz._V1_.jpg);
-
-});
-
-
-=======
-
+//     let user = await usersDB.findOne({Username,Password});
+//    console.log(user);
 
     
->>>>>>> 4e5b1be06c6b23c26e3a8ecbf8c28e0145f6d788
+//     if(user){res.send(true)}
+//     else if(!user){res.send(false)}
+
+// });
+
+
+// app.get('/getimage',async(req, res)=>{
+
+// //res.send(MV5BNDYzYzc0MDYtMGM2MC00YzNjLWJhMjYtYzJhMWViMjgxZTcwXkEyXkFqcGdeQXVyMTUzMTg2ODkz._V1_.jpg);
+
+// });
+
+
+
+
+    
 // app.listen(PORT, () => {
 //     console.log(`http://localhost:` + PORT);
 // })

@@ -59,13 +59,13 @@ const Nav = () => {
 
 
             <ul className='navitems' >
-                <li><Link to="/">Home</Link></li>
-                <li><Link to="/addpost">Post</Link></li>
-                <li><Link to="/login">Login</Link></li>
-                <li><Link to="/about">About</Link></li>
+                <li><Link to="/">HOME</Link></li>
+                <li><Link to="/addpost">POST</Link></li>
+                <li><Link to="/login">LOGIN</Link></li>
+                <li><Link to="/about">ABOUT</Link></li>
             </ul>
 
-            {/* <Search>
+            <Search>
             <SearchIconWrapper>
               <SearchIcon/>
             </SearchIconWrapper>
@@ -73,7 +73,7 @@ const Nav = () => {
               placeholder="Search…"
               inputProps={{ 'aria-label': 'search' }}
             />
-          </Search> */}
+          </Search>
 
     </div>
               

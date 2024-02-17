@@ -20,7 +20,7 @@ code {
   min-height: 100vh;
   /* color: white; */
   text-align: center;
-  font-family: 'Oxygen', sans;
+  font-family: 'roboto', sans;
 }
 
 .Nav{
@@ -48,7 +48,7 @@ code {
 
 .trending_heading{
   font-size: 30px;
-  font-family: "DM Serif Display", serif;
+  font-family: 'roboto', sans;
   font-weight: 400;
   font-style: normal;
 }
