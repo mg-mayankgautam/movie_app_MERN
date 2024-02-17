@@ -6,6 +6,7 @@ const Home = ({ posts }) => {
         <main className="Home">
             <div className='bannerdiv'>
                     <img src={banner} alt="Banner" className='banner'/>
+                    <h1 className='bannertext'>Your Social Media <br />for Movies</h1>
                 </div>
                 {posts.length ? (
                     <Feed posts={posts} />

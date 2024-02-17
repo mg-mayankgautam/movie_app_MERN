@@ -5,19 +5,19 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen','Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-image: linear-gradient(to bottom right, rgb(17, 6, 6), rgb(32, 40, 74));
+  background-image: linear-gradient(to bottom right, rgb(17, 6, 6), rgb(23, 29, 57));
   color: white;
 }
-
+/* rgb(32, 40, 74) */
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
 
-/* .Footer{
-  position: sticky;
+.Footer{
+  margin-top: auto;
   bottom: 0;
-} */
+}
 
 .App{
 
@@ -26,17 +26,23 @@ code {
   /* color: white; */
   text-align: center;
   font-family: 'roboto', sans;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .Nav{
   background-color: transparent;
   display: flex;
   justify-content: center;
-  min-width: 100%;
+  width: 100%;
   padding: 0px 30px;
   /* margin-bottom: 20px; */
   /* height: 20px; */
-  /* position: absolute; */
+  position: absolute;
+  top: 0;
+  z-index: 1;
+  background-image: linear-gradient();
 }
 
 .Navitems{
@@ -44,7 +50,7 @@ code {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  max-width: 800px;
+  max-width: 900px;
 }
 
 .navpages{
@@ -66,14 +72,26 @@ code {
 }
 
 .bannerdiv{
-  /* height: 100vh; */
-  /* position: relative; */
+  height: 100vh;
+  width: 100%;
+  position: relative;
   /* top: 0; */
-  box-shadow: 8px 8px 8px 8px rgb(0, 0, 0) inset;
+  /* box-shadow: 8px 8px 8px 8px rgb(0, 0, 0) inset; */
+  /* background-image: url(./components/utils/banner.jpg); */
+  background: cover;
+}
+.bannertext{
+  position: absolute;
+  bottom: 8vh;
+  width: 100%;
+  /* font-family:; */
+  /* right: 10%; */
 }
 .banner{
   height: 100vh;
-  box-shadow: 8px 8px 8px 8px rgb(0, 0, 0) inset;
+  opacity: 80%;
+  /* box-shadow: 8px 8px 8px 8px rgb(0, 0, 0) inset; */
+  box-shadow: 0 0 20px rgba(0,0,0,0.1), 0 0 40px rgba(0,0,0,0.1), 0 0 60px rgba(0,0,0,0.1), 0 0 80px rgba(0,0,0,0.1);
 }
 
 .Home{
@@ -120,7 +138,8 @@ code {
   display: flex;
   justify-content: space-evenly;
   gap: 40px;
-  margin: 50px 50px;
+  margin: 130px 50px 50px;
+  max-width: 800px;
 }
 
 .AboutMovie{
@@ -136,6 +155,7 @@ code {
   gap: 10px;
   align-items: center;
 }
+.movieinfo>h2{margin: 0 0;}
 .MainPoster{
   height: 200px;
   /* width: 128px; */
