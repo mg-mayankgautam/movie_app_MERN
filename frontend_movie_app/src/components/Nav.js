@@ -3,15 +3,17 @@ import { Link } from 'react-router-dom';
 import { styled, alpha } from '@mui/material/styles';
 import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
+// import { sizing } from '@material-ui/system';
+import logo from './utils/logo.png';
 
 const Nav = () => {
-
+// console.log(logo);
   const Search = styled('div')(({ theme }) => ({
     position: 'relative',
     // borderRadius: theme.shape.borderRadius,
-    borderRadius: "10px",
+    borderRadius: "20px",
     backgroundColor: alpha(theme.palette.common.white, 0.15),
-    height: "",
+    
     '&:hover': {
       backgroundColor: alpha(theme.palette.common.white, 0.25),
     },
@@ -27,7 +29,7 @@ const Nav = () => {
   
   const SearchIconWrapper = styled('div')(({ theme }) => ({
     padding: theme.spacing(0, 2),
-    height: '100%',
+    // minHeight: "32px",
     position: 'absolute',
     pointerEvents: 'none',
     display: 'flex',
@@ -37,6 +39,7 @@ const Nav = () => {
   
   const StyledInputBase = styled(InputBase)(({ theme }) => ({
     color: 'inherit',
+    // minHeight: "32px",
     width: '100%',
     '& .MuiInputBase-input': {
       padding: theme.spacing(1, 1, 1, 0),
@@ -55,17 +58,17 @@ const Nav = () => {
   return (
     
     <div className='Nav'>
-
-
-
-            <ul className='navitems' >
+            <div className='Navitems'>
+            <img src={logo} alt='Logo' className='logo' />
+            
+            <ul className='navpages' >
                 <li><Link to="/">Home</Link></li>
                 <li><Link to="/addpost">Post</Link></li>
                 <li><Link to="/login">Login</Link></li>
                 <li><Link to="/about">About</Link></li>
             </ul>
 
-            {/* <Search>
+            <Search>
             <SearchIconWrapper>
               <SearchIcon/>
             </SearchIconWrapper>
@@ -73,8 +76,8 @@ const Nav = () => {
               placeholder="Search…"
               inputProps={{ 'aria-label': 'search' }}
             />
-          </Search> */}
-
+          </Search>
+          </div>
     </div>
               
 
