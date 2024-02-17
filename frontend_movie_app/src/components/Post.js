@@ -10,7 +10,9 @@ const Post = ({ post }) => {
            
             <Link to={`/post/${post.id}`}>
            
-                <h2>{post.name}</h2>
+                <img className='movieposter' src= "https://white-cinema.be/wp-content/uploads/2023/12/Anyone_4x5_NL.jpg" />
+
+                {/* <p>{post.name}</p> */}
                 {/* <p className="postDate">{post.datetime}</p> */}
             </Link>
             {/* <p className="postBody">{

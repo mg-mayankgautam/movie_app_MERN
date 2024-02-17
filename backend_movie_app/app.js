@@ -54,27 +54,24 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 
-
-
-
-
-
-
-// const landingpageRouter = require('./routes/landingpage.js');
-// app.use('/addpost', landingpageRouter);
-
-
-// const adminpageRouter = require('./routes/adminpage.js');
-// app.use('/admin', adminpageRouter);
-
-
-
 // const adminhomeRouter = require('./routes/adminhome.js');
 // app.use('/adminhome', adminhomeRouter);
 
 
+
+// const AuthRouter = require('./routes/authentication.js');
+// app.use('/', AuthRouter);
+
+
+const landingpageRouter = require('./routes/landingpage.js');
+app.use('/', landingpageRouter);
+
+
+
+
+
+
 const dataDB = require("./models/dataDB.js");
-const moviesDB = require("./models/moviesDB.js");
 
 app.post('/addpost', async (req, res ) =>{
 
@@ -91,7 +88,7 @@ app.post('/addpost', async (req, res ) =>{
      .then(()=>{
         
         
-     console.log('question addes success');
+     console.log('question added success');
         res.redirect('/posts');
       })
        .catch(err =>{console.log(err);});
@@ -99,6 +96,7 @@ app.post('/addpost', async (req, res ) =>{
     
     });
 
+<<<<<<< HEAD
 
     const download = require('image-downloader');
 
@@ -227,9 +225,16 @@ app.get('/getimage',async(req, res)=>{
 });
 
 
+=======
+
+
+    
+>>>>>>> 4e5b1be06c6b23c26e3a8ecbf8c28e0145f6d788
 // app.listen(PORT, () => {
 //     console.log(`http://localhost:` + PORT);
 // })
+
+
 
 
 //////USE BELOW CODE WITH MONGOOSE  
@@ -247,6 +252,3 @@ mongoose.connect(process.env.MONGODB_URL ,{
     })
     .catch(err => {console.error(err);});
 
-
-
-    

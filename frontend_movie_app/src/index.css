@@ -1,10 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&display=swap');
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen','Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-image: linear-gradient(to bottom right, rgb(17, 6, 6), rgb(32, 40, 74));
+  color: white;
 }
 
 code {
@@ -14,24 +16,66 @@ code {
 
 .App{
 
-  background-color: rgba(255, 121, 215, 0.798);
+  /* background-image: linear-gradient(to bottom right, rgb(17, 6, 6), rgb(32, 40, 74)); */
   min-height: 100vh;
-  
-    text-align: center;
-  
+  /* color: white; */
+  text-align: center;
+  font-family: 'Oxygen', sans;
 }
 
-.Nav{background-color: aqua;
-display: flex;
-min-width: 100vw;
+.Nav{
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  /* min-width: 100vw; */
+  /* padding: 10px 10px; */
+  margin-bottom: 20px;
+  /* height: 20px; */
 }
 
-.navitems{display: flex;
-list-style: none;
-justify-content: space-around;
-/* flex-grow: 1; */
+.navitems{
+  display: flex;
+  list-style: none;
+  justify-content: space-evenly;
+  flex-grow: 1;
+}
+
+.navitems > li > a{
+  text-decoration: none;
+  color: white;
+  /* font-weight: 600; */
+}
+
+.trending_heading{
+  font-size: 30px;
+  font-family: "DM Serif Display", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.movies{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px ;
+  margin: 20px 20px;
+  justify-content: center;
 }
 
 .post{
-  border: 5px solid black;
+  /* border: 5px solid black; */
+  /* background-color: bisque; */
+  flex-grow: 0;
+  flex-shrink: 0;
 }
+
+.movieposter{
+  height: 200px;
+  border-radius: 8px;
+  border: 1.5px solid transparent;
+}
+.movieposter:hover{
+  border: 1.5px solid #F39A9A;
+  
+}
+/* F39A9A */
+/* 0D1925 */

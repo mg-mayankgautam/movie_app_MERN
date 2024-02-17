@@ -1,3 +1,34 @@
+const usersDB = require("../models/usersDB.js");
+
+
+module.exports.signUp = async (req,res)=>{
+
+    const {Username,Password}=req.body; 
+    console.log(req.body);
+
+    let newUser = new usersDB ({Username,Password});
+    newUser.save()
+     .then(()=>{
+        
+        
+     console.log('user addes success');
+        // res.redirect('/');
+      })
+       .catch(err =>{console.log(err);});
+}
+
+module.exports.logIn = async (req,res)=>{
+
+    const {Username,Password}=req.body; 
+    // console.log(req.body);
+
+    let user = await usersDB.findOne({Username,Password});
+   console.log(user);
+
+    
+    if(user){res.send(true)}
+    else if(!user){res.send(false)}
+}
 
 // const userDB = require("../models/authenticationDB");
 // //const rankingDB = require("../models/rankingDB");
