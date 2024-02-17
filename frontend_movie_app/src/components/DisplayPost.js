@@ -50,7 +50,6 @@ useEffect(() => {
 
 console.log(moviename);
   return (
-<<<<<<< HEAD
   <>
      <div> {moviename.text}</div>
      <div> {Plot}</div>
@@ -59,7 +58,6 @@ console.log(moviename);
       <div>{MoviePoster}</div>
       
       
-=======
   <main className='DisplayPost'>
 
     <div>
@@ -76,7 +74,6 @@ console.log(moviename);
         <div>cast</div>
         <div>genre</div>
     </div>
->>>>>>> fc11b943a175585d5fb3a288a0b5e48f76a7fde0
 
   {/* {post &&
         <>
@@ -96,6 +93,7 @@ console.log(moviename);
           } */}
   
   </main>
+  </>
   )
 }
 
