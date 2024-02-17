@@ -118,8 +118,8 @@ code {
 
 .DisplayPost{
   display: flex;
-  justify-content: space-evenly;
-  gap: 40px;
+  justify-content: space-around;
+  gap: 20px;
   margin: 50px 50px;
 }
 
@@ -127,6 +127,7 @@ code {
   display: flex;
   flex-direction: column;
   gap: 40px;
+  width: 500px;
 }
 .AboutMovie> div{
   width: 100%;
@@ -137,7 +138,7 @@ code {
   align-items: center;
 }
 .MainPoster{
-  height: 200px;
+  height: 400px;
   /* width: 128px; */
   border-radius: 8px;
   border: 1.5px solid transparent;

@@ -49,34 +49,25 @@ useEffect(() => {
 
 
 console.log(moviename);
-  return (
-<<<<<<< HEAD
-  <>
-     <div> {moviename.text}</div>
-     <div> {Plot}</div>
-     <div> {Release_data.year}</div>
-     <div> {Runtime}</div>
-      <div>{MoviePoster}</div>
+  return (    
       
-      
-=======
   <main className='DisplayPost'>
 
     <div>
-        <img src="" alt="MainPoster"  className='MainPoster' />
+        <img src={MoviePoster} alt="MainPoster"  className='MainPoster' />
     </div>
 
     <div className='AboutMovie'>
       <div className='movieinfo'>
-        <h2>Dune: Part Two</h2>
-        <div>2024</div>
-        <div>Directed By: director</div>
+        <h1>{moviename.text}</h1>
+        <div>{Release_data.year}</div>
+        <div>Directed By: Director</div>
       </div>
-        <div>plot</div>
+        <div>{Plot}</div>
+        <div>{Runtime}</div>
         <div>cast</div>
         <div>genre</div>
     </div>
->>>>>>> fc11b943a175585d5fb3a288a0b5e48f76a7fde0
 
   {/* {post &&
         <>
