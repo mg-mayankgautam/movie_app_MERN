@@ -59,8 +59,9 @@ const Nav = () => {
     
     <div className='Nav'>
             <div className='Navitems'>
-            <img src={logo} alt='Logo' className='logo' />
-            
+              <div>
+              <Link to="/"><img src={logo} alt='Logo' className='logo' /></Link>
+              </div>
             <ul className='navpages' >
                 <li><Link to="/">Home</Link></li>
                 <li><Link to="/addpost">Post</Link></li>
