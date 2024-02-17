@@ -1,9 +1,17 @@
 import React from 'react'
 import { useParams, Link } from "react-router-dom";
-import { useEffect } from 'react';
+import { useEffect,useState } from 'react';
 import axios from 'axios';
 
 const DisplayPost = ({posts}) => {
+
+const [moviename, setmoviename] = useState('')
+const [Plot, setPlot] = useState('')
+const [Release_data, setRelease_data] = useState('')
+const [Runtime, setRuntime] = useState('')
+const [MoviePoster, setMoviePoster] = useState('')
+
+
 
   const { id } = useParams();
   const post = posts.find(post => (post.id).toString() === id);
@@ -16,7 +24,13 @@ useEffect(() => {
           //console.log('url',URL);
           const response = await axios.get(URL);
 
-          console.log(response);
+          console.log(response.data);
+          setmoviename(response.data.name)
+          setPlot(response.data.plot.plainText)
+        
+          setRelease_data(response.data.release_data)
+          setRuntime(response.data.runtime)
+          setMoviePoster(response.data.url)
           
         } catch (err) {
           if (err.response) {
@@ -34,7 +48,18 @@ useEffect(() => {
 }, [])
 
 
+console.log(moviename);
   return (
+<<<<<<< HEAD
+  <>
+     <div> {moviename.text}</div>
+     <div> {Plot}</div>
+     <div> {Release_data.year}</div>
+     <div> {Runtime}</div>
+      <div>{MoviePoster}</div>
+      
+      
+=======
   <main className='DisplayPost'>
 
     <div>
@@ -51,6 +76,7 @@ useEffect(() => {
         <div>cast</div>
         <div>genre</div>
     </div>
+>>>>>>> fc11b943a175585d5fb3a288a0b5e48f76a7fde0
 
   {/* {post &&
         <>

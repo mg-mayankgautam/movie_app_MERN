@@ -89,13 +89,18 @@ try{
     console.log(movie[0].moviefromapi.short.actor)
     console.log(movie[0].moviefromapi.short.director)
 
-
-
+    const release_data=movie[0].moviefromapi.top.releaseDate;
+    const name = movie[0].moviefromapi.top.titleText;
+    const runtime = movie[0].moviefromapi.top.runtime.displayableProperty.value.plainText;
+    const plot = movie[0].moviefromapi.top.plot.plotText;
+    const actors = movie[0].moviefromapi.short.actor;
+    const director= movie[0].moviefromapi.short.director;
+    const url = `http://localhost:4700/posters/${id}.jpg`
 
 
 
     //let short = movie.moviefromapi.short
-//res.send(short)
+res.send({release_data,name,runtime,plot,actors,director,url})
 }
         catch(e){console.log(e)}
     
