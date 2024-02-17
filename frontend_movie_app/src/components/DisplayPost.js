@@ -42,9 +42,11 @@ useEffect(() => {
     </div>
 
     <div className='AboutMovie'>
-        <div>name</div>
-        <div>year</div>
-        <div>director</div>
+      <div className='movieinfo'>
+        <h2>Dune: Part Two</h2>
+        <div>2024</div>
+        <div>Directed By: director</div>
+      </div>
         <div>plot</div>
         <div>cast</div>
         <div>genre</div>

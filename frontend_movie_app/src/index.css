@@ -128,7 +128,14 @@ code {
   flex-direction: column;
   gap: 40px;
 }
-
+.AboutMovie> div{
+  width: 100%;
+}
+.movieinfo{
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
 .MainPoster{
   height: 200px;
   /* width: 128px; */
