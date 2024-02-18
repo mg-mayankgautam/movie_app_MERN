@@ -4,6 +4,9 @@ import { useEffect,useState } from 'react';
 import axios from 'axios';
 import uuid from 'uuid';
 import UserPanel from './UserPanel';
+import { Route, Routes, useNavigate } from 'react-router-dom';
+import RequireAuth from '../RequireAuth';
+
 
 
 const DisplayPost = ({posts}) => {
@@ -55,7 +58,7 @@ useEffect(() => {
 }, [])
 
 
-console.log(Directors);
+// console.log(Directors);
 
   return ( 
  
@@ -103,27 +106,17 @@ console.log(Directors);
                     </div>
                 </div>
           </div>
-          
+
+          {/* <Routes >
+            <Route element={<RequireAuth  />}>
+                    <Route element={<UserPanel/>}/>
+            </Route>
+          </Routes > */}
           <UserPanel/>
       </section>
     </article>
 
-  {/* {post &&
-        <>
-                        <h2>{post.name}</h2>
-                      
-                     
-        </>
-  }
-  {!post &&
-        <>
-            <h2>Post Not Found</h2>
-            <p>Well, that's disappointing.</p>
-            <p>
-                <Link to='/'>Visit Our Homepage</Link>
-            </p>
-        </>
-          } */}
+
   
   </main>
 

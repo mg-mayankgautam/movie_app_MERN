@@ -9,6 +9,7 @@ import axios from 'axios';
 import Layout from './Layout';
 import SignUp from './components/SignUp';
 import RequireAuth from './RequireAuth';
+import RequireloginAuth from './RequireloginAuth';
 
 import { Route, Routes, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
@@ -79,7 +80,10 @@ function App() {
           <Route  path="/" element={<Layout/>}>
                 <Route index element={<Home posts={posts} />} /> 
       
-                <Route path="login" element={<Login  />}/>
+                <Route element={<RequireloginAuth/>}>
+                  <Route path="login" element={<Login  />}/>
+                </Route>
+
                 <Route path="signUp" element={<SignUp />}/>
                 
 

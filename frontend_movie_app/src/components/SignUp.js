@@ -30,8 +30,8 @@ const SignUp = () => {
     };
 
 
-  return (
-    <>this is the SignUp page
+  return (<>
+    <div className="signup">this is the SignUp page
     
     <form  onSubmit={submitNewUser}>
         <input
@@ -51,9 +51,9 @@ const SignUp = () => {
  
     
     
+    </div>
+
     </>
-
-
     
   )
 }

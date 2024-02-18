@@ -1,16 +1,20 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
+import useAuth from '../hook/useAuth';
 import { styled, alpha } from '@mui/material/styles';
 import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
 // import { sizing } from '@material-ui/system';
 import logo from './utils/logo.png';
+import Requirelogin from '../Requirelogin';
+
 
 const Nav = () => {
-// console.log(logo);
+
+  const {setAuth}=useAuth();
+
   const Search = styled('div')(({ theme }) => ({
     position: 'relative',
-    // borderRadius: theme.shape.borderRadius,
     borderRadius: "20px",
     backgroundColor: alpha(theme.palette.common.white, 0.15),
     
@@ -56,7 +60,36 @@ const Nav = () => {
   }));
   
   return (
-    
+    auth?.user
+            ? 
+    <div className='Nav'>
+            <div className='Navitems'>
+              <div>
+              <Link to="/"><img src={logo} alt='Logo' className='logo' /></Link>
+              </div>
+            <ul className='navpages' >
+                <li><Link to="/">HOME</Link></li>
+                <li><Link to="/addpost">WATCHLIST</Link></li>
+                <li><Link to="/about">PROFILE</Link></li>
+            </ul>
+   
+
+            <Search>
+            <SearchIconWrapper>
+              <SearchIcon/>
+            </SearchIconWrapper>
+            <StyledInputBase
+              placeholder=""
+              inputProps={{ 'aria-label': 'search' }}
+            />
+          </Search>
+
+
+          </div>
+    </div>
+
+:
+
     <div className='Nav'>
             <div className='Navitems'>
               <div>
@@ -65,9 +98,15 @@ const Nav = () => {
             <ul className='navpages' >
                 <li><Link to="/">HOME</Link></li>
                 <li><Link to="/addpost">POST</Link></li>
-                <li><Link to="/login">LOGIN</Link></li>
+                <li>
+                  {/* <Requirelogin> */}
+                  <Link to="/login">LOGIN</Link>
+                  {/* </Requirelogin> */}
+                </li>
                 <li><Link to="/about">ABOUT</Link></li>
             </ul>
+
+    
 
             <Search>
             <SearchIconWrapper>

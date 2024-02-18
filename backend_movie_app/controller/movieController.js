@@ -81,13 +81,13 @@ module.exports.getMovie=async(req,res)=>{
 try{
     let movie= await moviesDB.find({_id:id},{'moviefromapi':1})
    // console.log(movie[0].moviefromapi.storyLine.summaries.edges[0].node.plotText.plaidHtml)
-    console.log(movie[0].moviefromapi.top.releaseDate)
-    //console.log(movie[0].moviefromapi.runtime)
-    console.log(movie[0].moviefromapi.top.titleText)
-    console.log(movie[0].moviefromapi.top.genres)
-    console.log(movie[0].moviefromapi.top.plot.plotText)
-    console.log(movie[0].moviefromapi.short.actor)
-    console.log(movie[0].moviefromapi.short.director)
+    // console.log(movie[0].moviefromapi.top.releaseDate)
+    // //console.log(movie[0].moviefromapi.runtime)
+    // console.log(movie[0].moviefromapi.top.titleText)
+    // console.log(movie[0].moviefromapi.top.genres)
+    // console.log(movie[0].moviefromapi.top.plot.plotText)
+    // console.log(movie[0].moviefromapi.short.actor)
+    // console.log(movie[0].moviefromapi.short.director)
 
     const release_date=movie[0].moviefromapi.top.releaseDate;
     const name = movie[0].moviefromapi.top.titleText;
