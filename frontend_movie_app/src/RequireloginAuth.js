@@ -7,7 +7,7 @@ const RequireloginAuth = ({ allowedRoles }) => {
 
     return (
         auth?.user
-            ?<Navigate to="/about" state={{ from: location }} replace />
+            ?<Navigate to="/" state={{ from: location }} replace />
             
                 
                 : <Outlet />

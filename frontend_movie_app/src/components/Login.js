@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link, Navigate, useLocation } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import axios from 'axios';
 import useAuth from '../hook/useAuth';
 import { useState } from 'react';
@@ -23,24 +23,27 @@ import { useState } from 'react';
 
 
 
-const Login = ({}) => {
+const Login = ({props}) => {
     const {setAuth}=useAuth();
-    const location = useLocation();
+    //const location = useLocation();
+    const navigate = useNavigate();
     const [Username, setUsername] = useState('');
     const [Password, setPassword] = useState('');
-
+    let { state } = useLocation();
     
-    
+    console.log(state.pathname);
 
     const submitUser = async (e) => {
         e.preventDefault();
-        console.log(Username,Password);
+       
 
         try{const data = await axios.post('http://localhost:4700/login',{Username,Password})
             const bool = data.data
             if(bool){console.log(bool);
             const user = Username;
                 setAuth({user});
+                // navigate('/');
+                navigate(`${state.pathname}`)
                 // <Navigate to="/" state={{ from: location }} replace />
                 
             } 
@@ -58,7 +61,7 @@ const Login = ({}) => {
   return (
     <div className="Login"  > 
     
-    <form  onSubmit={submitUser}>
+    <form  onSubmit={submitUser} >
         {/* <FormControl sx={{ width: '25ch' }}>
 
             <TextField placeholder='username' onChange={(e)=>setUsername(e.target.value)} sx={{ color:'white', outline: 'none',

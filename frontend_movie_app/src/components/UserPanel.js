@@ -50,6 +50,7 @@ const UserPanel = () => {
         <Box sx={{ width: 220, display: 'flex', alignItems: 'center',}}>
             <Rating
                 name="hover-feedback"
+                defaultValue={1} size="large"
                 value={value}
                 precision={0.25}
                 getLabelText={getLabelText}

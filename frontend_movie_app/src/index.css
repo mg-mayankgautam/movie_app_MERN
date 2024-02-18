@@ -1,7 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Quattrocento:wght@400;700&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap');
 
 body {
-  margin: 0;
+  margin: 0px;
+  padding: 0px;
   /* font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen','Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif; */
   font-family: 'DM Serif Display', 'Montserrat', 'Quattrocento', 'Work Sans', sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -21,7 +22,8 @@ code {
 }
 
 .App{
-
+  margin: 0px;
+  padding: 0px;
   /* background-image: linear-gradient(to bottom right, rgb(17, 6, 6), rgb(32, 40, 74)); */
   min-height: 100vh;
   /* color: white; */
