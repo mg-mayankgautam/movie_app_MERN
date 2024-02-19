@@ -23,14 +23,15 @@ module.exports.logIn = async (req,res)=>{
     // console.log(req.body);
 
     let user = await usersDB.findOne({Username,Password});
-   console.log(user);
+   //console.log(user);
 
     
     if(user){
         
-        req.session.authorized=true;
-        res.send(true)}
-    else if(!user){res.send(false)}
+        req.session.Username=Username;
+        
+        res.json({Username:req.session.Username})}
+    else if(!user){res.json(false)}
 }
 
 // const userDB = require("../models/authenticationDB");

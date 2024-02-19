@@ -1,4 +1,5 @@
 import React from 'react'
+import useAuth from '../hook/useAuth';
 import { useParams, Link } from "react-router-dom";
 import { useEffect,useState } from 'react';
 import axios from 'axios';
@@ -52,6 +53,10 @@ const StyledTab = styled((props) => <Tab disableRipple {...props} />)(
 
 
 const DisplayPost = ({posts}) => {
+  const {setAuth,auth}=useAuth();
+
+
+  console.log('setAuth',auth);
 
   const [value, setValue] = React.useState('1');
   const handleChange = (event, newValue) => { setValue(newValue);};
@@ -70,36 +75,63 @@ const DisplayPost = ({posts}) => {
   const post = posts.find(post => (post.id).toString() === id);
 
 
+
 useEffect(() => {
     const getmoviedata = async () => {
         try {
-          const URL =  `http://localhost:4700/movie?id=${id}`;
-          //console.log('url',URL);
-          const response = await axios.get(URL);
+               const URL =  `http://localhost:4700/movie?id=${id}`;
+               //console.log('url',URL);
+               const response = await axios.get(URL);
 
-          //console.log(response.data);
-          setmoviename(response.data.name)
-          setPlot(response.data.plot.plainText)
-          setRelease_date(response.data.release_date)
-          setRuntime(response.data.runtime)
-          setMoviePoster(response.data.url)
-          setactors(response.data.actors)
-          setDirectors(response.data.director)
-          setGenres(response.data.genres.genres)
+               console.log(response.data.auth);
+               if(!response.data.auth){
+                    setmoviename(response.data.name)
+                    setPlot(response.data.plot.plainText)
+                    setRelease_date(response.data.release_date)
+                    setRuntime(response.data.runtime)
+                    setMoviePoster(response.data.url)
+                    setactors(response.data.actors)
+                    setDirectors(response.data.director)
+                    setGenres(response.data.genres)
+                  
+                  
+                  
+                  }
+
+
+                 else if(response.data.auth){
+                  
+                  console.log(response.data.auth);
+                  const user = response.data.auth;
+                  setAuth({user});
+                  setmoviename(response.data.name)
+                    setPlot(response.data.plot.plainText)
+                    setRelease_date(response.data.release_date)
+                    setRuntime(response.data.runtime)
+                    setMoviePoster(response.data.url)
+                    setactors(response.data.actors)
+                    setDirectors(response.data.director)
+                    setGenres(response.data.genres)
+                 }   
           
         } catch (err) {
-          if (err.response) {
-            // Not in the 200 response range 
-            console.log(err.response.data);
-            console.log(err.response.status);
-            console.log(err.response.headers);
-          } else {
-            console.log(`Error: ${err.message}`);
-          }
+                if (err.response) {
+                  // Not in the 200 response range 
+                  console.log(err.response.data);
+                  console.log(err.response.status);
+                  console.log(err.response.headers);
+                } else {
+                  console.log(`Error: ${err.message}`);
+                }
         }
       }
   
+    const verifyAuth = async ()=>{
+      //const data = await axios.get('',)
+    }  
+
   getmoviedata();
+  verifyAuth();
 }, [])
 
 
