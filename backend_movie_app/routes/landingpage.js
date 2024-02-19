@@ -8,8 +8,8 @@ const authController = require('../controller/authController');
 
 router.post('/signUp',authController.signUp)
 router.post('/login',authController.logIn)
-router.get('/logout',authController.logout)
-
+router.post('/logout',authController.logout)
+router.get('/isauth',authController.isauth)
 router.get('/posts', movieController.getMovies);
 
 

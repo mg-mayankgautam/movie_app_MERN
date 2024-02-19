@@ -126,13 +126,11 @@ useEffect(() => {
         }
       }
   
-    const verifyAuth = async ()=>{
-      //const data = await axios.get('',)
-    }  
+   
 
   getmoviedata();
-  verifyAuth();
-}, [])
+ 
+},[])
 
 
 // console.log(Genres);
