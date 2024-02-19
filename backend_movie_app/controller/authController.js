@@ -26,7 +26,10 @@ module.exports.logIn = async (req,res)=>{
    console.log(user);
 
     
-    if(user){res.send(true)}
+    if(user){
+        
+        req.session.authorized=true;
+        res.send(true)}
     else if(!user){res.send(false)}
 }
 

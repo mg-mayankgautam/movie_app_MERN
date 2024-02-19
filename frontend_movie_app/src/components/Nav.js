@@ -28,7 +28,7 @@ const Nav = () => {
   //const [location, setlocation] = useState();
 
    const location = useLocation()
-   console.log(location.pathname);
+   //console.log(location.pathname);
   const {auth}=useAuth();
 
   const Search = styled('div')(({ theme }) => ({

@@ -23,7 +23,7 @@ import { useState } from 'react';
 
 
 
-const Login = ({props}) => {
+const Login = ({}) => {
     const {setAuth}=useAuth();
     //const location = useLocation();
     const navigate = useNavigate();
@@ -31,7 +31,7 @@ const Login = ({props}) => {
     const [Password, setPassword] = useState('');
     let { state } = useLocation();
     
-    console.log(state.pathname);
+    console.log(state.prev);
 
     const submitUser = async (e) => {
         e.preventDefault();
@@ -43,7 +43,8 @@ const Login = ({props}) => {
             const user = Username;
                 setAuth({user});
                 // navigate('/');
-                navigate(`${state.pathname}`)
+                
+                navigate(`${state.prev.pathname}`)
                 // <Navigate to="/" state={{ from: location }} replace />
                 
             } 

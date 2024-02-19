@@ -77,9 +77,9 @@ const UserPanel = () => {
         {/* <button onClick={<Navigate to="/login" state={{ from: location }} replace />}>
         Login to Rate, Review, Add!
         </button> */}
-        <Link to="/login"  replace>
-            Login to Rate, Review, Add!
-        </Link>
+        <Link to="/login" state={{prev:location}} >Login to Rate, Review, Add!</Link>
+            
+        
 
   </Box>
   )
