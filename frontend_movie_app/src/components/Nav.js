@@ -100,7 +100,7 @@ const Nav = () => {
             <ul className='navpages' >
                 <li><Link to="/">HOME</Link></li>
                 <li><Link to="/addpost">WATCHLIST</Link></li>
-                <li><Link to="/about">PROFILE</Link></li>
+                <li><Link to="/profile">PROFILE</Link></li>
             </ul>
    
 

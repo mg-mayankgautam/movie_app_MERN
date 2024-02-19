@@ -13,6 +13,7 @@ import RequireloginAuth from './RequireloginAuth';
 
 import { Route, Routes, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
+import Profile from './components/Profile';
 
 
 
@@ -95,6 +96,8 @@ function App() {
                    postBody={postBody}
                    setPostBody={setPostBody}
                    />}/>
+
+                   <Route path='profile' element={<Profile/>}/>
                 </Route>
                     
                     

@@ -40,7 +40,7 @@ const UserPanel = () => {
 
   const { auth } = useAuth();
   const location = useLocation();
-  const [value, setValue] = React.useState(2);
+  const [value, setValue] = React.useState(0);
   const [hover, setHover] = React.useState(-1);
 
   return (
@@ -56,7 +56,7 @@ const UserPanel = () => {
         <Box sx={{ width: 222, display: 'flex', alignItems: 'center',}}>
             <Rating
                 name="hover-feedback"
-                defaultValue={1} size="large"
+                size="large"
                 value={value}
                 precision={0.25}
                 getLabelText={getLabelText}
