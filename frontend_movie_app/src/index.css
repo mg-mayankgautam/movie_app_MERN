@@ -61,6 +61,7 @@ code {
   justify-content: space-between;
   max-width: 900px;
   height: 100%;
+  padding-right: 8px;
 }
 
 .navpages{
@@ -121,7 +122,7 @@ a{text-decoration: none; color: #f39a9a;}
   bottom: 8vh;
   width: 100%;
   font-size: 48px;
-  text-shadow: 0 0 8px #f39a9a;
+  text-shadow: 0 0 8px #000000;
   /* font-family: "Quattrocento", serif; */
   font-family: "DM Serif Display", serif;
   /* font-family: "Yeseva One", serif; */
@@ -130,10 +131,13 @@ a{text-decoration: none; color: #f39a9a;}
 .banner{
   height: 100vh;
   width: 100%;
-  opacity: 50%;
+  opacity: 100%;
   object-fit: cover;
-  /* box-shadow: 8px 8px 8px 8px rgb(0, 0, 0) inset; */
-  box-shadow: 0 0 20px rgba(0,0,0,0.1), 0 0 40px rgba(0,0,0,0.1), 0 0 60px rgba(0,0,0,0.1), 0 0 80px rgba(0,0,0,0.1);
+  -webkit-mask-image: radial-gradient(rgb(0 0 0/1), rgb(0 0 0/ 0.5) 70%, rgb(0 0 0/ 0) 100%);
+  mask-image: radial-gradient( rgb(0 0 0/1) 40%, rgb(0 0 0/ 0.5) 55%, rgb(0 0 0/ 0) 70%);
+  /* mask-image: radial-gradient(closest-side, rgb(0 0 0/1), rgb(0 0 0/ 0.5) 40%, rgb(0 0 0/ 0) 70%); */
+  /* mask-image: linear-gradient(to right, rgb(0 0 0/1), rgb(0 0 0/ 0.5) 70%, rgb(0 0 0/ 0) 100%);  */
+  /* box-shadow: 0 0 20px rgba(0,0,0,0.1), 0 0 40px rgba(0,0,0,0.1), 0 0 60px rgba(0,0,0,0.1), 0 0 80px rgba(0,0,0,0.1); */
 }
 
 .Home{
@@ -148,6 +152,7 @@ a{text-decoration: none; color: #f39a9a;}
   font-weight: 200;
   font-style: normal;
   color: #f39a9a;
+  text-shadow: 0 0 8px #000000;
 }
 
 .movies{
