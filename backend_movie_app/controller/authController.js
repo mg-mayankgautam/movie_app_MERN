@@ -40,9 +40,45 @@ module.exports.logout = async (req,res)=>{
     try{
         req.session.destroy();
         console.log('logged out');
+        res.send();
+
+     //   res.send(false);
     }
     catch(err){console.log(err)}
 }
+
+
+
+
+
+
+module.exports.isauth=async (req,res)=>{
+console.log('isauth controller');
+    if(!req.session.Username){
+     
+
+       
+    
+
+
+    
+    res.send({auth:false})}
+
+
+        else if(req.session.Username){
+
+          
+         
+         
+           
+             res.send({auth:req.session.Username})}
+
+
+
+}
+
+
+
 
 // const userDB = require("../models/authenticationDB");
 // //const rankingDB = require("../models/rankingDB");

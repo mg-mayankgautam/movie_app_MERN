@@ -66,7 +66,7 @@ module.exports.getMovies = async(req, res)=>{
     let name = movie.map(e=>({ id: e._id.toString(), name: e.moviefromapi.short.name, img:`http://localhost:4700/posters/${e._id.toString()}.jpg`}));
 
     //  ,e.moviefromapi.short.name
-   // console.log(name);
+    // console.log(name);
 
    
     res.send(name);
