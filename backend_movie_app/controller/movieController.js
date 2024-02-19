@@ -77,32 +77,71 @@ module.exports.getMovies = async(req, res)=>{
 module.exports.getMovie=async(req,res)=>{
 
     const {id} = req.query
+console.log('req.session.Username',req.session.Username)
+//console.log('req)
 
 try{
-    let movie= await moviesDB.find({_id:id},{'moviefromapi':1})
+
+    if(!req.session.Username){
+        let movie= await moviesDB.find({_id:id},{'moviefromapi':1})
    // console.log(movie[0].moviefromapi.storyLine.summaries.edges[0].node.plotText.plaidHtml)
-    // console.log(movie[0].moviefromapi.top.releaseDate)
-    // //console.log(movie[0].moviefromapi.runtime)
-    // console.log(movie[0].moviefromapi.top.titleText)
-    // console.log(movie[0].moviefromapi.top.genres)
-    // console.log(movie[0].moviefromapi.top.plot.plotText)
-    // console.log(movie[0].moviefromapi.short.actor)
-    // console.log(movie[0].moviefromapi.short.director)
+        // console.log(movie[0].moviefromapi.top.releaseDate)
+        // //console.log(movie[0].moviefromapi.runtime)
+        // console.log(movie[0].moviefromapi.top.titleText)
+        // console.log(movie[0].moviefromapi.top.genres)
+        // console.log(movie[0].moviefromapi.top.plot.plotText)
+        // console.log(movie[0].moviefromapi.short.actor)
+        // console.log(movie[0].moviefromapi.short.director)
 
-    const release_date=movie[0].moviefromapi.top.releaseDate;
-    const name = movie[0].moviefromapi.top.titleText;
-    const runtime = movie[0].moviefromapi.top.runtime.displayableProperty.value.plainText;
-    const plot = movie[0].moviefromapi.top.plot.plotText;
-    const actors = movie[0].moviefromapi.short.actor;
-    const director= movie[0].moviefromapi.short.director;
-    const genres = movie[0].moviefromapi.top.genres;
-    const url = `http://localhost:4700/posters/${id}.jpg`
-
+        const release_date=movie[0].moviefromapi.top.releaseDate;
+        const name = movie[0].moviefromapi.top.titleText;
+        const runtime = movie[0].moviefromapi.top.runtime.displayableProperty.value.plainText;
+        const plot = movie[0].moviefromapi.top.plot.plotText;
+        const actors = movie[0].moviefromapi.short.actor;
+        const director= movie[0].moviefromapi.short.director;
+        const genres = movie[0].moviefromapi.top.genres;
+        const url = `http://localhost:4700/posters/${id}.jpg`
+    
 
 
     //let short = movie.moviefromapi.short
-res.send({release_date,name,runtime,plot, actors, director,genres, url})
-}
+    res.send({release_date,name,runtime,plot, actors, director,genres, url,auth:false})}
+
+
+        else if(req.session.Username){
+
+            let movie= await moviesDB.find({_id:id},{'moviefromapi':1})
+            // console.log(movie[0].moviefromapi.storyLine.summaries.edges[0].node.plotText.plaidHtml)
+                 // console.log(movie[0].moviefromapi.top.releaseDate)
+                 // //console.log(movie[0].moviefromapi.runtime)
+                 // console.log(movie[0].moviefromapi.top.titleText)
+                 // console.log(movie[0].moviefromapi.top.genres)
+                 // console.log(movie[0].moviefromapi.top.plot.plotText)
+                 // console.log(movie[0].moviefromapi.short.actor)
+                 // console.log(movie[0].moviefromapi.short.director)
+         
+                 const release_date=movie[0].moviefromapi.top.releaseDate;
+                 const name = movie[0].moviefromapi.top.titleText;
+                 const runtime = movie[0].moviefromapi.top.runtime.displayableProperty.value.plainText;
+                 const plot = movie[0].moviefromapi.top.plot.plotText;
+                 const actors = movie[0].moviefromapi.short.actor;
+                 const director= movie[0].moviefromapi.short.director;
+                 const genres = movie[0].moviefromapi.top.genres;
+                 const url = `http://localhost:4700/posters/${id}.jpg`
+             
+         
+         
+             //let short = movie.moviefromapi.short
+             res.send({release_date,name,runtime,plot, actors, director,genres, url,auth:req.session.Username})}
+
+
+        }
+
+
+
+
+
+
         catch(e){console.log(e)}
     
        

@@ -13,9 +13,11 @@ const hbs = require('hbs');
 hbs.registerPartials(__dirname + '/views/partials');
 const bodyparser = require('body-parser');//use with axios 
 const cors = require('cors');
+const cookieParser = require('cookie-parser');
 
-
-app.use(cors())
+app.use(cors( {
+origin: 'http://localhost:3000',
+credentials: true}))
 
 
 const mongoose = require('mongoose');
@@ -31,12 +33,15 @@ const store = new MongoDBsession({
     collection: "mysessions"
 });
 
+app.use(cookieParser())
+
 app.use(
     session({
         secret:'secret key for cookie',
         resave: false,
         saveUninitialized: false,
         store: store,
+        cookie:{secure:false}
     })
 );
 
