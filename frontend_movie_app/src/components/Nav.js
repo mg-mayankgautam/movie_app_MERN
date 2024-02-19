@@ -1,12 +1,13 @@
 import React from 'react'
-import { Link } from 'react-router-dom';
+import axios from 'axios';
+import { Link, useNavigate } from 'react-router-dom';
 import useAuth from '../hook/useAuth';
 import { styled, alpha } from '@mui/material/styles';
 import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
 import logo from './utils/logo.png';
 // import Requirelogin from '../Requirelogin';
-import {Box, Avatar, Menu, MenuItem, ListItemIcon, Divider, IconButton, Tooltip} from '@mui/material';
+import {Box, Avatar, Menu, MenuItem, ListItemIcon, Divider, IconButton, Tooltip, Typography} from '@mui/material';
 import {Settings, Person, Movie, Theaters, Reviews, Diversity3, Logout, PlayCircle} from '@mui/icons-material';
 import { useLocation } from 'react-router-dom';
 import { useState } from 'react';
@@ -15,9 +16,11 @@ import { useState } from 'react';
 const Nav = () => {
   //const [location, setlocation] = useState();
 
-   const location = useLocation()
-   //console.log(location.pathname);
-  const {auth}=useAuth();
+   const location = useLocation();
+   const navigate = useNavigate();
+  //  console.log(location.pathname);
+  const {auth, setAuth}=useAuth();
+  const username = auth.user;
 
   const Search = styled('div')(({ theme }) => ({
     position: 'relative',
@@ -72,6 +75,19 @@ const Nav = () => {
   const handleClick = (event) => { setAnchorEl(event.currentTarget);};
   const handleClose = () => {setAnchorEl(null);};
 
+  const handleLogout = async() =>{
+    console.log('logout');
+    try{
+      const data = await axios.get('http://localhost:4700/logout');
+
+
+      if(data){
+      setAuth('');
+     }        
+    }
+    catch(e){console.log(e)}
+  }
+
 
   return (
     auth?.user
@@ -110,6 +126,7 @@ const Nav = () => {
               >
                 <Avatar sx={{ width: 32, height: 32, textAlign:'center', bgcolor:'#f39a9a'}}></Avatar>
               </IconButton>
+              <Typography sx={{fontSize:'small'}}>{username}</Typography>
             </Tooltip>
           </Box>
           <Menu
@@ -152,7 +169,7 @@ const Nav = () => {
                 <ListItemIcon><Settings fontSize="small" sx={{color:'#f39a9a'}}/></ListItemIcon>
                 Settings
             </MenuItem>
-            <MenuItem onClick={handleClose}>
+            <MenuItem onClick={handleLogout}>
                 <ListItemIcon><Logout fontSize="small" sx={{color:'#f39a9a'}}/></ListItemIcon>
                 Logout
             </MenuItem>

@@ -92,7 +92,7 @@ useEffect(() => {
                     setMoviePoster(response.data.url)
                     setactors(response.data.actors)
                     setDirectors(response.data.director)
-                    setGenres(response.data.genres)
+                    setGenres(response.data.genres.genres)
                   
                   
                   
@@ -111,7 +111,7 @@ useEffect(() => {
                     setMoviePoster(response.data.url)
                     setactors(response.data.actors)
                     setDirectors(response.data.director)
-                    setGenres(response.data.genres)
+                    setGenres(response.data.genres.genres)
                  }   
           
         } catch (err) {

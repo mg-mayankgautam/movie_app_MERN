@@ -34,6 +34,16 @@ module.exports.logIn = async (req,res)=>{
     else if(!user){res.json(false)}
 }
 
+
+module.exports.logout = async (req,res)=>{
+
+    try{
+        req.session.destroy();
+        console.log('logged out');
+    }
+    catch(err){console.log(err)}
+}
+
 // const userDB = require("../models/authenticationDB");
 // //const rankingDB = require("../models/rankingDB");
 
