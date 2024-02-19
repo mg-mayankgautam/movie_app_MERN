@@ -8,6 +8,7 @@ import Login from './components/Login';
 import axios from 'axios';
 import Layout from './Layout';
 import SignUp from './components/SignUp';
+import SearchResults from './components/SearchResults';
 import RequireAuth from './RequireAuth';
 import RequireloginAuth from './RequireloginAuth';
 
@@ -22,6 +23,7 @@ import Profile from './components/Profile';
 
 function App() {
   axios.defaults.withCredentials = true;
+  // axios.defaults.Credentials= true;
 
 
 
@@ -105,7 +107,7 @@ function App() {
                 </Route>
                     
                     
-                    
+                    <Route path='search' element={<SearchResults/>}/>
                 
 
 

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { createRef } from 'react'
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 import useAuth from '../hook/useAuth';
@@ -10,26 +10,19 @@ import logo from './utils/logo.png';
 import {Box, Avatar, Menu, MenuItem, ListItemIcon, Divider, IconButton, Tooltip, Typography} from '@mui/material';
 import {Settings, Person, Movie, Theaters, Reviews, Diversity3, Logout, PlayCircle} from '@mui/icons-material';
 import { useLocation } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 
 const Nav = () => {
-  //const [location, setlocation] = useState();
-
-   const location = useLocation();
-   const navigate = useNavigate();
-  //  console.log(location.pathname);
-  const {auth, setAuth}=useAuth();
-   console.log(auth,'hmeshaaaaaaaaaaaaaaaaaa');
-  const username = auth.user;
-
+  
   const Search = styled('div')(({ theme }) => ({
     position: 'relative',
     borderRadius: "20px",
-    backgroundColor: alpha(theme.palette.common.white, 0.15),
+    backgroundColor: alpha(theme.palette.common.white, 0.25),
     
     '&:hover': {
-      backgroundColor: alpha(theme.palette.common.white, 0.25),
+      backgroundColor: alpha(theme.palette.common.white, 0.85),
+      color:alpha(theme.palette.common.black, 0.85)
     },
     marginLeft: 0,
     width: '50%',
@@ -69,7 +62,6 @@ const Nav = () => {
     },
   }));
   
-  
 
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
@@ -78,26 +70,112 @@ const Nav = () => {
 
 
 
+  //const [location, setlocation] = useState();
+
+  const location = useLocation();
+  const navigate = useNavigate();
+  //  console.log(location.pathname);
+  const {auth, setAuth}=useAuth();
+  //  console.log(auth,'hmeshaaaaaaaaaaaaaaaaaa');
+  const [UserName, setUserName] = useState('');
+  // const [ SearchValue, setSearchValue] = useState('');
+  // console.log(SearchValue,'hmmmm');
+  // const inputRef = useRef();
+  const inputRef = createRef();
+
+
+  useEffect(() => {
+        
+      
+    const verifyAuth = async ()=>{
+        try {
+            const URL =  `http://localhost:4700/isauth`;
+            //console.log('url',URL);
+            const response = await axios.get(URL);
+
+            // console.log(response.data.auth);
+           if(!response.data.auth){
+           
+                 
+               console.log('auth')
+               
+               }
+
+
+              else if(response.data.auth){
+               
+              //  console.log(response.data.auth);
+               const user = response.data.auth;
+               setAuth({user});
+               setUserName(user);
+              
+              }   
+       
+     } catch (err) {
+             if (err.response) {
+               // Not in the 200 response range 
+               console.log(err.response.data);
+               console.log(err.response.status);
+               console.log(err.response.headers);
+             } else {
+               console.log(`Error: ${err.message}`);
+             }
+     }
+    }  
+    
+    
+
+  verifyAuth();
+}, [])
+
+
   const handleLogout = async() =>{
     console.log('logout');
     try{
       const data = await axios.post('http://localhost:4700/logout');
-      console.log(data)
+      // console.log(data)
       if(!data.data){
-        console.log('data.data',data.data)
+        // console.log('data.data',data.data)
         console.log('kuch ni aya',auth)
         const boo = data.data;
       setAuth('');
      // navigate(0)
     }
       //console.log(data);
-
-      
       //console.log(auth);
              
     }
     catch(e){console.log(e)}
   }
+
+const handleSubmitSearch = async(e)=>{
+  e.preventDefault();
+  const SearchValue= inputRef.current.value;
+  // console.log(SearchValue);
+
+    const URL = `https://search.imdbot.workers.dev/?q=${SearchValue}`;
+
+    // const results = await response.json;
+    // console.log(results);
+    fetch(URL)
+    .then((res)=>{
+        return res.json();
+    })
+    .then((resfromapi)=>{
+       console.log(resfromapi);
+       navigate('/search', {state: { searchData: resfromapi }});
+       
+     
+       
+      })  
+  .catch((err)=> {console.log(err)})
+
+
+  
+}
+
+
+
 
 
   return (
@@ -119,13 +197,18 @@ const Nav = () => {
             <SearchIconWrapper>
               <SearchIcon/>
             </SearchIconWrapper>
-            <StyledInputBase
-              placeholder=""
-              inputProps={{ 'aria-label': 'search' }}
-            />
+            {/* <form onSubmit={handleSubmitSearch}> */}
+            {/* <StyledInputBase type='text' onChange={(e)=> setSearchValue(e.target.value)} /> */}
+            <form onSubmit={handleSubmitSearch}>
+              <StyledInputBase type='text' 
+                inputRef={inputRef}
+                placeholder=""
+                inputProps={{ 'aria-label': 'search' }}
+              /></form>
+            {/* </form> */}
           </Search>
 
-          <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}>
+          <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center', gap:'5px' }}>
             <Tooltip title="Your Menu">
               <IconButton
                 onClick={handleClick}
@@ -137,9 +220,10 @@ const Nav = () => {
               >
                 <Avatar sx={{ width: 32, height: 32, textAlign:'center', bgcolor:'#f39a9a'}}></Avatar>
               </IconButton>
-              <Typography sx={{fontSize:'small'}}>{username}</Typography>
             </Tooltip>
+            <Typography sx={{fontSize:'small'}}>bansa</Typography>
           </Box>
+
           <Menu
             anchorEl={anchorEl} id="account-menu" open={open} onClose={handleClose} onClick={handleClose}
             PaperProps={{ elevation: 0, sx: { overflow: 'visible', filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))', mt: 1.5,
@@ -216,10 +300,12 @@ const Nav = () => {
             <SearchIconWrapper>
               <SearchIcon/>
             </SearchIconWrapper>
-            <StyledInputBase
-              placeholder=""
-              inputProps={{ 'aria-label': 'search' }}
-            />
+            <form onSubmit={handleSubmitSearch}>
+              <StyledInputBase type='text' 
+                inputRef={inputRef}
+                placeholder=""
+                inputProps={{ 'aria-label': 'search' }}
+              /></form>
           </Search>
           </div>
     </div>

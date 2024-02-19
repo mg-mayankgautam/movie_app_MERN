@@ -78,13 +78,15 @@ const UserPanel = () => {
 
                 // {/*  */}
 
-  <Box sx={{p:2, bgcolor:'#ffffff15', display:'flex', alignItems:'center', flexDirection:'column', borderRadius:'8px', gap: '10px', height:'max-content', width: 220,  boxShadow:'rgba(0, 0, 0, 0.35) 0px 5px 15px'}}>
+  <Box sx={{p:2, bgcolor:'#ffffff15', display:'flex', alignItems:'center', flexDirection:'column', borderRadius:'8px', gap: '10px', justifyContent:'center',height:'max-content', width: 220,  boxShadow:'rgba(0, 0, 0, 0.35) 0px 5px 15px'}}>
 
         {/* <button onClick={<Navigate to="/login" state={{ from: location }} replace />}>
         Login to Rate, Review, Add!
         </button> */}
+        <Box sx={{width:222, minHeight:50, display:'flex', alignItems:'center', gap: '10px', justifyContent:'center'}}>
+          
         <Link to="/login" state={{prev:location}} >Login to Rate, Review, Add!</Link>
-            
+        </Box>
         
 
   </Box>

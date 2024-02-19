@@ -59,7 +59,7 @@ code {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  max-width: 900px;
+  max-width: 950px;
   height: 100%;
   padding-right: 8px;
 }
@@ -76,7 +76,7 @@ code {
 .navpages > li > a{
   text-decoration: none;
   color: white;
-  /* font-weight: 600; */
+  font-weight: 600;
   /* transition: text-decoration 1000ms ease-in-out; */
 }
 
@@ -136,7 +136,7 @@ a{text-decoration: none; color: #f39a9a;}
   -webkit-mask-image: linear-gradient( rgb(0 0 0/1), rgb(0 0 0/ 0.5) 70%, rgb(0 0 0/ 0.2) 85%, rgb(0 0 0/ 0) 98%); 
   /* mask-image: radial-gradient( rgb(0 0 0/1) 40%, rgb(0 0 0/ 0.5) 55%, rgb(0 0 0/ 0) 70%); */
   /* mask-image: radial-gradient(closest-side, rgb(0 0 0/1), rgb(0 0 0/ 0.5) 40%, rgb(0 0 0/ 0) 70%); */
-  mask-image: linear-gradient( rgb(0 0 0/1), rgb(0 0 0/ 0.5) 70%, rgb(0 0 0/ 0.2) 85%, rgb(0 0 0/ 0) 98%); 
+  mask-image: linear-gradient( rgb(0 0 0/0) 0%, rgb(0 0 0/1), rgb(0 0 0/ 0.5) 70%, rgb(0 0 0/ 0.2) 85%, rgb(0 0 0/ 0) 98%); 
   /* box-shadow: 0 0 20px rgba(0,0,0,0.1), 0 0 40px rgba(0,0,0,0.1), 0 0 60px rgba(0,0,0,0.1), 0 0 80px rgba(0,0,0,0.1); */
 }
 
@@ -202,7 +202,7 @@ a{text-decoration: none; color: #f39a9a;}
   justify-content: space-around;
   gap: 48px;
   margin: 130px 20px 50px;
-  max-width: 900px;
+  max-width: 950px;
   text-align: left;
   /* flex-wrap: wrap; */
 }
@@ -249,6 +249,18 @@ cursor: pointer;
   font-weight: 200;
 }
 .CastGenre>div{ margin: 5px 0;}
+
+.castname, .genrename{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 6px;
+  border-radius: 5px;
+  margin-top: 6px;
+  margin-right: 6px;
+  background-color: #ffffff15;
+  width: max-content;
+}
 
 .TabPanel{
   padding: 0;

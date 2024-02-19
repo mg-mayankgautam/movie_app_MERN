@@ -56,7 +56,7 @@ const DisplayPost = ({posts}) => {
   const {setAuth,auth}=useAuth();
 
 
-  console.log('setAuth',auth);
+  // console.log('setAuth',auth);
 
   const [value, setValue] = React.useState('1');
   const handleChange = (event, newValue) => { setValue(newValue);};
@@ -83,7 +83,7 @@ useEffect(() => {
                //console.log('url',URL);
                const response = await axios.get(URL);
 
-               console.log(response.data.auth);
+              //  console.log(response.data.auth);
                if(!response.data.auth){
                     setmoviename(response.data.name)
                     setPlot(response.data.plot.plainText)
@@ -101,7 +101,7 @@ useEffect(() => {
 
                  else if(response.data.auth){
                   
-                  console.log(response.data.auth);
+                  // console.log(response.data.auth);
                   const user = response.data.auth;
                   setAuth({user});
                   setmoviename(response.data.name)
@@ -176,11 +176,11 @@ useEffect(() => {
                   <StyledTab label="CAST" value="1"/>
                   <StyledTab label="GENRE" value="2"/>
                 </StyledTabs>
-                <TabPanel value="1" sx={{p:1}}>
-                        {actors && actors.map(actor => ( <div key={crypto.randomUUID()}>{actor.name}</div>))} 
+                <TabPanel value="1" sx={{p:0, display:'flex', flexWrap:'wrap'}}>
+                        {actors && actors.map(actor => ( <div className='castname' key={crypto.randomUUID()}>{actor.name}</div>))} 
                 </TabPanel>
-                <TabPanel value="2" sx={{p:1}}>
-                        {Genres && Genres.map(Genre => ( <div key={Genre.id}>{Genre.text}</div>))}
+                <TabPanel value="2" sx={{p:0, display:'flex', flexWrap:'wrap'}}>
+                        {Genres && Genres.map(Genre => ( <div className='genrename' key={Genre.id}>{Genre.text}</div>))}
                 </TabPanel>
              </TabContext>
               
