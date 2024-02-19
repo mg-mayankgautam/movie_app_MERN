@@ -34,15 +34,15 @@ const SignUp = () => {
     <div className="signup">this is the SignUp page
     
     <form  onSubmit={submitNewUser}>
-        <input
+        <input className='Input' type='text'    
             placeholder='username'
             onChange={(e)=>setNewUsername(e.target.value)}
         />
-        <input
-            placeholder='username'
+        <input className='Input' type='password'
+            placeholder='password' 
             onChange={(e)=>setNewPassword(e.target.value)}
         />
-        <button type="submit">Submit</button>
+        <button type="submit" className='Submit'>Submit</button>
     </form>
     
     

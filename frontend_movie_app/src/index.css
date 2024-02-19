@@ -129,16 +129,26 @@ a{text-decoration: none; color: #f39a9a;}
 }
 
 .banner{
-  height: 100vh;
+  height: 100%;
   width: 100%;
   opacity: 100%;
-  object-fit: cover;
-  -webkit-mask-image: radial-gradient(rgb(0 0 0/1), rgb(0 0 0/ 0.5) 70%, rgb(0 0 0/ 0) 100%);
-  mask-image: radial-gradient( rgb(0 0 0/1) 40%, rgb(0 0 0/ 0.5) 55%, rgb(0 0 0/ 0) 70%);
+  object-fit:cover;
+  -webkit-mask-image: linear-gradient( rgb(0 0 0/1), rgb(0 0 0/ 0.5) 70%, rgb(0 0 0/ 0.2) 85%, rgb(0 0 0/ 0) 98%); 
+  /* mask-image: radial-gradient( rgb(0 0 0/1) 40%, rgb(0 0 0/ 0.5) 55%, rgb(0 0 0/ 0) 70%); */
   /* mask-image: radial-gradient(closest-side, rgb(0 0 0/1), rgb(0 0 0/ 0.5) 40%, rgb(0 0 0/ 0) 70%); */
-  /* mask-image: linear-gradient(to right, rgb(0 0 0/1), rgb(0 0 0/ 0.5) 70%, rgb(0 0 0/ 0) 100%);  */
+  mask-image: linear-gradient( rgb(0 0 0/1), rgb(0 0 0/ 0.5) 70%, rgb(0 0 0/ 0.2) 85%, rgb(0 0 0/ 0) 98%); 
   /* box-shadow: 0 0 20px rgba(0,0,0,0.1), 0 0 40px rgba(0,0,0,0.1), 0 0 60px rgba(0,0,0,0.1), 0 0 80px rgba(0,0,0,0.1); */
 }
+
+/* .bannerMobile{
+  display: none;
+  height: 100%;
+  width: 100%;
+  opacity: 100%;
+  object-fit:cover;
+  -webkit-mask-image: linear-gradient( rgb(0 0 0/1), rgb(0 0 0/ 0.5) 70%, rgb(0 0 0/ 0.2) 85%, rgb(0 0 0/ 0) 98%); 
+  mask-image: linear-gradient( rgb(0 0 0/1), rgb(0 0 0/ 0.5) 70%, rgb(0 0 0/ 0.2) 85%, rgb(0 0 0/ 0) 98%); 
+  } */
 
 .Home{
   display: flex;
@@ -169,6 +179,10 @@ a{text-decoration: none; color: #f39a9a;}
   /* background-color: bisque; */
   flex-grow: 0;
   flex-shrink: 0;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  height: 240px;
+  border-radius: 8px;
+  width: 160px;
 }
 
 .movieposter{
@@ -199,8 +213,8 @@ a{text-decoration: none; color: #f39a9a;}
   /* width: 128px; */
   border-radius: 8px;
   border: 1.5px solid transparent;
-  /* box-shadow: 8px 8px 8px 8px black; */
-  /* object-fit: cover; */
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+cursor: pointer;
 }
 
 .AboutMovie{
@@ -235,6 +249,10 @@ a{text-decoration: none; color: #f39a9a;}
   font-weight: 200;
 }
 .CastGenre>div{ margin: 5px 0;}
+
+.TabPanel{
+  padding: 0;
+}
 /* p{margin: 0;} */
 /* F39A9A */
 /* 0D1925 */
@@ -245,3 +263,9 @@ a{text-decoration: none; color: #f39a9a;}
 .login{align-items: center;
 justify-content: center;
 }
+
+
+/* @media(orientation:potrait){
+  .banner{display: none;}
+  .bannerMobile{display: block;}
+} */

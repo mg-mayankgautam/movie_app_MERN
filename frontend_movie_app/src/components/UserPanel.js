@@ -1,27 +1,33 @@
 import React from 'react';
 import { useLocation, Navigate, Outlet } from "react-router-dom";
 import useAuth from "../hook/useAuth";
-import AddIcon from '@mui/icons-material/Add';
+import {Add, Star, Favorite, FavoriteBorder} from '@mui/icons-material';
 import Rating from '@mui/material/Rating';
 import Box from '@mui/material/Box';
-import StarIcon from '@mui/icons-material/Star';
-// import { styled } from '@mui/material/styles';
-import FavoriteIcon from '@mui/icons-material/Favorite';
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import { Link } from 'react-router-dom';
 
 
 const labels = {
-    0.5: 'Useless',
-    1: 'Useless+',
-    1.5: 'Poor',
-    2: 'Poor+',
-    2.5: 'Ok',
-    3: 'Ok+',
-    3.5: 'Good',
-    4: 'Good+',
-    4.5: 'Excellent',
-    5: 'Excellent+',
+    0.25: 'kyu hi-',
+    0.5: 'kyu hi',
+    0.75: 'kyu',
+    1: 'Useless',
+    1.25:'poor',
+    1.5: 'poor',
+    1.75:'eh',
+    2: 'eh',
+    2.25:'ok',
+    2.5: 'oki',
+    2.75:'okie',
+    3: 'good',
+    3.25:'good+',
+    3.5: 'nice',
+    3.75:'oOoH',
+    4: 'oOohH',
+    4.25:'oolala',
+    4.5: 'damn',
+    4.75:'damnn',
+    5: 'mindblo',
   };
   
 function getLabelText(value) {
@@ -40,14 +46,14 @@ const UserPanel = () => {
   return (
     auth?.user
             ? 
-    <Box sx={{p:2, bgcolor:'#ffffff15', display:'flex', alignItems:'center', flexDirection:'column', borderRadius:'8px', gap: '10px', height:'max-content'}}>
+    <Box sx={{p:2, bgcolor:'#ffffff15', display:'flex', alignItems:'center', flexDirection:'column', borderRadius:'8px', gap: '10px', height:'max-content', width: 220, boxShadow:'rgba(0, 0, 0, 0.35) 0px 5px 15px'}}>
 
         <Box sx={{display:'flex', justifyContent:'space-evenly', width: '100%'}}>
-            <AddIcon sx={{color:'#f39a9a'}}/>
-            <FavoriteBorderIcon sx={{color:'#f39a9a'}}/>
+            <Add sx={{color:'#f39a9a'}}/>
+            <FavoriteBorder sx={{color:'#f39a9a'}}/>
         </Box>
 
-        <Box sx={{ width: 220, display: 'flex', alignItems: 'center',}}>
+        <Box sx={{ width: 222, display: 'flex', alignItems: 'center',}}>
             <Rating
                 name="hover-feedback"
                 defaultValue={1} size="large"
@@ -58,7 +64,7 @@ const UserPanel = () => {
                 }}
                 onChangeActive={(event, newHover) => { setHover(newHover);
                 }}
-                emptyIcon={<StarIcon style={{ opacity: 0.55 }} fontSize="inherit" />}
+                emptyIcon={<Star style={{ opacity: 0.55 }} fontSize="inherit" />}
             />
             {value !== null && (
             <Box sx={{ ml: 2 }}> {labels[hover !== -1 ? hover : value]} </Box>
@@ -72,7 +78,7 @@ const UserPanel = () => {
 
                 // {/*  */}
 
-  <Box sx={{p:2, bgcolor:'#ffffff15', display:'flex', alignItems:'center', flexDirection:'column', borderRadius:'8px', gap: '10px', height:'max-content'}}>
+  <Box sx={{p:2, bgcolor:'#ffffff15', display:'flex', alignItems:'center', flexDirection:'column', borderRadius:'8px', gap: '10px', height:'max-content', width: 220,  boxShadow:'rgba(0, 0, 0, 0.35) 0px 5px 15px'}}>
 
         {/* <button onClick={<Navigate to="/login" state={{ from: location }} replace />}>
         Login to Rate, Review, Add!

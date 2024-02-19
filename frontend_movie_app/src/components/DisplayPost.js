@@ -6,24 +6,69 @@ import uuid from 'uuid';
 import UserPanel from './UserPanel';
 import { Route, Routes, useNavigate } from 'react-router-dom';
 import RequireAuth from '../RequireAuth';
+import { styled } from '@mui/material/styles';
+import Tabs from '@mui/material/Tabs';
+import Tab from '@mui/material/Tab';
+import Box from '@mui/material/Box';
+import TabContext from '@mui/lab/TabContext';
+import TabList from '@mui/lab/TabList';
+import TabPanel from '@mui/lab/TabPanel';
+
+const StyledTabs = styled((props) => (
+  <Tabs
+    {...props}
+    TabIndicatorProps={{ children: <span className="MuiTabs-indicatorSpan" /> }}
+  /> )) ({ 
+    '& .MuiTabs-indicator': {
+    display: 'flex',
+    justifyContent: 'left',
+    backgroundColor: 'transparent',
+  },
+  '& .MuiTabs-indicatorSpan': {
+    maxWidth: 40,
+    width: '100%',
+    backgroundColor: '#f39a9a',
+  },
+});
+
+const StyledTab = styled((props) => <Tab disableRipple {...props} />)(
+  ({ theme }) => ({
+    textTransform: 'none',
+    fontWeight: theme.typography.fontWeightRegular,
+    alignItems: 'baseline',
+    padding:'0',
+    fontSize: theme.typography.pxToRem(15),
+    marginRight: theme.spacing(1),
+    color: 'rgba(255, 255, 255, 0.7)',
+    '&.Mui-selected': {
+      color: '#fff',
+    },
+    '&.Mui-focusVisible': {
+      backgroundColor: 'rgba(100, 95, 228, 0.32)',
+    },
+  }),
+);
 
 
 
 const DisplayPost = ({posts}) => {
 
-const [moviename, setmoviename] = useState('')
-const [Plot, setPlot] = useState('')
-const [Release_date, setRelease_date] = useState('')
-const [Runtime, setRuntime] = useState('')
-const [MoviePoster, setMoviePoster] = useState('')
-const [actors, setactors] = useState('');
-const [Directors, setDirectors] = useState('');
-const [Genres, setGenres] = useState('');
+  const [value, setValue] = React.useState('1');
+  const handleChange = (event, newValue) => { setValue(newValue);};
+
+  const [moviename, setmoviename] = useState('')
+  const [Plot, setPlot] = useState('')
+  const [Release_date, setRelease_date] = useState('')
+  const [Runtime, setRuntime] = useState('')
+  const [MoviePoster, setMoviePoster] = useState('')
+  const [actors, setactors] = useState('');
+  const [Directors, setDirectors] = useState('');
+  const [Genres, setGenres] = useState('');
 
 
   const { id } = useParams();
-  //const post = posts.find(post => (post.id).toString() === id);
-//  console.log(post);
+  const post = posts.find(post => (post.id).toString() === id);
+
 
 useEffect(() => {
     const getmoviedata = async () => {
@@ -40,7 +85,7 @@ useEffect(() => {
           setMoviePoster(response.data.url)
           setactors(response.data.actors)
           setDirectors(response.data.director)
-          setGenres(response.data.genres)
+          setGenres(response.data.genres.genres)
           
         } catch (err) {
           if (err.response) {
@@ -58,7 +103,7 @@ useEffect(() => {
 }, [])
 
 
-// console.log(Directors);
+// console.log(Genres);
 
   return ( 
  
@@ -66,7 +111,9 @@ useEffect(() => {
   <main className='DisplayPost'>
 
     <article className='MainPoster'>
+      {/* <Link to={`/post/${post.id}`}> */}
         <img src={MoviePoster} alt="poster"  className='movieImg' />
+        {/* </Link> */}
     </article>
 
     <article className='AboutMovie'>
@@ -87,33 +134,43 @@ useEffect(() => {
           </div>
       </section>
 
-      <section className='movieAllinfo'>
-          <div>
-                <div className='moviePlot'>{Plot}</div>
-                <p>{Runtime}</p>
+  <section className='movieAllinfo'>
+      <div>
+        <div className='moviePlot'>{Plot}</div>
+        <p>{Runtime}</p>
 
-                <div className='CastGenre'>
-                    <div>
-                        Cast: {actors && actors.map(actor => (
-                                <div key={crypto.randomUUID()}>{actor.name}</div>
-                          ))} 
+              <div className='CastGenre'>
+
+              <TabContext value={value}>
+                <StyledTabs onChange={handleChange} value={value}>
+                  <StyledTab label="CAST" value="1"/>
+                  <StyledTab label="GENRE" value="2"/>
+                </StyledTabs>
+                <TabPanel value="1" sx={{p:1}}>
+                        {actors && actors.map(actor => ( <div key={crypto.randomUUID()}>{actor.name}</div>))} 
+                </TabPanel>
+                <TabPanel value="2" sx={{p:1}}>
+                        {Genres && Genres.map(Genre => ( <div key={Genre.id}>{Genre.text}</div>))}
+                </TabPanel>
+             </TabContext>
+              
+
+            
+        
+            
+                    {/* <div>
+                       
                     </div>
                     <div>
                         Genres: 
-                        {/* {Genres && Genres.map(Genre => (
-                                <p key={Genre.id}>{Genre.text}</p>
-                          ))}  */}
-                    </div>
-                </div>
-          </div>
+                         
+                    </div> */}
+        </div>
+      </div>
+        
+      <UserPanel/>
 
-          {/* <Routes >
-            <Route element={<RequireAuth  />}>
-                    <Route element={<UserPanel/>}/>
-            </Route>
-          </Routes > */}
-          <UserPanel/>
-      </section>
+    </section>
     </article>
 
 

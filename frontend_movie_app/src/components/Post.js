@@ -11,9 +11,6 @@ const Post = ({ post }) => {
             <Link to={`/post/${post.id}`}>
            
                 <img className='movieposter' src= {post.img} />
-
-                {/* <p>{post.name}</p> */}
-                {/* <p className="postDate">{post.datetime}</p> */}
             </Link>
             {/* <p className="postBody">{
                 (post.body).length <= 25

@@ -6,23 +6,11 @@ import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
 import logo from './utils/logo.png';
 // import Requirelogin from '../Requirelogin';
-import Box from '@mui/material/Box';
-import Avatar from '@mui/material/Avatar';
-import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import Divider from '@mui/material/Divider';
-import IconButton from '@mui/material/IconButton';
-import Tooltip from '@mui/material/Tooltip';
-import Settings from '@mui/icons-material/Settings';
-import PersonIcon from '@mui/icons-material/Person';
-import MovieIcon from '@mui/icons-material/Movie';
-import TheatersIcon from '@mui/icons-material/Theaters';
-import ReviewsIcon from '@mui/icons-material/Reviews';
-import Logout from '@mui/icons-material/Logout';
-import PlayCircleIcon from '@mui/icons-material/PlayCircle';
+import {Box, Avatar, Menu, MenuItem, ListItemIcon, Divider, IconButton, Tooltip} from '@mui/material';
+import {Settings, Person, Movie, Theaters, Reviews, Diversity3, Logout, PlayCircle} from '@mui/icons-material';
 import { useLocation } from 'react-router-dom';
 import { useState } from 'react';
+
 
 const Nav = () => {
   //const [location, setlocation] = useState();
@@ -111,9 +99,9 @@ const Nav = () => {
           </Search>
 
           <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}>
-            <Tooltip title="Account settings">
+            <Tooltip title="Your Menu">
               <IconButton
-                onMouseOver={handleClick}
+                onClick={handleClick}
                 size="small"
                 sx={{bgcolor:'#f39a9a'}}
                 aria-controls={open ? 'account-menu' : undefined}
@@ -125,7 +113,7 @@ const Nav = () => {
             </Tooltip>
           </Box>
           <Menu
-            anchorEl={anchorEl} id="account-menu" open={open} onClose={handleClose}MenuListProps={{ onMouseLeave: handleClose }} 
+            anchorEl={anchorEl} id="account-menu" open={open} onClose={handleClose} onClick={handleClose}
             PaperProps={{ elevation: 0, sx: { overflow: 'visible', filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))', mt: 1.5,
                 '& .MuiAvatar-root': {width: 32, height: 32, ml: -0.5, mr: 1,},
                 '&::before': {content: '""',display: 'block', position: 'absolute', top: 0, right: 14,width: 10, height: 10, bgcolor: 'background.paper', transform: 'translateY(-50%) rotate(45deg)', zIndex: 0,},},
@@ -133,27 +121,27 @@ const Nav = () => {
             transformOrigin={{ horizontal: 'right', vertical: 'top' }}anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
           >
             <MenuItem onClick={handleClose}> 
-                <ListItemIcon><PersonIcon fontSize="small" sx={{color:'#f39a9a'}}/></ListItemIcon>
+                <ListItemIcon><Person fontSize="small" sx={{color:'#f39a9a'}}/></ListItemIcon>
                 Profile
             </MenuItem>
             <MenuItem onClick={handleClose}> 
-                <ListItemIcon><MovieIcon fontSize="small" sx={{color:'#f39a9a'}}/></ListItemIcon>
+                <ListItemIcon><Movie fontSize="small" sx={{color:'#f39a9a'}}/></ListItemIcon>
                 Films
             </MenuItem>
             <MenuItem onClick={handleClose}> 
-                <ListItemIcon><ReviewsIcon fontSize="small" sx={{color:'#f39a9a'}}/></ListItemIcon>
+                <ListItemIcon><Reviews fontSize="small" sx={{color:'#f39a9a'}}/></ListItemIcon>
                 Reviews
             </MenuItem>
             <MenuItem onClick={handleClose}> 
-                <ListItemIcon><PlayCircleIcon fontSize="small" sx={{color:'#f39a9a'}}/></ListItemIcon>
+                <ListItemIcon><PlayCircle fontSize="small" sx={{color:'#f39a9a'}}/></ListItemIcon>
                 WatchList
             </MenuItem>
             <MenuItem onClick={handleClose}> 
-                <ListItemIcon><TheatersIcon fontSize="small" sx={{color:'#f39a9a'}} /></ListItemIcon>
+                <ListItemIcon><Theaters fontSize="small" sx={{color:'#f39a9a'}} /></ListItemIcon>
                 Lists
             </MenuItem>
             <MenuItem onClick={handleClose}> 
-                <ListItemIcon><Settings fontSize="small" sx={{color:'#f39a9a'}}/></ListItemIcon>
+                <ListItemIcon><Diversity3 fontSize="small" sx={{color:'#f39a9a'}}/></ListItemIcon>
                 Network
             </MenuItem>
             {/* <MenuItem onClick={handleClose}>
