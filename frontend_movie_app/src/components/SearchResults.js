@@ -5,18 +5,25 @@ import { useEffect,useState } from 'react';
 
 const SearchResults = ({}) => {
     let { state } = useLocation();
-    const [Movies, setMovies] = useState('');
+    const [Movies, setMovies] = useState([]);
     const array = state.searchData.description;
-    const Ref = createRef();
+    // const Ref = createRef();
 
     
 
     if(state){
     // console.log(state.searchData.description);
-    // // setMovies([])
+    setMovies([...Movies, array ])
     // const res = [...array, {hadd: 'hogyi'}];
-    // console.log(res);
+    console.log(Movies);
     // setMovies(res);
+      // const itemEls = useRef(new Array())
+
+//     {.map(item => (
+//       <p key={item} ref={(element) => itemEls.current.push(element)}>{item}</p>
+// ))
+
+
     }
     
     // setMovies([]);
