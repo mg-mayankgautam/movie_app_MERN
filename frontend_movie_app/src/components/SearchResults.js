@@ -9,13 +9,20 @@ const SearchResults = ({}) => {
     const array = state.searchData.description;
     // const Ref = createRef();
 
-    
 
-    if(state){
-    // console.log(state.searchData.description);
-    setMovies([...Movies, array ])
-    // const res = [...array, {hadd: 'hogyi'}];
+
+    useEffect(() => {
+      setMovies(array)
+    }, []);
+
+
     console.log(Movies);
+
+    // if(state){
+    // // console.log(state.searchData.description);
+    // setMovies(array)
+    // // const res = [...array, {hadd: 'hogyi'}];
+    // console.log(Movies);
     // setMovies(res);
       // const itemEls = useRef(new Array())
 
@@ -24,7 +31,7 @@ const SearchResults = ({}) => {
 // ))
 
 
-    }
+    
     
     // setMovies([]);
     
@@ -34,7 +41,14 @@ const SearchResults = ({}) => {
         
     {Movies.length ? (
         <div className='SearchList'>
+            {Movies.map(movie=>{
 
+              <div>
+                {/* {movie} */}
+                hiiiiiiiiii
+              </div>
+
+            })}
 
 
         </div>

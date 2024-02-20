@@ -151,7 +151,7 @@ const Nav = () => {
 const handleSubmitSearch = async(e)=>{
   e.preventDefault();
   const SearchValue= inputRef.current.value;
-  // console.log(SearchValue);
+   console.log(SearchValue);
 
     const URL = `https://search.imdbot.workers.dev/?q=${SearchValue}`;
 
