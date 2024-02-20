@@ -1,6 +1,7 @@
 import React, { createRef } from 'react'
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useEffect,useState } from 'react';
+import axios from 'axios';
 
 
 const SearchResults = ({}) => {
@@ -8,32 +9,50 @@ const SearchResults = ({}) => {
     const [Movies, setMovies] = useState([]);
     const array = state.searchData.description;
     // const Ref = createRef();
-
+console.log(array);
 
 
     useEffect(() => {
       setMovies(array)
     }, []);
 
-
-    console.log(Movies);
-
-    // if(state){
-    // // console.log(state.searchData.description);
-    // setMovies(array)
-    // // const res = [...array, {hadd: 'hogyi'}];
-    // console.log(Movies);
-    // setMovies(res);
-      // const itemEls = useRef(new Array())
-
-//     {.map(item => (
-//       <p key={item} ref={(element) => itemEls.current.push(element)}>{item}</p>
-// ))
-
-
     
+    // console.log(Object.entries(Movies[1]));
+// console.log(Movies[1].photo_width);
+
+// for(let i=0; i<array.length; i++) {
     
-    // setMovies([]);
+//   console.log(Object.values(array[i])[0]);
+const navigate = useNavigate();
+
+const handleMoviePost = async(IMDBid)=>{
+  console.log(IMDBid);
+
+  const URL = `https://search.imdbot.workers.dev/?tt=${IMDBid}`;
+
+  // const results = await response.json;
+  // console.log(results);
+  fetch(URL)
+  .then((res)=>{
+      return res.json();
+  })
+  .then(async(moviefromapi)=>{
+     console.log(moviefromapi);
+      
+     try{
+     const data = await axios.post('http://localhost:4700/movie/addmovie', {moviefromapi: moviefromapi});   
+     
+     const movieID = data.data;
+      navigate(`/post/${movieID}`)
+     } 
+     catch(e){console.log(e);}
+     
+    })  
+.catch((err)=> {console.log(err)})
+}
+
+// }
+
     
 
   return (
@@ -41,14 +60,20 @@ const SearchResults = ({}) => {
         
     {Movies.length ? (
         <div className='SearchList'>
-            {Movies.map(movie=>{
+          {Movies.map(movie=>{
+              return(
+              <div className='searchres' key={Object.values(movie)[2]} onClick={() => handleMoviePost(Object.values(movie)[2])}>
+                <img src={Object.values(movie)[8]} className='searchposter' />
 
-              <div>
-                {/* {movie} */}
-                hiiiiiiiiii
+                <div className='searchinfo'>
+                    <div className='searchtitle'>{Object.values(movie)[0]}</div>
+                    <div className='searchyear'>{Object.values(movie)[1]}</div>
+                </div>
+                            
               </div>
-
-            })}
+        // const moviess= Object.entries(movie)
+              )
+          })}
 
 
         </div>

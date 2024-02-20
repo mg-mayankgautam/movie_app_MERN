@@ -276,6 +276,31 @@ cursor: pointer;
 justify-content: center;
 }
 
+.SearchList{
+  margin-top: 130px;
+}
+
+.searchres{
+  display: flex;
+  width: 800px;
+  padding: 10px 10px;
+  background-color: #ffffff15;
+  margin: 10px 10px;
+}
+.searchposter{
+  height: 100px;
+  margin: 10px 10px;
+}
+.searchinfo{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 10px 0;
+}
+.searchtitle{
+  font-size: 32px;
+  font-family: "DM Serif Display";
+}
 
 /* @media(orientation:potrait){
   .banner{display: none;}

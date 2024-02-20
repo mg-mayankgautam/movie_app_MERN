@@ -33,7 +33,7 @@ module.exports.getMovies = async(req, res)=>{
 
     //                             const options = {
     //                          url: `${imageurl}`,
-    //                          dest: path.resolve(`public/posters/${postername}.jpg`),            
+    //                          dest: path.resolve(`./public/posters/${postername}.jpg`),            
     //                             };
       
     //                         download.image(options)
@@ -150,3 +150,60 @@ try{
 
 }
 
+
+
+module.exports.postMovie = async(req,res) =>{
+    const {moviefromapi} = req.body;
+    
+console.log(moviefromapi, 'hereeeeeee')
+
+  async function downloadImage(url, filepath) {
+        return download.image({
+           url,
+           dest: filepath 
+        });
+    }
+
+    let movie = await moviesDB.findOne({moviefromapi});
+    //console.log(user);
+ 
+     
+     if(movie){ 
+        console.log('movie already in DB')
+        res.send(movie._id.toString());
+    }
+if(!movie){
+                      let newmovie = new moviesDB ({moviefromapi});
+                      newmovie.save()
+                      .then((saved)=>{
+                        
+                            const postername = saved._id.toString() 
+                            const imageurl = saved.moviefromapi.short.image;
+                            console.log(saved,'movie image link');
+                    
+                                            
+                    
+                    
+                            const options = {
+                            url: `${imageurl}`,
+                            dest: path.resolve(`./public/posters/${postername}.jpg`),  
+                            
+                            
+                             };
+                             res.send(postername)
+                          
+                            download.image(options)
+
+                           
+
+                          .then(({ filename }) => {
+                            console.log('Saved to', filename); 
+                                                  })
+                         .catch((err) => console.error(err));
+                                            
+                                            })
+                 .catch(err =>{console.log(err);});
+        
+                    }
+                    
+}
