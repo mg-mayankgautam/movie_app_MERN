@@ -53,7 +53,7 @@ module.exports.logout = async (req,res)=>{
 
 
 module.exports.isauth=async (req,res)=>{
-console.log('isauth controller');
+// console.log('isauth controller');
     if(!req.session.Username){
      
 
