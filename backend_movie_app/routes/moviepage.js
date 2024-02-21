@@ -9,7 +9,7 @@ const router = express.Router();
 // router.post('/signUp',authController.signUp)
 // router.post('/login',authController.logIn)
  router.get('/', movieController.getMovie);
-
+    router.post('/addmovie', movieController.postMovie)
 
 
 
