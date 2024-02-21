@@ -107,7 +107,7 @@ function App() {
                 </Route>
                     
                     
-                    <Route path='search' element={<SearchResults/>}/>
+                    <Route path='search/:query' element={<SearchResults/>}/>
                 
 
 

@@ -163,7 +163,7 @@ const handleSubmitSearch = async(e)=>{
     })
     .then((resfromapi)=>{
        console.log(resfromapi);
-       navigate('/search', {state: { searchData: resfromapi }});
+       navigate(`/search/${SearchValue}`, {state: { searchData: resfromapi }});
        
      
        
