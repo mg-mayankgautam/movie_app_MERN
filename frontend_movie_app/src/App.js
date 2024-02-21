@@ -15,6 +15,7 @@ import RequireloginAuth from './RequireloginAuth';
 import { Route, Routes, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import Profile from './components/Profile';
+import Films from './components/Films';
 
 
 
@@ -32,33 +33,33 @@ function App() {
   const [posts, setPosts]     = useState([]);
 
 
-  const [postTitle, setPostTitle] = useState('');
-  const [postBody, setPostBody] = useState('');
+//   const [postTitle, setPostTitle] = useState('');
+//   const [postBody, setPostBody] = useState('');
 
-   async function handleSubmit(e) {
-      e.preventDefault();
-      console.log(postBody);
-      //const id = random.uuid();
-      const newPost = { id:crypto.randomUUID(), title: postTitle, body: postBody };
+//    async function handleSubmit(e) {
+//       e.preventDefault();
+//       console.log(postBody);
+//       //const id = random.uuid();
+//       const newPost = { id:crypto.randomUUID(), title: postTitle, body: postBody };
 
-      try{const data = await axios.post('http://localhost:4700/addpost',{newPost})
-      setPosts([]);
-     // const allPosts = [...posts, data.data];
-      setPosts(data.data);
-      setPostTitle('');
-      setPostBody('');
- // console.log(data);
-  }
-      catch(err){console.log(err);}
+//       try{const data = await axios.post('http://localhost:4700/addpost',{newPost})
+//       setPosts([]);
+//      // const allPosts = [...posts, data.data];
+//       setPosts(data.data);
+//       setPostTitle('');
+//       setPostBody('');
+//  // console.log(data);
+//   }
+//       catch(err){console.log(err);}
 
-    }
+//     }
 
   
 
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const response = await axios.get('http://localhost:4700/posts');
+        const response = await axios.get('http://localhost:4700/top10');
        // console.log(response.data);
         setPosts(response.data);
       } catch (err) {
@@ -95,13 +96,14 @@ function App() {
                 
 
                 <Route element={<RequireAuth  />}>
-                   <Route path="addpost" element={<Addpost 
+                   {/* <Route path="addpost" element={<Addpost 
                    handleSubmit={handleSubmit}
                    postTitle={postTitle}
                    setPostTitle={setPostTitle}
                    postBody={postBody}
                    setPostBody={setPostBody}
-                   />}/>
+                   />}
+                   /> */}
 
                    <Route path='profile' element={<Profile/>}/>
                 </Route>
@@ -112,10 +114,11 @@ function App() {
 
 
 
-                 <Route path="/post/:id" element={<DisplayPost 
+                 <Route path="/film/:id" element={<DisplayPost 
                      posts={posts}
                    />}/>
-                 <Route path="about" element={<About/>} />
+                   
+                 <Route path="films" element={<Films/>} />
           </Route>
           
         </Routes> 
