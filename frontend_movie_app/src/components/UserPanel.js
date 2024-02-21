@@ -2,9 +2,17 @@ import React from 'react';
 import { useLocation, Navigate, Outlet } from "react-router-dom";
 import useAuth from "../hook/useAuth";
 import {Add, Star, Favorite, FavoriteBorder} from '@mui/icons-material';
+import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import AddToQueueIcon from '@mui/icons-material/AddToQueue';
+import AddToQueueTwoToneIcon from '@mui/icons-material/AddToQueueTwoTone';
+import RemoveFromQueueOutlinedIcon from '@mui/icons-material/RemoveFromQueueOutlined';
+import PlaylistAddOutlinedIcon from '@mui/icons-material/PlaylistAddOutlined';
+import PlaylistAddCheckOutlinedIcon from '@mui/icons-material/PlaylistAddCheckOutlined';
 import Rating from '@mui/material/Rating';
 import Box from '@mui/material/Box';
 import { Link } from 'react-router-dom';
+import axios from 'axios'
 
 
 const labels = {
@@ -42,33 +50,70 @@ const UserPanel = () => {
   const location = useLocation();
   const [value, setValue] = React.useState(0);
   const [hover, setHover] = React.useState(-1);
+  const [isActive, setIsActive] = React.useState(false);
+  const [isActive2, setIsActive2] = React.useState();
 
+  const reversestate=async(value)=>{
+    const opp=!value;
+    setIsActive2(opp);
+    console.log(isActive2);
+    
+  }
+
+
+  
+
+
+  const handleWatched =async()=>{
+    console.log('watched clicked',isActive2);
+    //setIsActive2(isActive2);
+    reversestate(isActive2);
+    //console.log('watched clicked and state changed',isActive2);
+
+    const data = await axios.post('http://localhost:4700/addwatched', {watched: isActive2})
+    // Add.
+  }
+  //console.log('watched clicked and state changed',isActive2);
   return (
     auth?.user
             ? 
     <Box sx={{p:2, bgcolor:'#ffffff15', display:'flex', alignItems:'center', flexDirection:'column', borderRadius:'8px', gap: '10px', height:'max-content', width: 220, boxShadow:'rgba(0, 0, 0, 0.35) 0px 5px 15px'}}>
 
         <Box sx={{display:'flex', justifyContent:'space-evenly', width: '100%'}}>
-            <Add sx={{color:'#f39a9a'}}/>
-            <FavoriteBorder sx={{color:'#f39a9a'}}/>
+            {/* <Add sx={{color:'#f39a9a'}} onClick={handleWatched}/> */}
+            <div onClick={()=> handleWatched()}>
+                {isActive2 ? 
+                <VisibilityIcon sx={{color:'#f39a9a', width:'1.5em', height:'1.5em', cursor:'pointer'}}/>
+                : 
+                <VisibilityOutlinedIcon sx={{color:'white', width:'1.5em', height:'1.5em', cursor:'pointer'}}/> 
+                }
+            </div>
+            <div onClick={()=> setIsActive(!isActive)}>
+                {isActive ? 
+                <PlaylistAddCheckOutlinedIcon sx={{color:'#f39a9a', width:'1.5em', height:'1.5em', cursor:'pointer'}}/>
+                : 
+                <PlaylistAddOutlinedIcon sx={{color:'#f39a9a', width:'1.5em', height:'1.5em', cursor:'pointer'}}/> 
+                }
+            </div>
         </Box>
 
-        <Box sx={{ width: 222, display: 'flex', alignItems: 'center',}}>
+        <Box sx={{ width: 222, display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
             <Rating
                 name="hover-feedback"
                 size="large"
                 value={value}
                 precision={0.25}
                 getLabelText={getLabelText}
+                // sx={{color: '#f39a9a'}}
                 onChange={(event, newValue) => { setValue(newValue);
                 }}
                 onChangeActive={(event, newHover) => { setHover(newHover);
                 }}
-                emptyIcon={<Star style={{ opacity: 0.55 }} fontSize="inherit" />}
+                emptyIcon={<Star style={{ opacity: 0.40, color:'white'}} fontSize="inherit" />}
             />
-            {value !== null && (
+            {/* {value !== null && (
             <Box sx={{ ml: 2 }}> {labels[hover !== -1 ? hover : value]} </Box>
-        )}
+        )} */}
         </Box>
   
   </Box>

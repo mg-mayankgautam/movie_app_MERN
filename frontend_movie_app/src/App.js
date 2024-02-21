@@ -11,7 +11,7 @@ import SignUp from './components/SignUp';
 import SearchResults from './components/SearchResults';
 import RequireAuth from './RequireAuth';
 import RequireloginAuth from './RequireloginAuth';
-
+import Actors from './components/Actors';
 import { Route, Routes, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import Profile from './components/Profile';
@@ -105,12 +105,13 @@ function App() {
                    />}
                    /> */}
 
-                   <Route path='profile' element={<Profile/>}/>
+                  <Route path='profile' element={<Profile/>}/>
                 </Route>
                     
                     
                     <Route path='search/:query' element={<SearchResults/>}/>
                 
+                    <Route path='actor/:query' element={<Actors/>}/>
 
 
 

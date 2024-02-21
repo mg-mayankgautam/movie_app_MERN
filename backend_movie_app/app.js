@@ -79,7 +79,8 @@ app.use('/', landingpageRouter);
 const moviepageRouter= require('./routes/moviepage.js');
 app.use('/movie',moviepageRouter);
 
-
+const userRouter = require('./routes/user.js');
+app.use('/', userRouter);
 
 
 const dataDB = require("./models/dataDB.js");

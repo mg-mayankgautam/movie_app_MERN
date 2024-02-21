@@ -8,7 +8,7 @@ module.exports.getTop10 = async(req,res)=>{
 
     let name = movie.map(e=>({ id: e._id.toString(), name: e.moviefromapi.short.name, img:`http://localhost:4700/posters/${e._id.toString()}.jpg`}));
 
-    console.log(name);
+   // console.log(name);
 
    
     res.send(name);
@@ -163,7 +163,7 @@ try{
 module.exports.postMovie = async(req,res) =>{
     const {moviefromapi} = req.body;
     
-console.log(moviefromapi, 'hereeeeeee')
+// console.log(moviefromapi, 'hereeeeeee')
 
 //   async function downloadImage(url, filepath) {
 //         return download.image({
@@ -178,7 +178,7 @@ console.log(moviefromapi, 'hereeeeeee')
      
 
     if(!movie){
-        console.log('inside')
+      //  console.log('inside')
 
                       let newmovie = new moviesDB ({moviefromapi});
                       newmovie.save()
@@ -186,7 +186,7 @@ console.log(moviefromapi, 'hereeeeeee')
                         
                             const postername = saved._id.toString() 
                             const imageurl = saved.moviefromapi.short.image;
-                            console.log(saved,'movie image link');
+                           // console.log(saved,'movie image link');
                     
                                             
                     

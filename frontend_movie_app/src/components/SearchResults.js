@@ -37,13 +37,13 @@ const handleMoviePost = async(IMDBid)=>{
       return res.json();
   })
   .then(async(moviefromapi)=>{
-     console.log(moviefromapi);
+    // console.log(moviefromapi);
       
      try{
      const data = await axios.post('http://localhost:4700/movie/addmovie', {moviefromapi: moviefromapi});   
      
      const movieID = data.data;
-      navigate(`/post/${movieID}`)
+      navigate(`/film/${movieID}`)
      } 
      catch(e){console.log(e);}
      
