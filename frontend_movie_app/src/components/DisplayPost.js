@@ -83,14 +83,14 @@ useEffect(() => {
                //console.log('url',URL);
                const response = await axios.get(URL);
 
-              //  console.log(response.data.auth);
+                //console.log(response.data);
                if(!response.data.auth){
                     setmoviename(response.data.name)
                     setPlot(response.data.plot.plainText)
                     setRelease_date(response.data.release_date)
                     setRuntime(response.data.runtime)
                     setMoviePoster(response.data.url)
-                    setactors(response.data.actors)
+                    setactors(response.data.allcast)
                     setDirectors(response.data.director)
                     setGenres(response.data.genres.genres)
                   
@@ -109,7 +109,7 @@ useEffect(() => {
                     setRelease_date(response.data.release_date)
                     setRuntime(response.data.runtime)
                     setMoviePoster(response.data.url)
-                    setactors(response.data.actors)
+                    setactors(response.data.allcast)
                     setDirectors(response.data.director)
                     setGenres(response.data.genres.genres)
                  }   
@@ -133,7 +133,7 @@ useEffect(() => {
 },[])
 
 
-// console.log(Genres);
+ console.log(actors);
 
   return ( 
  
@@ -177,7 +177,14 @@ useEffect(() => {
                   <StyledTab label="GENRE" value="2"/>
                 </StyledTabs>
                 <TabPanel value="1" sx={{p:0, display:'flex', flexWrap:'wrap'}}>
-                        {actors && actors.map(actor => ( <div className='castname' key={crypto.randomUUID()}>{actor.name}</div>))} 
+                        {actors && actors.map(actor => ( 
+                        <div className='castname' key={crypto.randomUUID()}>
+                          
+                         <Link to={`/actor/${actor.node.name.id}`}> 
+                         {actor.node.name.nameText.text}
+                         </Link>
+                        
+                        </div>))} 
                 </TabPanel>
                 <TabPanel value="2" sx={{p:0, display:'flex', flexWrap:'wrap'}}>
                         {Genres && Genres.map(Genre => ( <div className='genrename' key={Genre.id}>{Genre.text}</div>))}

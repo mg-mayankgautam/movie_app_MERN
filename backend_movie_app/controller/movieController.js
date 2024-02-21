@@ -94,11 +94,13 @@ try{
         // console.log(movie[0].moviefromapi.short.actor)
         // console.log(movie[0].moviefromapi.short.director)
 
+        console.log(movie);
         const release_date=movie[0].moviefromapi.top.releaseDate;
         const name = movie[0].moviefromapi.top.titleText;
         const runtime = movie[0].moviefromapi.top.runtime.displayableProperty.value.plainText;
         const plot = movie[0].moviefromapi.top.plot.plotText;
         const actors = movie[0].moviefromapi.short.actor;
+        const allcast = movie[0].moviefromapi.main.cast.edges;
         const director= movie[0].moviefromapi.short.director;
         const genres = movie[0].moviefromapi.top.genres;
         const url = `http://localhost:4700/posters/${id}.jpg`
@@ -106,7 +108,7 @@ try{
 
 
     //let short = movie.moviefromapi.short
-    res.send({release_date,name,runtime,plot, actors, director,genres, url,auth:false})}
+    res.send({release_date,name,runtime,plot, actors, director,genres,allcast, url,auth:false})}
 
 
         else if(req.session.Username){
@@ -126,6 +128,8 @@ try{
                  const runtime = movie[0].moviefromapi.top.runtime.displayableProperty.value.plainText;
                  const plot = movie[0].moviefromapi.top.plot.plotText;
                  const actors = movie[0].moviefromapi.short.actor;
+                 const allcast = movie[0].moviefromapi.main.cast.edges;
+
                  const director= movie[0].moviefromapi.short.director;
                  const genres = movie[0].moviefromapi.top.genres;
                  const url = `http://localhost:4700/posters/${id}.jpg`
@@ -133,7 +137,7 @@ try{
          
          
              //let short = movie.moviefromapi.short
-             res.send({release_date,name,runtime,plot, actors, director,genres, url,auth:req.session.Username})}
+             res.send({release_date,name,runtime,plot, actors, director,genres,allcast, url,auth:req.session.Username})}
 
 
         }
