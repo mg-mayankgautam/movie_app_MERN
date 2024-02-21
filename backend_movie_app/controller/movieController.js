@@ -158,12 +158,12 @@ module.exports.postMovie = async(req,res) =>{
     
 console.log(moviefromapi, 'hereeeeeee')
 
-  async function downloadImage(url, filepath) {
-        return download.image({
-           url,
-           dest: filepath 
-        });
-    }
+//   async function downloadImage(url, filepath) {
+//         return download.image({
+//            url,
+//            dest: filepath 
+//         });
+//     }
 
     const movie = await moviesDB.findOne({moviefromapi});
     console.log(movie);
@@ -206,8 +206,10 @@ console.log(moviefromapi, 'hereeeeeee')
         
         }
                     
-                   
-    // console.log('movie already in DB')
-    // res.send(movie._id.toString());
+    else{
+        console.log('movie already in DB')
+    res.send(movie._id.toString());
+    }   
+    
                    
 }
