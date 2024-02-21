@@ -188,7 +188,8 @@ const handleSubmitSearch = async(e)=>{
               </div>
             <ul className='navpages' >
                 <li><Link to="/">HOME</Link></li>
-                <li><Link to="/addpost">WATCHLIST</Link></li>
+                <li><Link to="/films">FILMS</Link></li>
+                <li><Link to="/">WATCHLIST</Link></li>
                 <li><Link to="/profile">PROFILE</Link></li>
             </ul>
    
@@ -283,15 +284,15 @@ const handleSubmitSearch = async(e)=>{
               </div>
             <ul className='navpages' >
                 <li><Link to="/">HOME</Link></li>
-                <li><Link to="/addpost">POST</Link></li>
+                <li><Link to="/films">FILMS</Link></li>
+                {/* <li><Link to="/addpost">POST</Link></li> */}
                 <li>
                   {/* <Requirelogin> */}
   
                   <Link to="/login" state={{prev:location}} >LOGIN</Link>
-                  {/* <Link to={{ pathname: "/courses", state: { fromDashboard: true } }} /> */}
                   {/* </Requirelogin> */}
                 </li>
-                <li><Link to="/about">ABOUT</Link></li>
+                {/* <li><Link to="/about">ABOUT</Link></li> */}
             </ul>
 
     

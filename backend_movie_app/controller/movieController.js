@@ -3,6 +3,17 @@ const path = require('path');
 const download = require('image-downloader');
 
 
+module.exports.getTop10 = async(req,res)=>{
+    let movie= await moviesDB.find({}, {'moviefromapi.short.name':1}).limit(10);
+
+    let name = movie.map(e=>({ id: e._id.toString(), name: e.moviefromapi.short.name, img:`http://localhost:4700/posters/${e._id.toString()}.jpg`}));
+
+    console.log(name);
+
+   
+    res.send(name);
+}
+
 
 module.exports.getMovies = async(req, res)=>{
 
@@ -53,14 +64,6 @@ module.exports.getMovies = async(req, res)=>{
     
 
 ///////////////////////////////////////////////////////////////////////
-
-
-
-
-
-
-
-
 
     let movie= await moviesDB.find({}, {'moviefromapi.short.name':1})
 

@@ -10,7 +10,8 @@ router.post('/signUp',authController.signUp)
 router.post('/login',authController.logIn)
 router.post('/logout',authController.logout)
 router.get('/isauth',authController.isauth)
-router.get('/posts', movieController.getMovies);
+router.get('/films', movieController.getMovies);
+router.get('/top10', movieController.getTop10);
 
 
 

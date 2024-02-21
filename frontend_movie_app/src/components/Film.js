@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 
-const Post = ({ post }) => {
+const Film = ({ film }) => {
 
    // console.log(post.id);
     return (
@@ -8,9 +8,9 @@ const Post = ({ post }) => {
         
         <article className="post">
            
-            <Link to={`/film/${post.id}`}>
+            <Link to={`/film/${film.id}`}>
            
-                <img className='movieposter' src= {post.img} />
+                <img className='movieposter' src= {film.img} />
             </Link>
             {/* <p className="postBody">{
                 (post.body).length <= 25
@@ -21,4 +21,4 @@ const Post = ({ post }) => {
     )
 }
 
-export default Post
+export default Film
