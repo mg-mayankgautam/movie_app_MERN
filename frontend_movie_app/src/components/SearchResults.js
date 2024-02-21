@@ -14,7 +14,7 @@ console.log(array);
 
     useEffect(() => {
       setMovies(array)
-    }, []);
+    }, [state]);
 
     
     // console.log(Object.entries(Movies[1]));
