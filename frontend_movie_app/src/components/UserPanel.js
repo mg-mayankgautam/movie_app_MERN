@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useLocation, Navigate, Outlet } from "react-router-dom";
 import useAuth from "../hook/useAuth";
 import {Add, Star, Favorite, FavoriteBorder} from '@mui/icons-material';
@@ -13,6 +13,8 @@ import Rating from '@mui/material/Rating';
 import Box from '@mui/material/Box';
 import { Link } from 'react-router-dom';
 import axios from 'axios'
+import { flushSync } from 'react-dom'; 
+
 
 
 const labels = {
@@ -51,29 +53,46 @@ const UserPanel = () => {
   const [value, setValue] = React.useState(0);
   const [hover, setHover] = React.useState(-1);
   const [isActive, setIsActive] = React.useState(false);
-  const [isActive2, setIsActive2] = React.useState();
+  const [isActive2, setIsActive2] = React.useState(false);
 
-  const reversestate=async(value)=>{
-    const opp=!value;
-    setIsActive2(opp);
-    console.log(isActive2);
+  // const reversestate=async(value)=>{
+  //   const opp=!value;
+  //   setIsActive2(opp);
+  //   console.log(isActive2);
     
-  }
-
-
-  
+  // }
 
 
   const handleWatched =async()=>{
     console.log('watched clicked',isActive2);
-    //setIsActive2(isActive2);
-    reversestate(isActive2);
-    //console.log('watched clicked and state changed',isActive2);
 
-    const data = await axios.post('http://localhost:4700/addwatched', {watched: isActive2})
-    // Add.
+    // flushSync(()=>{
+      setIsActive2(isActive2 => !isActive2);
+    // })
+    
+    console.log('state changed????',isActive2);
+
+    // const data = await axios.post('http://localhost:4700/addwatched', {watched: isActive2})
   }
-  //console.log('watched clicked and state changed',isActive2);
+
+  console.log('outside funcn',isActive2);
+
+
+  useEffect(()=>{
+
+    const postWatchStatus=async()=>{
+      console.log('happens after click event completes',isActive2);
+  
+      // const data = await axios.post('http://localhost:4700/addwatched', {watched: isActive2})
+    }
+    postWatchStatus();
+  },[isActive2]);
+
+  //my temporary soln^^^^
+
+  
+
+
   return (
     auth?.user
             ? 
@@ -92,7 +111,7 @@ const UserPanel = () => {
                 {isActive ? 
                 <PlaylistAddCheckOutlinedIcon sx={{color:'#f39a9a', width:'1.5em', height:'1.5em', cursor:'pointer'}}/>
                 : 
-                <PlaylistAddOutlinedIcon sx={{color:'#f39a9a', width:'1.5em', height:'1.5em', cursor:'pointer'}}/> 
+                <PlaylistAddOutlinedIcon sx={{color:'#white', width:'1.5em', height:'1.5em', cursor:'pointer'}}/> 
                 }
             </div>
         </Box>
