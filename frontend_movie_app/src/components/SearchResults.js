@@ -16,7 +16,13 @@ const SearchResults = ({}) => {
     }, []);
 
 
-    console.log(Movies);
+  //   for(let i=0; i<array.length; i++) {
+    
+  //     console.log(Object.values(array[i])[0]);
+  
+  
+  
+  // }
 
     // if(state){
     // // console.log(state.searchData.description);
