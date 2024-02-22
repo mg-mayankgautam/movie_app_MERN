@@ -222,7 +222,7 @@ const handleSubmitSearch = async(e)=>{
                 <Avatar sx={{ width: 32, height: 32, textAlign:'center', bgcolor:'#f39a9a'}}></Avatar>
               </IconButton>
             </Tooltip>
-            <Typography sx={{fontSize:'small'}}>bansa</Typography>
+            <Typography sx={{fontSize:'small'}}>{UserName}</Typography>
           </Box>
 
           <Menu

@@ -316,3 +316,26 @@ justify-self: center;
 .Films{
   margin-top: 130px;
 }
+
+.Profile{
+  margin-top: 130px;
+  max-width: 950px;
+  width: 100%;
+  padding: 0px 20px 20px;
+}
+.userDetails{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 50px;
+}
+.userName{display: flex; align-items: center; gap: 20px; font-size: 24px; font-family: 'Montserrat';}
+.filmsNumber{font-size:32px; font-family: 'DM Serif Display'}
+.userNav{
+  margin-top: 30px;
+  border: 0.5px solid rgba(255, 255, 255, 0.133);
+  padding: 0;
+}
+.userFilms{
+
+}
