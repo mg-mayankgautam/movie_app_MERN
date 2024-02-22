@@ -5,14 +5,12 @@ import { useEffect,useState } from 'react';
 import axios from 'axios';
 import uuid from 'uuid';
 import UserPanel from './UserPanel';
-import { Route, Routes, useNavigate } from 'react-router-dom';
-import RequireAuth from '../RequireAuth';
+// import { Route, Routes, useNavigate } from 'react-router-dom';
+// import RequireAuth from '../RequireAuth';
 import { styled } from '@mui/material/styles';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
-import Box from '@mui/material/Box';
 import TabContext from '@mui/lab/TabContext';
-import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
 
 const StyledTabs = styled((props) => (
