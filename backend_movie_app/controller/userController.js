@@ -60,18 +60,27 @@ module.exports.controlWatched = async(req, res)=>{
 
 module.exports.getWatched=async(req,res)=>{
 
-const sesInfo=req.session;
+// const sesInfo=req.session;
 const UserID = req.session.UserID;           
 
-sesInfo?sesInfo.CurrentmovieID?console.log(sesInfo.CurrentmovieID):console.log('illay'):console.log('illay');
+// sesInfo?sesInfo.CurrentmovieID?console.log(sesInfo.CurrentmovieID):console.log('illay'):console.log('illay');
 
-const movie = sesInfo.CurrentmovieID;
+// const movie = sesInfo.CurrentmovieID;
+const movie = req.query.movie;
 const watchedmovie = {movie,watched:true}
 try{
 
-   const moviefromDB = await ratingDB.findOne({UserID,watchedmovie})
+   const moviefromDB = await ratingDB.findOne({UserID, watchedmovie})
 
    console.log('moviefromDB',moviefromDB)
+   if(moviefromDB){
+    res.send({watched:true});
+   }
+   else{
+    // res.send({watched:false});
+    return
+   }
+   
 
 }catch(e){console.log(e)}
 

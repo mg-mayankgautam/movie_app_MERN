@@ -85,7 +85,15 @@ const UserPanel = () => {
 
     const getWatched=async()=>{
       
-       const data = await axios.get('http://localhost:4700/getwatched', {watched: isActive2,movie:id})
+       const data = await axios.get('http://localhost:4700/getwatched', {params:{
+        movie: id
+       }}
+      //  {watched: isActive2,movie:id}
+       )
+
+       if(data.data.watched){
+        setIsActive2(true);
+       };
        
     }
     getWatched();
