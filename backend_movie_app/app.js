@@ -83,7 +83,7 @@ const userRouter = require('./routes/user.js');
 app.use('/', userRouter);
 
 
-const dataDB = require("./models/dataDB.js");
+const dataDB = require("./models/ratingsDB.js");
 
 // app.post('/addpost', async (req, res ) =>{
 

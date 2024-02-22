@@ -8,7 +8,8 @@ const userController = require('../controller/userController');
 
 router.post('/addwatched',userController.controlWatched)
 // router.post('/login',authController.logIn)
-//  router.get('/', movieController.getMovie);
+
+router.get('/getwatched', userController.getWatched);
     // router.post('/addmovie', movieController.postMovie)
 
 
