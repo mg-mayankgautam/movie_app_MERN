@@ -1,4 +1,6 @@
 const usersDB = require("../models/usersDB.js");
+const ratingDB = require("../models/ratingsDB.js");
+
 
 
 module.exports.signUp = async (req,res)=>{
@@ -8,13 +10,27 @@ module.exports.signUp = async (req,res)=>{
 
     let newUser = new usersDB ({Username,Password});
     newUser.save()
-     .then(()=>{
+     .then((saved)=>{
+                       const UserID = saved._id.toString();
+                       const Username = saved.Username;
+                       const watchedmovie=[] 
+                     let rating = new ratingDB ({UserID,Username,watchedmovie});
+                     rating.save()
+                      .then(()=>{
+
+
+                     console.log('rating added success');
+                    res.redirect('/');
+                     })
+                       .catch(err =>{console.log(err);});
         
-        
-     console.log('user addes success');
+                console.log('user addes success');
         // res.redirect('/');
       })
        .catch(err =>{console.log(err);});
+
+
+
 }
 
 module.exports.logIn = async (req,res)=>{
@@ -23,13 +39,14 @@ module.exports.logIn = async (req,res)=>{
     // console.log(req.body);
 
     let user = await usersDB.findOne({Username,Password});
+   
    //console.log(user);
 
     
     if(user){
         
         req.session.Username=Username;
-        
+        req.session.UserID=user._id.toString();
         res.json({Username:req.session.Username})}
     else if(!user){res.json(false)}
 }

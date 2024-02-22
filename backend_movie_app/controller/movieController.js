@@ -125,7 +125,7 @@ try{
                  // console.log(movie[0].moviefromapi.top.plot.plotText)
                  // console.log(movie[0].moviefromapi.short.actor)
                  // console.log(movie[0].moviefromapi.short.director)
-         
+                 req.session.CurrentmovieID = id; 
                  const release_date=movie[0].moviefromapi.top.releaseDate;
                  const name = movie[0].moviefromapi.top.titleText;
                  const runtime = movie[0].moviefromapi.top.runtime.displayableProperty.value.plainText;

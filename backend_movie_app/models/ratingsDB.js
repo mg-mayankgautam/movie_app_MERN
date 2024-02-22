@@ -5,10 +5,12 @@ const {Schema}=mongoose;
 
 
 const dataSchema = new Schema({
-    title: {type:String},
-    body: {type:String}
+    UserID: {type:String},
+    Username: {type:String},
+    watchedmovie:{type:Array},
+    //movie: {type:String}
 
 });
 
-module.exports =mongoose.model('Data',dataSchema);
+module.exports =mongoose.model('ratings',dataSchema);
 

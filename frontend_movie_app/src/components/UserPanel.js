@@ -11,9 +11,10 @@ import PlaylistAddOutlinedIcon from '@mui/icons-material/PlaylistAddOutlined';
 import PlaylistAddCheckOutlinedIcon from '@mui/icons-material/PlaylistAddCheckOutlined';
 import Rating from '@mui/material/Rating';
 import Box from '@mui/material/Box';
-import { Link } from 'react-router-dom';
+
 import axios from 'axios'
 import { flushSync } from 'react-dom'; 
+import { useParams, Link } from "react-router-dom";
 
 
 
@@ -64,29 +65,32 @@ const UserPanel = () => {
 
 
   const handleWatched =async()=>{
+
     console.log('watched clicked',isActive2);
 
     // flushSync(()=>{
       setIsActive2(isActive2 => !isActive2);
     // })
+    const data = await axios.post('http://localhost:4700/addwatched', {watched: !isActive2,movie:id})
     
-    console.log('state changed????',isActive2);
+   // console.log('state changed????',isActive2);
 
     // const data = await axios.post('http://localhost:4700/addwatched', {watched: isActive2})
   }
 
-  console.log('outside funcn',isActive2);
-
+ // console.log('outside funcn',isActive2);
+ const { id } = useParams();
 
   useEffect(()=>{
 
-    const postWatchStatus=async()=>{
-      console.log('happens after click event completes',isActive2);
-  
-      // const data = await axios.post('http://localhost:4700/addwatched', {watched: isActive2})
+    const getWatched=async()=>{
+      
+       const data = await axios.get('http://localhost:4700/getwatched', {watched: isActive2,movie:id})
+       
     }
-    postWatchStatus();
-  },[isActive2]);
+    getWatched();
+  
+  },[]);
 
   //my temporary soln^^^^
 
