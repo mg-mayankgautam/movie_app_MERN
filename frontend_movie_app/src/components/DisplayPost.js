@@ -131,7 +131,7 @@ useEffect(() => {
 },[])
 
 
- console.log(actors);
+ //console.log(actors);
 
   return ( 
  

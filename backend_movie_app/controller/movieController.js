@@ -81,7 +81,7 @@ module.exports.getMovies = async(req, res)=>{
 module.exports.getMovie=async(req,res)=>{
 
     const {id} = req.query
-console.log('req.session.Username',req.session.Username)
+//console.log('req.session.Username',req.session.Username)
 //console.log('req)
 
 try{

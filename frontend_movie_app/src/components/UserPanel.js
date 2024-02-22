@@ -13,7 +13,7 @@ import Rating from '@mui/material/Rating';
 import Box from '@mui/material/Box';
 
 import axios from 'axios'
-import { flushSync } from 'react-dom'; 
+//import { flushSync } from 'react-dom'; 
 import { useParams, Link } from "react-router-dom";
 
 
@@ -69,11 +69,18 @@ const UserPanel = () => {
     console.log('watched clicked',isActive2);
 
     // flushSync(()=>{
-      setIsActive2(isActive2 => !isActive2);
+     // setIsActive2(isActive2 => !isActive2);
     // })
+    try{
     const data = await axios.post('http://localhost:4700/addwatched', {watched: !isActive2,movie:id})
+      
+    console.log(data);
+    setIsActive2(isActive2 => data.data.watched)
+  
+  }
+    catch(e){console.log(e)}
     
-   // console.log('state changed????',isActive2);
+    //console.log(data);
 
     // const data = await axios.post('http://localhost:4700/addwatched', {watched: isActive2})
   }
@@ -85,24 +92,23 @@ const UserPanel = () => {
 
     const getWatched=async()=>{
       
-       const data = await axios.get('http://localhost:4700/getwatched', {params:{
-        movie: id
-       }}
-      //  {watched: isActive2,movie:id}
-       )
+       const data = await axios.get('http://localhost:4700/getwatched', {params:{movie: id}});
 
-       if(data.data.watched){
-        setIsActive2(true);
-       };
+       //console.log(data.data);
+       const state = data.data.watched;
+      // console.log(state);
+        setIsActive2(state);
+       
        
     }
     getWatched();
   
   },[]);
 
+
   //my temporary soln^^^^
 
-  
+ // console.log(isActive2);
 
 
   return (
