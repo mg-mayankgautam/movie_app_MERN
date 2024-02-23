@@ -10,7 +10,7 @@ router.post('/addwatched',userController.controlWatched)
 // router.post('/login',authController.logIn)
 
 router.get('/getwatched', userController.getWatched);
-    // router.post('/addmovie', movieController.postMovie)
+router.post('/addrating', userController.addRating)
 
 
 
