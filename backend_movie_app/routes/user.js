@@ -11,7 +11,7 @@ router.post('/addwatched',userController.controlWatched)
 
 router.get('/getwatched', userController.getWatched);
 router.post('/addrating', userController.addRating)
-
+router.get('/getuserdata',userController.getUserData);
 
 
 

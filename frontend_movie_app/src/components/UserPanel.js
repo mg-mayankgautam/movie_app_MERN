@@ -73,11 +73,13 @@ const UserPanel = () => {
     const data = await axios.post('http://localhost:4700/addwatched', {watched: !isActive2,movie:id})
       
     console.log(data);
+
     setIsActive2(isActive2 => data.data.watched)
-      // if(data.data.watched === false){
-      //   StarRating.current = 0;
-      //   setValue(0)
-      // }
+
+      if(data.data.watched === false){
+        StarRating.current = 0;
+        setValue(0)
+      }
   }
     catch(e){console.log(e)}
   }
@@ -93,7 +95,7 @@ const UserPanel = () => {
     const data = await axios.post('http://localhost:4700/addrating', {rating: StarRating.current, movie: id})
       
     console.log(data, 'post data');
-    // setIsActive2(isActive2 => data.data.watched)
+    setIsActive2(isActive2 => data.data.watched)
   
   }
     catch(e){console.log(e)}
@@ -121,9 +123,7 @@ const UserPanel = () => {
   },[]);
 
 
-  //my temporary soln^^^^
-
- // console.log(isActive2);
+ 
 
 
   return (

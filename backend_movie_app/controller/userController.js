@@ -70,7 +70,7 @@ module.exports.addRating = async(req, res)=>{
   const Username = req.session.Username;
   const UserID = req.session.UserID; 
   const {rating,movie}=req.body;
-  // const watchedmovie = {movie,watched}
+  
   //  req.session.movie = movie; 
   console.log(rating, movie,Username, 'ratingpostt')   
 
@@ -79,38 +79,37 @@ module.exports.addRating = async(req, res)=>{
               console.log('inside');
   
              try{
-              const find = await ratingDB.findOne(
-              {UserID}, { watchedmovie: { $elemMatch: { movie:  movie  } } })
-              console.log('found',find);
-
-              if(find.watchedmovie.length >=1){
-                  // console.log('find',find)
-                   const add = await ratingDB.updateOne({UserID, watchedmovie: { $elemMatch: { movie:  movie  } }}, 
-                    {$set : {"watchedmovie.$.rating" : rating} }
-                     );
-
-                  //  console.log(moviearr, 'hooray');
-                   console.log('added rating');
-              }
-              else{
-                // res.send();
-              }
-                // res.redirect('/getwatched');        
+                    const find = await ratingDB.findOne(
+                          {UserID}, { watchedmovie: { $elemMatch: { movie:  movie  } } })
+                    console.log('found',find);
+                    
+                      if(find.watchedmovie.length >=1){
+                        // console.log('find',find)
+                          try{const add = await ratingDB.updateOne({UserID, watchedmovie: { $elemMatch: { movie:  movie  } }}, 
+                            {$set : {"watchedmovie.$.rating" : rating} });}
+                            
+                          catch(e){console.log(e)}
+                          
+                        
+                        //  console.log(moviearr, 'hooray');
+                         console.log('added rating');
+                      }
+                      else{
+                        try{
+                          const watchedmovie = {movie,watched:true,rating:rating}
+                          const add = await ratingDB.updateOne({UserID},{$push:{watchedmovie}});
+                          
+                          
+                        }catch(e){console.log(e)}
+                      // res.send();
+                      }
+                      // res.redirect('/getwatched');        
              }
              catch(e){console.log(e)}        
      
           }
 
-    //  else if(Username && !watched){ 
-    //    //  console.log(watched)
-    //   //    try{
-    //   //  await ratingDB.updateOne({ UserID}, { $pull: { watchedmovie:  {movie}  } })
-    //    //res.redirect('/getwatched');
-    //  }
-    //  catch(e){console.log(e)}
-      //await ratingDB.findOneAndDelete({UserID,watchedmovie})
-     
-    //  }
+  
 
      res.redirect('/getwatched');
  
@@ -157,4 +156,22 @@ module.exports.getWatched=async(req,res)=>{
              }
             catch(e){console.log(e)}
             }
+}
+
+
+module.exports.getUserData =async(req,res)=>{
+ 
+ console.log(req.query.username, 'get username') 
+ //const userID=req.session.UserID
+ const Username = req.query.username;
+
+try{
+  const data = await ratingDB.findOne({Username})
+  console.log(data,'found user');
+  // res.send(data.watchedmovie);
+}
+catch(e){console.log(e)}
+
+
+
 }

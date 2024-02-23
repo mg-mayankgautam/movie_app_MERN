@@ -8,6 +8,7 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import TabContext from '@mui/lab/TabContext';
 import TabPanel from '@mui/lab/TabPanel';
+import { useParams, Link, useLocation } from "react-router-dom";
 
 const StyledTabs = styled((props) => (
   <Tabs
@@ -49,9 +50,11 @@ const Profile = () => {
 
   const [value, setValue] = React.useState('1');
   const handleChange = (event, newValue) => { setValue(newValue);}; //mui
-
+  const { id } = useParams();
   const[UserName, setUserName] = useState('');
   const {auth, setAuth}= useAuth();
+  
+  console.log(id, 'username')
 
   useEffect(() => {
         
@@ -91,8 +94,16 @@ const Profile = () => {
      }
     }  
     
-    
+    const getUserData = async()=>{
+      try{
+      const data = await axios.get(`http://localhost:4700/getuserdata?username=${id}`)
+      console.log(data, 'getuser data')
+    } catch(e){console.log(e)}
+    }
 
+
+
+  getUserData();
   verifyAuth();
 }, [])
 

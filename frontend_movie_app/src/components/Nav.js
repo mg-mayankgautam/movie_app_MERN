@@ -190,7 +190,7 @@ const handleSubmitSearch = async(e)=>{
                 <li><Link to="/">HOME</Link></li>
                 <li><Link to="/films">FILMS</Link></li>
                 <li><Link to="/">WATCHLIST</Link></li>
-                <li><Link to="/profile">PROFILE</Link></li>
+                <li><Link to={`/profile/${auth.user}`}>PROFILE</Link></li>
             </ul>
    
 
