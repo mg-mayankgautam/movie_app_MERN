@@ -1,6 +1,6 @@
 import React from 'react'
 import useAuth from '../hook/useAuth';
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useLocation } from "react-router-dom";
 import { useEffect,useState } from 'react';
 import axios from 'axios';
 import uuid from 'uuid';
@@ -52,7 +52,7 @@ const StyledTab = styled((props) => <Tab disableRipple {...props} />)(
 
 const DisplayPost = ({posts}) => {
   const {setAuth,auth}=useAuth();
-
+  const location = useLocation();
 
   // console.log('setAuth',auth);
 
@@ -202,9 +202,17 @@ useEffect(() => {
                     </div> */}
         </div>
       </div>
-        
-      <UserPanel/>
 
+{auth?.user
+    ? 
+      <UserPanel/>
+    :
+        <div className='PanelnotLogin'>
+          <div className='PanelnotLoginDiv'>
+            <Link to="/login" state={{prev:location}} >Login to Rate, Review, Add!</Link>
+          </div>
+        </div>
+}
     </section>
     </article>
 
