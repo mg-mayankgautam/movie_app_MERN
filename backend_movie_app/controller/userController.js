@@ -67,6 +67,8 @@ module.exports.controlWatched = async(req, res)=>{
 
 module.exports.getWatched=async(req,res)=>{
 
+  if(req.session.Username){
+
         console.log('inside get') 
         const UserID = req.session.UserID;           
 
@@ -98,5 +100,5 @@ module.exports.getWatched=async(req,res)=>{
 
              }
             catch(e){console.log(e)}
-
+            }
 }
