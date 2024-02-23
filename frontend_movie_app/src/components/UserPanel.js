@@ -96,7 +96,7 @@ const UserPanel = () => {
 
        //console.log(data.data);
        const state = data.data.watched;
-      // console.log(state);
+       //console.log(state);
         setIsActive2(state);
        
        

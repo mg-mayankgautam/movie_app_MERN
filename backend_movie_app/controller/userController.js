@@ -68,7 +68,7 @@ module.exports.controlWatched = async(req, res)=>{
 module.exports.getWatched=async(req,res)=>{
 
         console.log('inside get') 
-        //const UserID = req.session.UserID;           
+        const UserID = req.session.UserID;           
 
  
         let movie = req.query.movie;
@@ -84,7 +84,7 @@ module.exports.getWatched=async(req,res)=>{
             console.log('reached try') 
           //  const moviefromDB = await ratingDB.findOne({UserID, watchedmovie})
             
-           const moviefromDB = await ratingDB.find( {}, { watchedmovie: { $elemMatch: { movie:  movie  } } } )
+           const moviefromDB = await ratingDB.find( {UserID}, { watchedmovie: { $elemMatch: { movie:  movie  } } } )
           const data = moviefromDB[0].watchedmovie;
            console.log('moviefromDB.',data)
             

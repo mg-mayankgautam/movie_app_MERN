@@ -3,11 +3,11 @@ import Footer from './components/Footer';
 import Nav from './components/Nav';
 import { Outlet } from 'react-router-dom';
 
-const Layout = () => {
+const Layout = ({UserName,setUserName}) => {
   return (
 
     <div className="App">
-    <Nav/>
+    <Nav UserName={UserName} setUserName={setUserName}/>
     <Outlet/>
 
     {/* <Footer/> */}

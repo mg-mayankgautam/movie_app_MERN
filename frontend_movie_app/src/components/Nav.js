@@ -13,7 +13,24 @@ import { useLocation } from 'react-router-dom';
 import { useState, useEffect, useRef } from 'react';
 
 
-const Nav = () => {
+const Nav = ({UserName,setUserName}) => {
+
+
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const open = Boolean(anchorEl);
+  const handleClick = (event) => { setAnchorEl(event.currentTarget);};
+  const handleClose = () => {setAnchorEl(null);};
+
+
+
+  //const [location, setlocation] = useState();
+
+  const location = useLocation();
+  const navigate = useNavigate();
+  const {auth, setAuth}=useAuth();
+  //const [UserName, setUserName] = useState('');
+  const inputRef = createRef();
+  
   
   const Search = styled('div')(({ theme }) => ({
     position: 'relative',
@@ -63,26 +80,8 @@ const Nav = () => {
   }));
   
 
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const open = Boolean(anchorEl);
-  const handleClick = (event) => { setAnchorEl(event.currentTarget);};
-  const handleClose = () => {setAnchorEl(null);};
-
-
-
-  //const [location, setlocation] = useState();
-
-  const location = useLocation();
-  const navigate = useNavigate();
-  //  console.log(location.pathname);
-  const {auth, setAuth}=useAuth();
-  //  console.log(auth,'hmeshaaaaaaaaaaaaaaaaaa');
-  const [UserName, setUserName] = useState('');
-  // const [ SearchValue, setSearchValue] = useState('');
-  // console.log(SearchValue,'hmmmm');
-  // const inputRef = useRef();
-  const inputRef = createRef();
-
+ 
+console.log(UserName)
 
   useEffect(() => {
         
@@ -97,14 +96,14 @@ const Nav = () => {
            if(!response.data.auth){
            
                  
-               console.log('auth')
+           //    console.log('auth')
                
                }
 
 
               else if(response.data.auth){
                
-              //  console.log(response.data.auth);
+                console.log(response.data.auth);
                const user = response.data.auth;
                setAuth({user});
                setUserName(user);
@@ -136,9 +135,10 @@ const Nav = () => {
       // console.log(data)
       if(!data.data){
         // console.log('data.data',data.data)
-        console.log('kuch ni aya',auth)
+      //  console.log('kuch ni aya',auth)
         const boo = data.data;
       setAuth('');
+      setUserName('');
      // navigate(0)
     }
       //console.log(data);

@@ -28,7 +28,7 @@ function App() {
 
 
 
-
+  const [UserName, setUserName] = useState('');
   // const [newItem, setNewItem] = useState('');
   const [posts, setPosts]     = useState([]);
 
@@ -85,11 +85,11 @@ function App() {
    
         <Routes >
         
-          <Route  path="/" element={<Layout/>}>
+          <Route  path="/" element={<Layout UserName={UserName} setUserName={setUserName}/>}>
                 <Route index element={<Home posts={posts} />} /> 
       
                 <Route element={<RequireloginAuth/>}>
-                  <Route path="login" element={<Login  />}/>
+                  <Route path="login" element={<Login UserName={UserName} setUserName={setUserName} />}/>
                 </Route>
 
                 <Route path="signUp" element={<SignUp />}/>
