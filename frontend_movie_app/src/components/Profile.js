@@ -9,6 +9,7 @@ import Tab from '@mui/material/Tab';
 import TabContext from '@mui/lab/TabContext';
 import TabPanel from '@mui/lab/TabPanel';
 import { useParams, Link, useLocation } from "react-router-dom";
+import UserMovie from './UserMovie';
 
 const StyledTabs = styled((props) => (
   <Tabs
@@ -30,7 +31,8 @@ const StyledTabs = styled((props) => (
 const StyledTab = styled((props) => <Tab disableRipple {...props} />)(
   ({ theme }) => ({
     textTransform: 'none',
-    fontWeight: theme.typography.fontWeightRegular,
+    fontWeight: '400',
+    fontFamily:'Montserrat',
     alignItems: 'center',
     padding:'0',
     fontSize: '12px',
@@ -53,8 +55,9 @@ const Profile = () => {
   const { id } = useParams();
   const[UserName, setUserName] = useState('');
   const {auth, setAuth}= useAuth();
+  const [UserMovies, setUserMovies] = useState([]);
   
-  console.log(id, 'username')
+  console.log(UserMovies, 'user movies')
 
   useEffect(() => {
         
@@ -97,10 +100,11 @@ const Profile = () => {
     const getUserData = async()=>{
       try{
       const data = await axios.get(`http://localhost:4700/getuserdata?username=${id}`)
-      console.log(data, 'getuser data')
+      // console.log(data, 'getuser data')
+
+      setUserMovies(data.data);
     } catch(e){console.log(e)}
     }
-
 
 
   getUserData();
@@ -114,28 +118,42 @@ const Profile = () => {
     <div className='Profile'>
         <div className='userDetails'>
             <div className='userName'>
-              <Avatar sx={{ width: 96, height: 96,display:'flex' ,justifyContent:'center', bgcolor:'#f39a9a'}}></Avatar>
+              <Avatar sx={{ width: 96, height: 96,display:'flex' ,justifyContent:'center', bgcolor:'transparent'}}><img src='https://cdn.britannica.com/76/156176-050-90A36E79/Martin-Scorsese-2008.jpg?w=400&h=300&c=crop' style={{height:'96px',width:'96px',objectFit:'cover'}}/></Avatar>
               {UserName}
             </div>
             <div className=''>
-              <div className='filmsNumber'>12</div>
+              <div className='filmsNumber'>{UserMovies && <div>{UserMovies.length}</div>}</div>
               <div style={{fontWeight: 200}}>FILMS</div>
             </div>
         </div>
         <div className='userNav'> 
-            <TabContext value={value}>
-                <StyledTabs onChange={handleChange} value={value}>
-                  <StyledTab label="FILMS" value="1"/>
-                  <StyledTab label="WATCHLIST" value="2"/>
-                </StyledTabs>
+          <TabContext value={value}>
+            <StyledTabs onChange={handleChange} value={value}>
+              <StyledTab label="FILMS" value="1"/>
+              <StyledTab label="WATCHLIST" value="2"/>
+            </StyledTabs>
 
-                <TabPanel value="1" sx={{p:0, display:'flex', flexWrap:'wrap'}}>
+            <TabPanel value="1" sx={{p:0, display:'flex', flexWrap:'wrap'}}>
+              <div className='userMovies'>
+              {UserMovies.length ? (
+                    UserMovies.map(Movie => (
+                      <UserMovie Movie ={Movie} key={Movie.movie}/>
+                    ))
+                ) 
+                
+              : (
+                 <p style={{ marginTop: "2rem" }}>
+                        No movies to display.
+                </p>
+                )}
+              </div>
+
+            </TabPanel>
+
+            <TabPanel value="2" sx={{p:0, display:'flex', flexWrap:'wrap'}}>
                         
-                </TabPanel>
-                <TabPanel value="2" sx={{p:0, display:'flex', flexWrap:'wrap'}}>
-                        
-                </TabPanel>
-             </TabContext>
+            </TabPanel>
+          </TabContext>
         </div>
         <div className='userFilms'>
 

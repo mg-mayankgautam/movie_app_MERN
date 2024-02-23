@@ -219,7 +219,7 @@ const handleSubmitSearch = async(e)=>{
                 aria-haspopup="true"
                 aria-expanded={open ? 'true' : undefined}
               >
-                <Avatar sx={{ width: 32, height: 32, textAlign:'center', bgcolor:'#f39a9a'}}></Avatar>
+                <Avatar sx={{ width: 32, height: 32, textAlign:'center', bgcolor:'#f39a9a'}}><img src='https://cdn.britannica.com/76/156176-050-90A36E79/Martin-Scorsese-2008.jpg?w=400&h=300&c=crop' style={{height:'32px',width:'32px',objectFit:'cover'}}/></Avatar>
               </IconButton>
             </Tooltip>
             <Typography sx={{fontSize:'small'}}>{UserName}</Typography>

@@ -60,15 +60,16 @@ const handleMoviePost = async(IMDBid)=>{
         
     {Movies.length ? (
         <div className='SearchList'>
+          <div style={{textAlign:'left', fontWeight:'200'}}>Search Results</div>
           {Movies.map(movie=>{
               return(
               <div className='searchres' key={Object.values(movie)[2]} onClick={() => handleMoviePost(Object.values(movie)[2])}>
-                <img src={Object.values(movie)[8]} className='searchposter' />
-
+                
                 <div className='searchinfo'>
                     <div className='searchtitle'>{Object.values(movie)[0]}</div>
                     <div className='searchyear'>{Object.values(movie)[1]}</div>
                 </div>
+                <img src={Object.values(movie)[8]} className='searchposter' />
                             
               </div>
         // const moviess= Object.entries(movie)

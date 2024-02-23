@@ -47,7 +47,7 @@ function getLabelText(value) {
 
 
 
-const UserPanel = () => {
+const UserPanel = (props) => {
 
   const { auth } = useAuth();
   const location = useLocation();
@@ -61,7 +61,7 @@ const UserPanel = () => {
 
   console.log(StarRating.current, 'stars outside');
 
-
+console.log(props, 'props')
   const handleWatched =async()=>{
 
     console.log('watched clicked',isActive2);
@@ -70,7 +70,7 @@ const UserPanel = () => {
      // setIsActive2(isActive2 => !isActive2);
     // })
     try{
-    const data = await axios.post('http://localhost:4700/addwatched', {watched: !isActive2,movie:id})
+    const data = await axios.post('http://localhost:4700/addwatched', {watched: !isActive2,movie:id, moviename: props.moviename.text, releasedate: props.Release_date.year, movieposter: props.MoviePoster, director: props.Directors})
       
     console.log(data);
 
@@ -92,7 +92,7 @@ const UserPanel = () => {
     try{
       
       console.log('rating',StarRating.current);
-    const data = await axios.post('http://localhost:4700/addrating', {rating: StarRating.current, movie: id})
+    const data = await axios.post('http://localhost:4700/addrating', {rating: StarRating.current, movie: id, moviename: props.moviename.text, releasedate: props.Release_date.year, movieposter: props.MoviePoster, director: props.Directors})
       
     console.log(data, 'post data');
     setIsActive2(isActive2 => data.data.watched)

@@ -205,7 +205,7 @@ useEffect(() => {
 
 {auth?.user
     ? 
-      <UserPanel/>
+      <UserPanel moviename={moviename} Release_date={Release_date}  MoviePoster={MoviePoster} Directors={Directors}/>
     :
         <div className='PanelnotLogin'>
           <div className='PanelnotLoginDiv'>

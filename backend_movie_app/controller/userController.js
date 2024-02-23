@@ -5,34 +5,13 @@ const ratingDB = require("../models/ratingsDB.js");
 module.exports.controlWatched = async(req, res)=>{
     const Username = req.session.Username;
     const UserID = req.session.UserID; 
-    const {watched,movie}=req.body;
-    const watchedmovie = {movie,watched,rating:0}
+    const {watched,movie,moviename, releasedate,
+    movieposter, director} = req.body;
+    const watchedmovie = {movie,watched,rating:0, moviename, releasedate, movieposter, director}
      req.session.movie = movie;    
-    // if( Username ){                  
-    //          if(watched){
-    //                  console.log('inside watched');
-         
-    //                 try{
 
-    //                 await ratingDB.updateOne({UserID},{$push:{watchedmovie}});
-
-    //                     res.redirect('/getwatched');        
-    //                 }
-    //                 catch(e){console.log(e)}        
-    //         }
-
-    //          else{ 
-    //           //  console.log(watched)
-    //             try{
-    //           await ratingDB.updateOne({ UserID}, { $pull: { watchedmovie:  {movie}  } })
-    //           res.redirect('/getwatched');
-    //         }
-    //         catch(e){console.log(e)}
-    //          //await ratingDB.findOneAndDelete({UserID,watchedmovie})
-            
-    //         }
-
-    //     }
+     console.log(req.body)
+    
 
     if( Username && watched ){                  
        
@@ -69,7 +48,8 @@ module.exports.controlWatched = async(req, res)=>{
 module.exports.addRating = async(req, res)=>{
   const Username = req.session.Username;
   const UserID = req.session.UserID; 
-  const {rating,movie}=req.body;
+  const {rating,movie, moviename, releasedate,
+    movieposter, director}=req.body;
   
   //  req.session.movie = movie; 
   console.log(rating, movie,Username, 'ratingpostt')   
@@ -96,7 +76,7 @@ module.exports.addRating = async(req, res)=>{
                       }
                       else{
                         try{
-                          const watchedmovie = {movie,watched:true,rating:rating}
+                          const watchedmovie = {movie,watched:true,rating:rating, moviename, releasedate, movieposter, director}
                           const add = await ratingDB.updateOne({UserID},{$push:{watchedmovie}});
                           
                           
@@ -167,11 +147,10 @@ module.exports.getUserData =async(req,res)=>{
 
 try{
   const data = await ratingDB.findOne({Username})
-  console.log(data,'found user');
-  // res.send(data.watchedmovie);
+  // console.log(data.watchedmovie,'found user');
+  const movieswatched = data.watchedmovie
+  res.send(movieswatched);
 }
 catch(e){console.log(e)}
-
-
 
 }
