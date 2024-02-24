@@ -125,7 +125,7 @@ module.exports.addWatchlist=async(req,res)=>{
      
           }
 
-      else if(Username && !watched){ 
+      else if(Username && !watchlist){ 
         //  console.log(watched)
          try{
        await ratingDB.updateOne({ UserID}, { $pull: { WatchList:  {movie}  } })
