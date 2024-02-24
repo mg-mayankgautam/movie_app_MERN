@@ -400,3 +400,16 @@ justify-self: center;
   font-family: 'montserrat';
 }
 .usermoviename{font-family: 'dm serif display'; font-size: 20px;}
+
+.watchedicondiv{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-weight: 200;
+  font-size: 12px;
+  width: 60px;
+}
+.watchedicontext{
+  font-weight: 200;
+}
