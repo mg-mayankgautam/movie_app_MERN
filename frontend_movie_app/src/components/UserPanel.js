@@ -59,9 +59,9 @@ const UserPanel = (props) => {
   const StarRating = useRef(0);
   // const StarHover = useRef();
 
-  console.log(StarRating.current, 'stars outside');
+ // console.log(StarRating.current, 'stars outside');
 
-console.log(props, 'props')
+//console.log(props, 'props')
   const handleWatched =async()=>{
 
     console.log('watched clicked',isActive2);
@@ -101,13 +101,18 @@ console.log(props, 'props')
     catch(e){console.log(e)}
   }
 
+  const handleWatchlist =async()=>{
+     setIsActive(!isActive)
+     const data = await axios.post('http://localhost:4700/addwatchlist', {watchlist: !isActive,movie:id, moviename: props.moviename.text, releasedate: props.Release_date.year, movieposter: props.MoviePoster, director: props.Directors})
+     
+  } 
 
   useEffect(()=>{
 
     const getWatched=async()=>{
       
        const data = await axios.get('http://localhost:4700/getwatched', {params:{movie: id}});
-
+        console.log(data, 'data from DB')
        const state = data.data.watched;
         setIsActive2(state);
         console.log(data.data.userrating)
@@ -116,14 +121,19 @@ console.log(props, 'props')
           StarRating.current = rating;
           setValue(rating);
         }
+
+        if(data.data.WL.length >= 1)setIsActive(true)
        
     }
     getWatched();
   
   },[]);
 
+//console.log(isActive)
+//  useEffect(async()=>{
+//   console.log(isActive)
 
- 
+//  },[isActive]);
 
 
   return (
@@ -139,7 +149,7 @@ console.log(props, 'props')
                 <VisibilityOutlinedIcon sx={{color:'white', width:'1.5em', height:'1.5em', cursor:'pointer'}}/> 
                 }
             </div>
-            <div onClick={()=> setIsActive(!isActive)}>
+            <div onClick={()=> handleWatchlist()}>
                 {isActive ? 
                 <PlaylistAddCheckOutlinedIcon sx={{color:'#f39a9a', width:'1.5em', height:'1.5em', cursor:'pointer'}}/>
                 : 

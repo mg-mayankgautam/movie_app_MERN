@@ -10,12 +10,12 @@ module.exports.controlWatched = async(req, res)=>{
     const watchedmovie = {movie,watched,rating:0, moviename, releasedate, movieposter, director}
      req.session.movie = movie;    
 
-     console.log(req.body)
+    // console.log(req.body)
     
 
     if( Username && watched ){                  
        
-                console.log('inside watched');
+              //  console.log('inside watched');
     
                try{
 
@@ -52,16 +52,16 @@ module.exports.addRating = async(req, res)=>{
     movieposter, director}=req.body;
   
   //  req.session.movie = movie; 
-  console.log(rating, movie,Username, 'ratingpostt')   
+ // console.log(rating, movie,Username, 'ratingpostt')   
 
   if( Username ){                  
      
-              console.log('inside');
+             // console.log('inside');
   
              try{
                     const find = await ratingDB.findOne(
                           {UserID}, { watchedmovie: { $elemMatch: { movie:  movie  } } })
-                    console.log('found',find);
+                 //   console.log('found',find);
                     
                       if(find.watchedmovie.length >=1){
                         // console.log('find',find)
@@ -72,7 +72,7 @@ module.exports.addRating = async(req, res)=>{
                           
                         
                         //  console.log(moviearr, 'hooray');
-                         console.log('added rating');
+                      //   console.log('added rating');
                       }
                       else{
                         try{
@@ -96,12 +96,57 @@ module.exports.addRating = async(req, res)=>{
 
 }
 
+module.exports.addWatchlist=async(req,res)=>{
+  console.log('reached here',req.body)
+
+   const Username = req.session.Username;
+   const UserID = req.session.UserID; 
+   const {watchlist,movie,moviename, releasedate, movieposter, director} = req.body;
+  
+
+   const WatchList = {movie, moviename, releasedate, movieposter, director}
+    req.session.movie = movie;    
+
+  // // console.log(req.body)
+  
+
+   if( Username && watchlist ){                  
+     
+  //           //  console.log('inside watched');
+  
+              try{
+
+            const add = await ratingDB.updateOne({UserID},{$push:{WatchList}});
+          
+            console.log('added',add);
+      
+             }
+              catch(e){console.log(e)}        
+     
+          }
+
+      else if(Username && !watched){ 
+        //  console.log(watched)
+         try{
+       await ratingDB.updateOne({ UserID}, { $pull: { WatchList:  {movie}  } })
+  
+       }
+      catch(e){console.log(e)}
+ 
+     
+     }
+
+    // res.redirect('/getwatched');
+  
+
+
+}
 
 module.exports.getWatched=async(req,res)=>{
 
   if(req.session.Username){
 
-        console.log('inside get') 
+     //   console.log('inside get') 
         // console.log('inside get') 
         const UserID = req.session.UserID;           
 
@@ -113,23 +158,25 @@ module.exports.getWatched=async(req,res)=>{
         if(!movie){movie=req.session.movie
         // console.log('movie through post',req.session.movie);
         }
-        //const watchedmovie = {movie,watched:true}
+      
 
             try{
             // console.log('reached try') 
           //  const moviefromDB = await ratingDB.findOne({UserID, watchedmovie})
             
-           const moviefromDB = await ratingDB.find( {UserID}, { watchedmovie: { $elemMatch: { movie:  movie  } } } )
+           const moviefromDB = await ratingDB.find( {UserID}, { watchedmovie: { $elemMatch: { movie:  movie  } },WatchList: { $elemMatch: { movie:  movie  } } } )
+           console.log('moviefromDB.',moviefromDB)
+          
+          //if(moviefromDB.length>=1){ const data = moviefromDB[0].watchedmovie;}
           const data = moviefromDB[0].watchedmovie;
-          //  console.log('moviefromDB.',data)
-            
+          const WL= moviefromDB[0].WatchList
            if(data.length >= 1){
             const userrating = data[0].rating;
-            console.log(userrating, 'get userrating')
-            res.send({watched:true , userrating});
+         //   console.log(userrating, 'get userrating')
+            res.send({watched:true, userrating,WL});
            }
            else{
-             res.send({watched:false, userrating:0});
+             res.send({watched:false, userrating:0,WL});
            // return
            }
 
@@ -139,9 +186,11 @@ module.exports.getWatched=async(req,res)=>{
 }
 
 
+
+
 module.exports.getUserData =async(req,res)=>{
  
- console.log(req.query.username, 'get username') 
+ //console.log(req.query.username, 'get username') 
  //const userID=req.session.UserID
  const Username = req.query.username;
 
@@ -154,3 +203,4 @@ try{
 catch(e){console.log(e)}
 
 }
+
