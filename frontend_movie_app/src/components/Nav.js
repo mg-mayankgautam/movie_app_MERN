@@ -189,7 +189,7 @@ const handleSubmitSearch = async(e)=>{
             <ul className='navpages' >
                 <li><Link to="/">HOME</Link></li>
                 <li><Link to="/films">FILMS</Link></li>
-                <li><Link to="/">WATCHLIST</Link></li>
+                <li><Link to="/blog">BLOG</Link></li>
                 <li><Link to={`/profile/${auth.user}`}>PROFILE</Link></li>
             </ul>
    
