@@ -1,7 +1,7 @@
 const moviesDB = require("../models/moviesDB.js");
 const path = require('path');
 const download = require('image-downloader');
-
+const https = require('https');
 
 module.exports.getTop10 = async(req,res)=>{
     let movie= await moviesDB.find({}, {'moviefromapi.short.name':1}).limit(10);
@@ -84,6 +84,40 @@ module.exports.getMovie=async(req,res)=>{
 //console.log('req.session.Username',req.session.Username)
 //console.log('req)
 
+
+// const SUBSCRIPTION_KEY = '05490cd5747c46dca9afff0183e9a92f';
+
+// function bingWebSearch(query) {
+//   https.get({
+//     hostname: 'api.bing.microsoft.com',
+//     path:     '/v7.0/search?q=' + encodeURIComponent(query),
+//     headers:  { 'Ocp-Apim-Subscription-Key': SUBSCRIPTION_KEY },
+//   }, res => {
+//     let body = ''
+//     res.on('data', part => body += part)
+//     res.on('end', () => {
+//       for (var header in res.headers) {
+//         if (header.startsWith("bingapis-") || header.startsWith("x-msedge-")) {
+//           console.log(header + ": " + res.headers[header])
+//         }
+//       }
+//       console.log('\nJSON Response:\n')
+//       console.dir(JSON.parse(body), { colors: false, depth: null })
+//     })
+//     res.on('error', e => {
+//       console.log('Error: ' + e.message)
+//       throw e
+//     })
+//   })
+// }
+
+// const query = 'SAG awards'
+// bingWebSearch(query);
+
+
+
+
+
 try{
 
     if(!req.session.Username){
@@ -97,7 +131,7 @@ try{
         // console.log(movie[0].moviefromapi.short.actor)
         // console.log(movie[0].moviefromapi.short.director)
 
-        console.log(movie);
+       // console.log(movie);
         const release_date=movie[0].moviefromapi.top.releaseDate;
         const name = movie[0].moviefromapi.top.titleText;
         const runtime = movie[0].moviefromapi.top.runtime.displayableProperty.value.plainText;

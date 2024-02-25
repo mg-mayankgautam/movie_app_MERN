@@ -53,7 +53,38 @@ const StyledTab = styled((props) => <Tab disableRipple {...props} />)(
 const DisplayPost = ({posts}) => {
   const {setAuth,auth}=useAuth();
   const location = useLocation();
+  
+  useEffect(() => {
+   // const https = require('https')
+// const SUBSCRIPTION_KEY = '05490cd5747c46dca9afff0183e9a92f';
 
+// function bingWebSearch(query) {
+//  const https.get({
+//     hostname: 'api.bing.microsoft.com',
+//     path:     '/v7.0/search?q=' + encodeURIComponent(query),
+//     headers:  { 'Ocp-Apim-Subscription-Key': SUBSCRIPTION_KEY },
+//   }, res => {
+//     let body = ''
+//     res.on('data', part => body += part)
+//     res.on('end', () => {
+//       for (var header in res.headers) {
+//         if (header.startsWith("bingapis-") || header.startsWith("x-msedge-")) {
+//           console.log(header + ": " + res.headers[header])
+//         }
+//       }
+//       console.log('\nJSON Response:\n')
+//       console.dir(JSON.parse(body), { colors: false, depth: null })
+//     })
+//     res.on('error', e => {
+//       console.log('Error: ' + e.message)
+//       throw e
+//     })
+//   })
+// }
+// const query = 'Microsoft Bing Search Services'
+// bingWebSearch(query)
+  
+  },[]);
   // console.log('setAuth',auth);
 
   const [value, setValue] = React.useState('1');
