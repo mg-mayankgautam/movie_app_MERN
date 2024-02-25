@@ -65,9 +65,16 @@ module.exports.addRating = async(req, res)=>{
                     
                       if(find.watchedmovie.length >=1){
                         // console.log('find',find)
-                          try{const add = await ratingDB.updateOne({UserID, watchedmovie: { $elemMatch: { movie:  movie  } }}, 
+                          try{
+                            // const prevRating = find.watchedmovie[0].rating;
+                            // console.log('prev rating',prevRating);
+                              
+    
+    
+                            const add = await ratingDB.updateOne({UserID, watchedmovie: { $elemMatch: { movie:  movie  } }}, 
                             {$set : {"watchedmovie.$.rating" : rating} });}
                             
+                          //step-2)we will call 
                           catch(e){console.log(e)}
                           
                         
@@ -77,6 +84,14 @@ module.exports.addRating = async(req, res)=>{
                       else{
                         try{
                           const watchedmovie = {movie,watched:true,rating:rating, moviename, releasedate, movieposter, director}
+                          //s-1)add rating into aggregate of movie db,+rating,+1rated by.
+                          const movieRatings = {rating: 0, ratedBy: 0}
+                          // or const movieRatings = {rating: rating, ratedBy: UserID}
+                          // const moviefrommovieDB = await moviesDB.findOne({_id:movie},{'moviefromapi.short.name':1}) 
+                          // console.log(moviefrommovieDB,'hi')
+                          // const addtomovieDB = await moviesDB.updateOne({_id:movie}, {$set : {movieRatings: movieRatings}});
+                          // console.log(addtomovieDB,'hi');
+                          
                           const add = await ratingDB.updateOne({UserID},{$push:{watchedmovie}});
                           
                           
@@ -118,7 +133,7 @@ module.exports.addWatchlist=async(req,res)=>{
 
             const add = await ratingDB.updateOne({UserID},{$push:{WatchList}});
           
-            console.log('added',add);
+            // console.log('added',add);
       
              }
               catch(e){console.log(e)}        
@@ -165,7 +180,7 @@ module.exports.getWatched=async(req,res)=>{
           //  const moviefromDB = await ratingDB.findOne({UserID, watchedmovie})
             
            const moviefromDB = await ratingDB.find( {UserID}, { watchedmovie: { $elemMatch: { movie:  movie  } },WatchList: { $elemMatch: { movie:  movie  } } } )
-           console.log('moviefromDB.',moviefromDB)
+          //  console.log('moviefromDB.',moviefromDB)
           
           //if(moviefromDB.length>=1){ const data = moviefromDB[0].watchedmovie;}
           const data = moviefromDB[0].watchedmovie;
@@ -196,7 +211,7 @@ module.exports.getUserData =async(req,res)=>{
 
 try{
   const data = await ratingDB.findOne({Username})
-  console.log(data.WatchList,'found user');
+  // console.log(data.WatchList,'found user');
   const movieswatched = data.watchedmovie
   const watchlist = data.WatchList
   res.send({movieswatched, watchlist});

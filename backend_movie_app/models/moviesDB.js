@@ -6,7 +6,7 @@ const {Schema}=mongoose;
 
 const dataSchema = new Schema({
     moviefromapi: {type:Object},
-   
+    movieRatings:{type:Object}
 
 });
 
