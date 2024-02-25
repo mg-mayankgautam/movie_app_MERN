@@ -11,6 +11,7 @@ import PlaylistAddOutlinedIcon from '@mui/icons-material/PlaylistAddOutlined';
 import PlaylistAddCheckOutlinedIcon from '@mui/icons-material/PlaylistAddCheckOutlined';
 import Rating from '@mui/material/Rating';
 import Box from '@mui/material/Box';
+import ClearIcon from '@mui/icons-material/Clear';
 
 import axios from 'axios'
 //import { flushSync } from 'react-dom'; 
@@ -86,6 +87,7 @@ const UserPanel = (props) => {
   }
 
   const handleRating =async(valuee)=>{
+    console.log(valuee, 'zero?')
     StarRating.current = valuee;
     setValue(valuee);
     // console.log('rating clicked',value);
@@ -183,6 +185,7 @@ const UserPanel = (props) => {
         </Box>
 
         <Box sx={{ width: 220, display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+            <ClearIcon onClick={()=> handleRating(0)}/>
             <Rating
                 name="hover-feedback"
                 size="large"
