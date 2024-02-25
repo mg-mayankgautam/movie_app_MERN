@@ -55,13 +55,14 @@ const UserPanel = (props) => {
   const [hover, setHover] = React.useState(-1);
   const [isActive, setIsActive] = React.useState(false);
   const [isActive2, setIsActive2] = React.useState(false);
+  const [style, setStyle] = React.useState({display: 'none'});
+  const [style2, setStyle2] = React.useState({display: 'block'});
+  const [style3, setStyle3] = React.useState({display: 'none'});
+  const [style4, setStyle4] = React.useState({display: 'block'});
   const { id } = useParams();
   const StarRating = useRef(0);
-  // const StarHover = useRef();
-
- // console.log(StarRating.current, 'stars outside');
-
-//console.log(props, 'props')
+  
+  
   const handleWatched =async()=>{
 
     console.log('watched clicked',isActive2);
@@ -142,19 +143,42 @@ const UserPanel = (props) => {
     <Box sx={{p:2, bgcolor:'#ffffff15', display:'flex', alignItems:'center', flexDirection:'column', borderRadius:'8px', gap: '10px', height:'max-content', width: 220, boxShadow:'rgba(0, 0, 0, 0.35) 0px 5px 15px'}}>
 
         <Box sx={{display:'flex', justifyContent:'space-evenly', width: '100%'}}>
+            
             <div onClick={()=> handleWatched()}>
                 {isActive2 ? 
-                <VisibilityIcon sx={{color:'#f39a9a', width:'1.5em', height:'1.5em', cursor:'pointer'}}/>
-                : 
-                <VisibilityOutlinedIcon sx={{color:'white', width:'1.5em', height:'1.5em', cursor:'pointer'}}/> 
+                <div className='watchedicondiv' 
+                onMouseEnter={e => { setStyle({display: 'block'}); setStyle2({display: 'none'})}}
+                onMouseLeave={e => { setStyle({display: 'none'}); setStyle2({display: 'block'})}}>
+                  <VisibilityIcon sx={{color:'#f39a9a', width:'1.5em', height:'1.5em', cursor:'pointer'}}/>
+                  <div style={style2}>watched</div>
+                  <div style={style}>remove</div>
+                </div> 
+                : <div className='watchedicondiv'>
+                  <VisibilityOutlinedIcon sx={{color:'white', width:'1.5em', height:'1.5em', cursor:'pointer'}}/> 
+                  <div>watch</div>
+                </div>
                 }
             </div>
+
             <div onClick={()=> handleWatchlist()}>
-                {isActive ? 
+             {isActive ? 
+              <div className='watchedicondiv' 
+              onMouseEnter={e => { setStyle3({display: 'block'}); setStyle4({display: 'none'})}}
+              onMouseLeave={e => { setStyle3({display: 'none'}); setStyle4({display: 'block'})}}>
+                <PlaylistAddCheckOutlinedIcon sx={{color:'#f39a9a', width:'1.5em', height:'1.5em', cursor:'pointer'}}/>
+                <div style={style4}>added</div>
+                <div style={style3}>remove</div>
+              </div> 
+              : <div className='watchedicondiv'>
+                <PlaylistAddOutlinedIcon sx={{color:'#white', width:'1.5em', height:'1.5em', cursor:'pointer'}}/>  
+                <div>+ watchlist</div>
+              </div>
+              }
+                {/* {isActive ? 
                 <PlaylistAddCheckOutlinedIcon sx={{color:'#f39a9a', width:'1.5em', height:'1.5em', cursor:'pointer'}}/>
                 : 
                 <PlaylistAddOutlinedIcon sx={{color:'#white', width:'1.5em', height:'1.5em', cursor:'pointer'}}/> 
-                }
+                } */}
             </div>
         </Box>
 

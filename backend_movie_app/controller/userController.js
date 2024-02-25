@@ -196,9 +196,10 @@ module.exports.getUserData =async(req,res)=>{
 
 try{
   const data = await ratingDB.findOne({Username})
-  // console.log(data.watchedmovie,'found user');
+  console.log(data.WatchList,'found user');
   const movieswatched = data.watchedmovie
-  res.send(movieswatched);
+  const watchlist = data.WatchList
+  res.send({movieswatched, watchlist});
 }
 catch(e){console.log(e)}
 

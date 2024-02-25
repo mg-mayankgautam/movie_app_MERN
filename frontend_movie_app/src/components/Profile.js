@@ -56,8 +56,9 @@ const Profile = () => {
   const[UserName, setUserName] = useState('');
   const {auth, setAuth}= useAuth();
   const [UserMovies, setUserMovies] = useState([]);
+  const [UserWL, setUserWL] = useState([]);
   
-  console.log(UserMovies, 'user movies')
+  // console.log(UserMovies, 'user movies')
 
   useEffect(() => {
         
@@ -100,9 +101,10 @@ const Profile = () => {
     const getUserData = async()=>{
       try{
       const data = await axios.get(`http://localhost:4700/getuserdata?username=${id}`)
-      // console.log(data, 'getuser data')
+      console.log(data.data.watchlist, 'getuser data')
 
-      setUserMovies(data.data);
+      setUserMovies(data.data.movieswatched);
+      setUserWL(data.data.watchlist);
     } catch(e){console.log(e)}
     }
 
@@ -151,7 +153,19 @@ const Profile = () => {
             </TabPanel>
 
             <TabPanel value="2" sx={{p:0, display:'flex', flexWrap:'wrap'}}>
-                        
+              <div className='userMovies'>
+                {UserWL.length ? (
+                      UserWL.map(Movie => (
+                        <UserMovie Movie ={Movie} key={Movie.movie}/>
+                      ))
+                  ) 
+                  
+                : (
+                  <p style={{ marginTop: "2rem" }}>
+                          No movies to display.
+                  </p>
+                  )}
+                </div>  
             </TabPanel>
           </TabContext>
         </div>

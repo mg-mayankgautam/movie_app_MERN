@@ -113,7 +113,7 @@ function App() {
                 
                     <Route path='actor/:query' element={<Actors/>}/>
 
-
+                    <Route path='blog' element={<Addpost/>}/>
 
                  <Route path="/film/:id" element={<DisplayPost 
                      posts={posts}

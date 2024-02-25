@@ -10,7 +10,7 @@ const Addpost = ({handleSubmit, postTitle, setPostTitle, postBody, setPostBody})
     
     //console.log(postTitle,postBody);
   return (
-    <div>
+    <div className='Blog'>
 
         <main className="NewPost">
             <h2>Add New Post</h2>
