@@ -29,8 +29,14 @@ module.exports.controlWatched = async(req, res)=>{
             }
 
        else if(Username && !watched){ 
-         //  console.log(watched)
+          console.log(watched)
            try{
+            // const find = await ratingDB.findOne({UserID}, { watchedmovie: { $elemMatch: { movie:  movie  } } }) 
+            // if(find.watchedmovie.length >=1){
+            //   const prevUserRating = find.watchedmovie[0].rating;
+            //   const findinMovieDB = await moviesDB.findOne()
+            // }
+
          await ratingDB.updateOne({ UserID}, { $pull: { watchedmovie:  {movie}  } })
          //res.redirect('/getwatched');
        }
@@ -75,24 +81,29 @@ module.exports.addRating = async(req, res)=>{
                           const add = await ratingDB.updateOne({UserID, watchedmovie: { $elemMatch: { movie:  movie  } }}, 
                             {$set : {"watchedmovie.$.rating" : rating} });
                             
+                            // if(rating==0){throw new Error("rating is zero!");}
+
                             const findMovieDB = await moviesDB.findOne({_id: movie});
-                            console.log(findMovieDB,'movie from movieDB');
+                            // console.log(findMovieDB,'movie from movieDB');
 
                             if(findMovieDB.movieRatings){
                               console.log(findMovieDB.movieRatings,'found');
-                              const prevAGR = findMovieDB.movieRatings.AGRrating;
-                              console.log(prevAGR, 'prev AGR Rating');
-                              const newAGR = (Number(prevAGR) - Number(userPrevRating)) + Number(rating);
-                              console.log(newAGR, 'new AGR Rating');
-                              const addAGRrating = await moviesDB.updateOne({_id:movie}, {$set : {'movieRatings.AGRrating': newAGR }});
-                              console.log(addAGRrating,'updated AGR')
+                              const prevTotal = findMovieDB.movieRatings.totalStars;
+                              console.log(prevTotal, 'prev total Rating');
+                              const newTotal = (Number(prevTotal) - Number(userPrevRating)) + Number(rating);
+                              console.log(newTotal, 'new total Rating');
+                              const addTotalrating = await moviesDB.updateOne({_id:movie}, {$set : {'movieRatings.totalStars': newTotal}});
+                              // const prevRatedBy = findMovieDB.movieRatings.ratedBy;
+                              // const newRatedBy = (Number(prevRatedBy) + Number(1));
+                              // const addTotalrating = await moviesDB.updateOne({_id:movie}, {$set : {'movieRatings.totalStars': newTotal, 'movieRatings.ratedBy': newRatedBy}});
+                              console.log(addTotalrating,'updated AGR')
                             }
                             else{
                               // console.log(findMovieDB.movieRatings,'found');
-                              const movieRatings = {AGRrating: rating};
+                              const movieRatings = {totalStars: rating};
                               console.log(movieRatings,'obj we created');
-                              const addAGRrating = await moviesDB.updateOne({_id:movie}, {$set : {movieRatings: movieRatings }});
-                              console.log(addAGRrating,'added AGR')
+                              const addTotalrating = await moviesDB.updateOne({_id:movie}, {$set : {movieRatings: movieRatings }});
+                              console.log(addTotalrating,'added AGR')
                             }
                             
                             //step-2) what to do when rating=0????
@@ -115,22 +126,38 @@ module.exports.addRating = async(req, res)=>{
                           
                           const findMovieDB = await moviesDB.findOne({_id: movie});
                           console.log(findMovieDB,'movie from movieDB line 116');
-                          // if(findMovieDB.movieRatings){
-                          //   console.log(findMovieDB.movieRatings,'found');
-                          //   const prevAGR = findMovieDB.movieRatings.AGRrating;
-                          //   console.log(prevAGR, 'prev AGR Rating');
-                          //   const newAGR = Number(prevAGR) + Number(rating);
-                          //   console.log(newAGR, 'new AGR Rating');
-                          //   const addAGRrating = await moviesDB.updateOne({_id:movie}, {$set : {'movieRatings.AGRrating': newAGR }});
-                          //   console.log(addAGRrating,'updated AGR')
+
+                          // if(rating==0){
+                          //   if(findMovieDB.movieRatings){
+                          //     // console.log(findMovieDB.movieRatings,'found');
+                          //     // const addViews = await moviesDB.updateOne({_id:movie}, {$set : {'movieRatings.TotalWatched':  }});
+                          //     // console.log(addViews,'updated views');
+                          //   }
+                          //   else{
+                          //     // console.log(findMovieDB.movieRatings,'found');
+                          //     // const movieRatings = {AGRrating: rating};
+                          //     // console.log(movieRatings,'obj we created');
+                          //     // const addViews = await moviesDB.updateOne({_id:movie}, {$set : {movieRatings: movieRatings }});
+                          //     // console.log(addViews,'updated views')
+                          //   }
+                          //   throw new Error("rating is zero!");
                           // }
-                          // else{
-                          //   // console.log(findMovieDB.movieRatings,'found');
-                          //   const movieRatings = {AGRrating: rating};
-                          //   console.log(movieRatings,'obj we created');
-                          //   const addAGRrating = await moviesDB.updateOne({_id:movie}, {$set : {movieRatings: movieRatings }});
-                          //   console.log(addAGRrating,'added AGR')
-                          // }
+                          if(findMovieDB.movieRatings){
+                            console.log(findMovieDB.movieRatings,'found');
+                            const prevAGR = findMovieDB.movieRatings.totalStars;
+                            console.log(prevAGR, 'prev AGR Rating');
+                            const newAGR = Number(prevAGR) + Number(rating);
+                            console.log(newAGR, 'new AGR Rating');
+                            const addAGRrating = await moviesDB.updateOne({_id:movie}, {$set : {'movieRatings.totalStars': newAGR }});
+                            console.log(addAGRrating,'updated AGR')
+                          }
+                          else{
+                            // console.log(findMovieDB.movieRatings,'found');
+                            const movieRatings = {totalStars: rating};
+                            console.log(movieRatings,'obj we created');
+                            const addAGRrating = await moviesDB.updateOne({_id:movie}, {$set : {movieRatings: movieRatings }});
+                            console.log(addAGRrating,'added AGR')
+                          }
                           
                         }catch(e){console.log(e)}
                       // res.send();
@@ -142,7 +169,7 @@ module.exports.addRating = async(req, res)=>{
           }
 
   
-
+          console.log('post done, redirecting to getwatched')
      res.redirect('/getwatched');
  
 
@@ -170,7 +197,7 @@ module.exports.addWatchlist=async(req,res)=>{
 
             const add = await ratingDB.updateOne({UserID},{$push:{WatchList}});
           
-            console.log('added',add);
+            // console.log('added',add);
       
              }
               catch(e){console.log(e)}        
@@ -217,7 +244,7 @@ module.exports.getWatched=async(req,res)=>{
           //  const moviefromDB = await ratingDB.findOne({UserID, watchedmovie})
             
            const moviefromDB = await ratingDB.find( {UserID}, { watchedmovie: { $elemMatch: { movie:  movie  } },WatchList: { $elemMatch: { movie:  movie  } } } )
-           console.log('moviefromDB.',moviefromDB)
+          //  console.log('moviefromDB.',moviefromDB)
           
           //if(moviefromDB.length>=1){ const data = moviefromDB[0].watchedmovie;}
           const data = moviefromDB[0].watchedmovie;
@@ -248,7 +275,7 @@ module.exports.getUserData =async(req,res)=>{
 
 try{
   const data = await ratingDB.findOne({Username})
-  console.log(data.WatchList,'found user');
+  // console.log(data.WatchList,'found user');
   const movieswatched = data.watchedmovie
   const watchlist = data.WatchList
   res.send({movieswatched, watchlist});

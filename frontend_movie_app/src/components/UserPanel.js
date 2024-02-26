@@ -88,9 +88,9 @@ const UserPanel = (props) => {
 
   const handleRating =async(valuee)=>{
     console.log(valuee, 'zero?')
+    if(0<=valuee<=5){
     StarRating.current = valuee;
     setValue(valuee);
-    // console.log('rating clicked',value);
 
     try{
       
@@ -103,6 +103,7 @@ const UserPanel = (props) => {
   }
     catch(e){console.log(e)}
   }
+}
 
   const handleWatchlist =async()=>{
      setIsActive(!isActive)
@@ -185,7 +186,7 @@ const UserPanel = (props) => {
         </Box>
 
         <Box sx={{ width: 220, display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
-            <ClearIcon onClick={()=> handleRating(0)}/>
+            <ClearIcon onClick={()=> handleRating(0)} sx={{cursor:'pointer'}}/>
             <Rating
                 name="hover-feedback"
                 size="large"
