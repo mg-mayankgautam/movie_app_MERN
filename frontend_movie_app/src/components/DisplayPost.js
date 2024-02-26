@@ -12,6 +12,8 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import TabContext from '@mui/lab/TabContext';
 import TabPanel from '@mui/lab/TabPanel';
+import Skeleton from '@mui/material/Skeleton';
+import Stack from '@mui/material/Stack';
 
 const StyledTabs = styled((props) => (
   <Tabs
@@ -166,8 +168,9 @@ useEffect(() => {
 
   return ( 
  
-      
-  <main className='DisplayPost'>
+     <>
+ {moviename?
+  (<main className='DisplayPost'>
 
     <article className='MainPoster'>
       {/* <Link to={`/post/${post.id}`}> */}
@@ -249,8 +252,24 @@ useEffect(() => {
 
 
   
-  </main>
+  </main>)
+  :(                 <Stack spacing={3}>
+    <br></br>
+    {/* For variant="text", adjust the height via font-size */}
+    <Skeleton variant="text" sx={{ fontSize: 'rem' }} />
+   
+    <Skeleton variant="circular" width={80} height={80}sx={{ bgcolor: 'grey.900' }} />
+    <Skeleton variant="rectangular" width={210} height={60}sx={{ bgcolor: 'grey.900' }} />
+    <Skeleton variant="rounded" width={1000} height={300} sx={{ bgcolor: 'grey.900' }}/>
+  </Stack>
 
+ 
+  // <Skeleton variant="circular" width={40} height={40} />
+  // <Skeleton variant="rectangular" width={210} height={60} />
+  // <Skeleton variant="rounded" width={210} height={60} />
+  )
+}
+     </>
   )
 }
 
