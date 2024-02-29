@@ -213,8 +213,9 @@ module.exports.postMovie = async(req,res) =>{
 
     if(!movie){
       //  console.log('inside')
-
-                      let newmovie = new moviesDB ({moviefromapi});
+                    const totalMovieRatings = {totalStars: 0, totalRatedBy: 0};
+                    const totalWatched = 0;
+                      let newmovie = new moviesDB ({moviefromapi, totalMovieRatings, totalWatched});
                       newmovie.save()
                       .then((saved)=>{
                         
@@ -228,10 +229,8 @@ module.exports.postMovie = async(req,res) =>{
                             const options = {
                             url: `${imageurl}`,
                             dest: path.resolve(`./public/posters/${postername}.jpg`),  
-                            
-                            
-                             };
-                             res.send(postername)
+                            };
+                            res.send(postername)
                           
                             download.image(options)
 

@@ -18,21 +18,17 @@ const SignUp = () => {
         console.log(NewUsername,NewPassword);
         const Username=NewUsername;
         const Password=NewPassword;
-        try{const data = await axios.post('http://localhost:4700/signup',{Username,Password})
+
+        try{
+          const data = await axios.post('http://localhost:4700/signup',{Username,Password})
       
-  console.log(data);
-  }
+          console.log(data);
+      }
       catch(err){console.log(err);}
-
-  
-
-        
-        
-
     };
 
 
-  return (<>
+  return (
     <div className="signup">this is the SignUp page
     
     <form  onSubmit={submitNewUser}>
@@ -47,7 +43,11 @@ const SignUp = () => {
         <button type="submit" className='Submit'>Submit</button>
     </form>
     
-    
+    <Link to={`/login`}>
+           
+              click to login
+               
+    </Link>
     
     
  
@@ -55,7 +55,6 @@ const SignUp = () => {
     
     </div>
 
-    </>
     
   )
 }

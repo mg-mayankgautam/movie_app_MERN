@@ -66,7 +66,7 @@ const UserPanel = (props) => {
   
   const handleWatched =async()=>{
 
-    console.log('watched clicked',isActive2);
+    // console.log('watched clicked',!isActive2);
 
     // flushSync(()=>{
      // setIsActive2(isActive2 => !isActive2);
@@ -74,7 +74,7 @@ const UserPanel = (props) => {
     try{
     const data = await axios.post('http://localhost:4700/addwatched', {watched: !isActive2,movie:id, moviename: props.moviename.text, releasedate: props.Release_date.year, movieposter: props.MoviePoster, director: props.Directors})
       
-    console.log(data);
+    // console.log(data);
 
     setIsActive2(isActive2 => data.data.watched)
 
@@ -87,46 +87,53 @@ const UserPanel = (props) => {
   }
 
   const handleRating =async(valuee)=>{
-    console.log(valuee, 'zero?')
+    // console.log(valuee, 'zero?')
     if(0<=valuee<=5){
     StarRating.current = valuee;
-    setValue(valuee);
+    // setValue(valuee);
 
     try{
       
       console.log('rating',StarRating.current);
-    const data = await axios.post('http://localhost:4700/addrating', {rating: StarRating.current, movie: id, moviename: props.moviename.text, releasedate: props.Release_date.year, movieposter: props.MoviePoster, director: props.Directors})
+      const data = await axios.post('http://localhost:4700/addrating', {rating: StarRating.current, movie: id, moviename: props.moviename.text, releasedate: props.Release_date.year, movieposter: props.MoviePoster, director: props.Directors})
       
-    console.log(data, 'post data');
-    setIsActive2(isActive2 => data.data.watched)
+      console.log(data, 'post rating data');
+      setIsActive2(isActive2 => data.data.watched);
+      setValue(data.data.userrating);
   
-  }
+    }
     catch(e){console.log(e)}
+    }
   }
-}
 
   const handleWatchlist =async()=>{
-     setIsActive(!isActive)
+    //  setIsActive(!isActive)
+    try{
      const data = await axios.post('http://localhost:4700/addwatchlist', {watchlist: !isActive,movie:id, moviename: props.moviename.text, releasedate: props.Release_date.year, movieposter: props.MoviePoster, director: props.Directors})
-     
+
+    //  console.log(data, 'watchlist post data');
+     setIsActive(data.data.watchlist);
+    }
+    catch(e){console.log(e)}; 
   } 
 
   useEffect(()=>{
 
     const getWatched=async()=>{
-      
+      try{
        const data = await axios.get('http://localhost:4700/getwatched', {params:{movie: id}});
-        console.log(data, 'data from DB')
+        console.log(data, ' data: get watched func')
        const state = data.data.watched;
         setIsActive2(state);
-        console.log(data.data.userrating)
+        // console.log(data.data.userrating)
         if(data.data.userrating){
           const rating= data.data.userrating
           StarRating.current = rating;
           setValue(rating);
         }
-
-        if(data.data.WL.length >= 1)setIsActive(true)
+      }
+      catch(err){console.log(err);}
+        // if(data.data.WL.length >= 1)setIsActive(true)
        
     }
     getWatched();

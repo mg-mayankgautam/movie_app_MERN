@@ -81,7 +81,7 @@ const Nav = ({UserName,setUserName}) => {
   
 
  
-console.log(UserName)
+// console.log(UserName)
 
   useEffect(() => {
         
@@ -103,7 +103,7 @@ console.log(UserName)
 
               else if(response.data.auth){
                
-                console.log(response.data.auth);
+                // console.log(response.data.auth);
                const user = response.data.auth;
                setAuth({user});
                setUserName(user);
