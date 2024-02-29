@@ -101,7 +101,7 @@ module.exports.addRating = async(req, res)=>{
                     
           if(find.watchedmovie.length >=1){
               // try{ 
-                  // const userPrevRating = find.watchedmovie[0].rating;
+                  const userPrevRating = find.watchedmovie[0].rating;
       
                   await ratingDB.findOneAndUpdate({UserID, watchedmovie: { $elemMatch: { movie:  movie  } }}, {$set : {"watchedmovie.$.rating" : rating} }, {returnDocument: "after"})
 
