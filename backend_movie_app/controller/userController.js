@@ -35,27 +35,37 @@ module.exports.controlWatched = async(req, res)=>{
 
     else if(Username && !watched){ 
           // console.log(watched)
-           try{
-            // const find = await ratingDB.findOne({UserID}, { watchedmovie: { $elemMatch: { movie:  movie  } } }) 
-            console.log('hiii');
-            // if(find.watchedmovie.length >=1){
-            //   const prevUserRating = find.watchedmovie[0].rating;
-            //   console.log(prevUserRating,'control watched')
-            //   if(prevUserRating!=0){
-            //     const findinMovieDB = await moviesDB.findOne({_id:movie},{totalMovieRatings:1})
-            //     // console.log(findinMovieDB.totalMovieRatings);
-            //     const prevTotal = findinMovieDB.totalMovieRatings.totalStars;
-            //     console.log(prevTotal, 'prev total Rating');
-            //     const newTotal = (Number(prevTotal) - Number(prevUserRating))
-            //     console.log(newTotal, 'new total Rating');
-            //     const prevtotalRatedBy = findinMovieDB.totalMovieRatings.totalRatedBy;
-            //     const totalRatedBy = (Number(prevtotalRatedBy) - Number(1));
+          //  try{
+            await ratingDB.findOne({UserID}, { watchedmovie: { $elemMatch: { movie:  movie  } } })
+            .then(async(find)=>{
 
-            //     await moviesDB.findOneAndUpdate({_id:movie}, {$set : {'totalMovieRatings.totalStars': newTotal, 'totalMovieRatings.totalRatedBy': totalRatedBy }})
-            //     .then((saved)=>{console.log(saved, 'buriburi');})
-            //     .catch((err)=>{console.log(err, 'buriburi');})
-            //   }
-            // }
+              if(find.watchedmovie.length >=1){
+                const prevUserRating = find.watchedmovie[0].rating;
+                console.log(prevUserRating,'control watched');
+
+                if(prevUserRating!=0){
+                  
+                  const findinMovieDB = await moviesDB.findOne({_id:movie},{totalMovieRatings:1})
+                  .then(async(findinMovieDB) => {
+                    const prevTotal = findinMovieDB.totalMovieRatings.totalStars;
+                    console.log(prevTotal, 'prev total Rating');
+                    const newTotal = (Number(prevTotal) - Number(prevUserRating))
+                    console.log(newTotal, 'new total Rating');
+                    const prevtotalRatedBy = findinMovieDB.totalMovieRatings.totalRatedBy;
+                    const totalRatedBy = (Number(prevtotalRatedBy) - Number(1));
+
+                    await moviesDB.findOneAndUpdate({_id:movie}, {$set : {'totalMovieRatings.totalStars': newTotal, 'totalMovieRatings.totalRatedBy': totalRatedBy }})
+                    .then((saved)=>{console.log(saved, 'buriburi');})
+                    .catch((err)=>{console.log(err, 'buriburi');})
+                  })
+                  .catch((err)=>{console.log(err)});
+                  // console.log(findinMovieDB.totalMovieRatings);
+                  
+                }
+              }
+
+            })
+            .catch((e)=>{console.log(e)})
 
         await ratingDB.findOneAndUpdate({ UserID}, { $pull: { watchedmovie:  {movie}  } }, { returnDocument: "after" })
         .then((saved)=>{
@@ -66,8 +76,8 @@ module.exports.controlWatched = async(req, res)=>{
         })
         .catch((err)=>{console.log(err, 'burbur');})
          //res.redirect('/getwatched');
-       }
-       catch{(e)=> {console.log(e)}}
+      //  }
+      //  catch{(e)=> {console.log(e)}}
         //await ratingDB.findOneAndDelete({UserID,watchedmovie})
        
        }
@@ -106,50 +116,47 @@ module.exports.addRating = async(req, res)=>{
                   })
                   .catch((e)=>{console.log(e)})
 
-                  // const findMovieDB = await moviesDB.findOne({_id: movie});
-              
-                  // console.log(findMovieDB.totalMovieRatings,'found');
-                  //             const prevTotal = findMovieDB.totalMovieRatings.totalStars;
-                  //             console.log(prevTotal, 'prev total Rating');
-                  //             const newTotal = (Number(prevTotal) - Number(userPrevRating)) + Number(rating);
-                  //             console.log(newTotal, 'new total Rating');
-                  //             // const addTotalrating = await moviesDB.updateOne({_id:movie}, {$set : {'totalMovieRatings.totalStars': newTotal}});
-                  //             const prevtotalRatedBy = findMovieDB.totalMovieRatings.totalRatedBy;
-                  //             // if(userPrevRating==0){  
-                  //             //   const newtotalRatedBy = (Number(prevtotalRatedBy) + Number(1));
-                  //             // }
-                  //             // if(userPrevRating!=0){  
-                  //             //   const newtotalRatedBy = Number(prevtotalRatedBy)
-                  //             // }
-                  //             // if(rating!=0){  
-                  //             //   const newtotalRatedBy = (Number(prevtotalRatedBy) + Number(1));
-                  //             // }
-                  //             if(rating==0){  
-                  //               // var totalRatedBy = Number(prevtotalRatedBy);
-                  //               // console.log(totalRatedBy);
-                  //               if(userPrevRating==0){  
-                  //                 var totalRatedBy = Number(prevtotalRatedBy)
-                  //                 console.log(totalRatedBy);
-                  //               }
-                  //               else{  
-                  //                 var totalRatedBy = (Number(prevtotalRatedBy) - Number(1));
-                  //                 console.log(totalRatedBy);
-                              //   }
-                              // }
-                              // else{
-                              //     if(userPrevRating==0){  
-                              //       var totalRatedBy = (Number(prevtotalRatedBy) + Number(1));
-                              //       console.log(totalRatedBy);
-                              //     }
-                              //     else{  
-                              //       var totalRatedBy = Number(prevtotalRatedBy)
-                              //       console.log(totalRatedBy);
-                              //     }
-                              // }
+                  
+                  await moviesDB.findOne({_id: movie})
+                  .then(async(findMovieDB)=>{
+                    console.log(findMovieDB.totalMovieRatings,'found');
+                    const prevTotal = findMovieDB.totalMovieRatings.totalStars;
+                    console.log(prevTotal, 'prev total Rating');
+                    const newTotal = (Number(prevTotal) - Number(userPrevRating)) + Number(rating);
+                    console.log(newTotal, 'new total Rating');
+                    // const addTotalrating = await moviesDB.updateOne({_id:movie}, {$set : {'totalMovieRatings.totalStars': newTotal}});
+                    const prevtotalRatedBy = findMovieDB.totalMovieRatings.totalRatedBy;
+                                
+                          if(rating==0){
+                              if(userPrevRating==0){  
+                                    var totalRatedBy = Number(prevtotalRatedBy)
+                                    console.log(totalRatedBy);
+                                }
+                              else{  
+                                    var totalRatedBy = (Number(prevtotalRatedBy) - Number(1));
+                                    console.log(totalRatedBy);
+                                }
+                          }
+                          else{
+                                if(userPrevRating==0){  
+                                      var totalRatedBy = (Number(prevtotalRatedBy) + Number(1));
+                                      console.log(totalRatedBy);
+                                }
+                                else{  
+                                      var totalRatedBy = Number(prevtotalRatedBy)
+                                      console.log(totalRatedBy);
+                                }
+                          } 
+  
+                        await moviesDB.updateOne({_id:movie}, {$set : {'totalMovieRatings.totalStars': newTotal, 'totalMovieRatings.totalRatedBy': totalRatedBy }})
+                        .then((saved)=>{
+                            console.log(saved,'updated AGR line 127')
 
-                              // const addTotalrating = await moviesDB.updateOne({_id:movie}, {$set : {'totalMovieRatings.totalStars': newTotal, 'totalMovieRatings.totalRatedBy': totalRatedBy }});
-                              // console.log(addTotalrating,'updated AGR line 127')
-                            // }
+                        })
+                        .catch((e)=>{console.log(e)})
+                  })
+                  .catch((e)=>{console.log(e)})
+            }
 
                             // else{
 
@@ -172,7 +179,7 @@ module.exports.addRating = async(req, res)=>{
                           
                         //  console.log(moviearr, 'hooray');
                       //   console.log('added rating');
-          }
+          // }
           else{
                 // try{
                   const watchedmovie = {movie,watched:true,rating:rating, moviename, releasedate, movieposter, director}
@@ -189,45 +196,34 @@ module.exports.addRating = async(req, res)=>{
                   })
                   .catch((e)=>{console.log(e)})
 
-                          // const findMovieDB = await moviesDB.findOne({_id: movie});
-                          //   console.log(findMovieDB.totalMovieRatings,'found');
-                          //   const prevTotal = findMovieDB.totalMovieRatings.totalStars;
-                          //   console.log(prevTotal, 'prev total Rating');
-                          //   const newTotal = Number(prevTotal) + Number(rating);
-                          //   console.log(newTotal, 'new total Rating');
-                          //   const prevtotalRatedBy = findMovieDB.totalMovieRatings.totalRatedBy;
-                          //   if(rating==0){  
-                          //     var totalRatedBy = Number(prevtotalRatedBy);
-                          //     console.log(totalRatedBy);
-                          //   }
-                          //   else{ 
-                          //     var totalRatedBy = (Number(prevtotalRatedBy) + Number(1));
-                          //     console.log(totalRatedBy);
-                          //   }
+                  await moviesDB.findOne({_id: movie})
+                  .then(async(findMovieDB)=>{
+                        console.log(findMovieDB.totalMovieRatings,'found');
+                        const prevTotal = findMovieDB.totalMovieRatings.totalStars;
+                        console.log(prevTotal, 'prev total Rating');
+                        const newTotal = Number(prevTotal) + Number(rating);
+                        console.log(newTotal, 'new total Rating');
+                        const prevtotalRatedBy = findMovieDB.totalMovieRatings.totalRatedBy;
+                            if(rating==0){  
+                              var totalRatedBy = Number(prevtotalRatedBy);
+                              console.log(totalRatedBy);
+                            }
+                            else{ 
+                              var totalRatedBy = (Number(prevtotalRatedBy) + Number(1));
+                              console.log(totalRatedBy);
+                            }
                                 
-                          //   const addTotalrating = await moviesDB.updateOne({_id:movie}, {$set : {'totalMovieRatings.totalStars': newTotal, 'totalMovieRatings.totalRatedBy': totalRatedBy }});
-                          //   console.log(addTotalrating,'updated AGR line 195')
-                          // }
-                          // else{
-                          //   if(rating==0){  
-                          //     var newtotalRatedBy = Number(0);
-                          //     console.log(newtotalRatedBy);
-                          //   }
-                          //   else if(rating!=0){
-                          //     var newtotalRatedBy = Number(1);
-                          //     console.log(newtotalRatedBy);
-                          //   }
-                          //   // console.log(newtotalRatedBy,'var horha h bahar access');
-                          //   const addTotalrating = await moviesDB.updateOne({_id:movie}, {$set : {'totalMovieRatings.totalStars': rating, 'totalMovieRatings.totalRatedBy': newtotalRatedBy}});
-                          //   console.log(addTotalrating,'added AGR line 208')
-                          // }
-                          
-                // }catch(e){console.log(e)}
+                        await moviesDB.updateOne({_id:movie}, {$set : {'totalMovieRatings.totalStars': newTotal, 'totalMovieRatings.totalRatedBy': totalRatedBy }})
+                        .then((saved)=>{
+                          console.log(saved,'updated AGR line 195')
+                        })
+                        .catch((e)=>{console.log(e)});
+                  })
+                .catch((e)=>{console.log(e)})
                       // res.send();
-          }
-                      // res.redirect('/getwatched');        
-          }
-          catch(e){console.log(e)}        
+          }      
+        }
+        catch(e){console.log(e)}       
      
   }
     // console.log('post done, redirecting to getwatched')

@@ -2,7 +2,7 @@ const moviesDB = require("../models/moviesDB.js");
 const path = require('path');
 const download = require('image-downloader');
 const https = require('https');
-const oscarsDB= require('../models/oscarsDB.js');
+//const oscarsDB= require('../models/oscarsDB.js');
 
 module.exports.getTop10 = async(req,res)=>{
     let movie= await moviesDB.find({}, {'moviefromapi.short.name':1}).limit(10);
