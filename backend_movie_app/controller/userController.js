@@ -9,15 +9,10 @@ module.exports.controlWatched = async(req, res)=>{
     movieposter, director} = req.body;
     // console.log(movie);
     const watchedmovie = {movie,watched,rating:0, moviename, releasedate, movieposter, director}
-    req.session.movie = movie;    
-    // console.log(movie);
-    // console.log(req.body)
+    req.session.movie = movie;
     
 
-    if( Username && watched ){                  
-              //  console.log('inside watched');
-    
-              //  try{
+    if( Username && watched ){
 
             await ratingDB.findOneAndUpdate({UserID},{$push:{watchedmovie}}, { returnDocument: "after" })
             .then((saved)=>{
@@ -29,7 +24,11 @@ module.exports.controlWatched = async(req, res)=>{
             })
                   // res.redirect('/addrating');        
               //  }
-            .catch((e)=> {console.log(e)})      
+            .catch((e)=> {console.log(e)})  
+            
+            await moviesDB.findOneAndUpdate({_id:movie}, {$inc : {totalWatched: 1}}, {returnDocument: 'after'})
+                    .then((saved)=>{console.log(saved, 'burburi');})
+                    .catch((err)=>{console.log(err, 'burburi');})
        
     }
 
@@ -45,22 +44,14 @@ module.exports.controlWatched = async(req, res)=>{
 
                 if(prevUserRating!=0){
                   
-                  // const findinMovieDB = await moviesDB.findOne({_id:movie},{totalMovieRatings:1})
-                  // .then(async(findinMovieDB) => {
-                    // const prevTotal = findinMovieDB.totalMovieRatings.totalStars;
-                    // console.log(prevTotal, 'prev total Rating');
-                    // const newTotal = (Number(prevTotal) - Number(prevUserRating))
-                    // console.log(newTotal, 'new total Rating');
-                    // const prevtotalRatedBy = findinMovieDB.totalMovieRatings.totalRatedBy;
-                    // const totalRatedBy = (Number(prevtotalRatedBy) - Number(1));
-
-                    await moviesDB.updateOne({_id:movie}, {$inc : {'totalMovieRatings.totalStars': - Number(prevUserRating), 'totalMovieRatings.totalRatedBy': -1 }}, {returnDocument: 'after'})
+                    await moviesDB.updateOne({_id:movie}, {$inc : {'totalMovieRatings.totalStars': - Number(prevUserRating), 'totalMovieRatings.totalRatedBy': -1 , totalWatched: -1}}, {returnDocument: 'after'})
                     .then((saved)=>{console.log(saved, 'buriburi');})
                     .catch((err)=>{console.log(err, 'buriburi');})
-                  // })
-                  // .catch((err)=>{console.log(err)});
-                  // console.log(findinMovieDB.totalMovieRatings);
-                  
+                }
+                else{
+                    await moviesDB.updateOne({_id:movie}, {$inc : {totalWatched: -1}}, {returnDocument: 'after'})
+                    .then((saved)=>{console.log(saved, 'buriburi');})
+                    .catch((err)=>{console.log(err, 'buriburi');})
                 }
               }
 
@@ -185,28 +176,19 @@ module.exports.addRating = async(req, res)=>{
                         // const newTotal = Number(prevTotal) + Number(rating);
 
                             if(rating==0){  
-                              await moviesDB.findOneAndUpdate({_id:movie}, {$inc : {'totalMovieRatings.totalStars': Number(rating)}}, {returnDocument: 'after'})
+                              await moviesDB.findOneAndUpdate({_id:movie}, {$inc : {'totalMovieRatings.totalStars': Number(rating), totalWatched: 1}}, {returnDocument: 'after'})
                               .then((saved)=>{
                               console.log(saved,'updated AGR .')
                               })
                               .catch((e)=>{console.log(e)})
                             }
                             else{
-                              await moviesDB.findOneAndUpdate({_id:movie}, {$inc : {'totalMovieRatings.totalStars': Number(rating), 'totalMovieRatings.totalRatedBy': 1}}, {returnDocument: 'after'})
+                              await moviesDB.findOneAndUpdate({_id:movie}, {$inc : {'totalMovieRatings.totalStars': Number(rating), 'totalMovieRatings.totalRatedBy': 1, totalWatched: 1}}, {returnDocument: 'after'})
                               .then((saved)=>{
                               console.log(saved,'updated AGR ..')
                               })
                               .catch((e)=>{console.log(e)})
                             }
-                                
-                        // await moviesDB.updateOne({_id:movie}, {$set : {'totalMovieRatings.totalStars': newTotal, 'totalMovieRatings.totalRatedBy': totalRatedBy }})
-                        // .then((saved)=>{
-                          // console.log(saved,'updated AGR line 195')
-                        // })
-                        // .catch((e)=>{console.log(e)});
-                  // })
-                // .catch((e)=>{console.log(e)})
-                      // res.send();
           }      
         }
         catch(e){console.log(e)}       

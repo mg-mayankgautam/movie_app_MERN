@@ -1549,17 +1549,8 @@ module.exports.getMovie=async(req,res)=>{
 try{
 
     if(!req.session.Username){
-        let movie= await moviesDB.find({_id:id},{'moviefromapi':1})
-   // console.log(movie[0].moviefromapi.storyLine.summaries.edges[0].node.plotText.plaidHtml)
-        // console.log(movie[0].moviefromapi.top.releaseDate)
-        // //console.log(movie[0].moviefromapi.runtime)
-        // console.log(movie[0].moviefromapi.top.titleText)
-        // console.log(movie[0].moviefromapi.top.genres)
-        // console.log(movie[0].moviefromapi.top.plot.plotText)
-        // console.log(movie[0].moviefromapi.short.actor)
-        // console.log(movie[0].moviefromapi.short.director)
-
-       // console.log(movie);
+        let movie= await moviesDB.find({_id:id})
+  
         const release_date=movie[0].moviefromapi.top.releaseDate;
         const name = movie[0].moviefromapi.top.titleText;
         const runtime = movie[0].moviefromapi.top.runtime.displayableProperty.value.plainText;
@@ -1570,16 +1561,17 @@ try{
         const genres = movie[0].moviefromapi.top.genres;
         const url = `http://localhost:4700/posters/${id}.jpg`
     
-
+        const movierating = movie[0].totalMovieRatings;
+        const totalwatched= movie[0].totalWatched;
 
     //let short = movie.moviefromapi.short
-    res.send({release_date,name,runtime,plot, actors, director,genres,allcast, url,auth:false})}
+    res.send({release_date,name,runtime,plot, actors, director,genres,allcast, url,auth:false, movierating, totalwatched})}
 
 
         else if(req.session.Username){
 
-            let movie= await moviesDB.find({_id:id},{'moviefromapi':1})
-            // console.log(movie[0].moviefromapi.storyLine.summaries.edges[0].node.plotText.plaidHtml)
+            let movie= await moviesDB.find({_id:id})
+            // console.log(movie[0])
                  // console.log(movie[0].moviefromapi.top.releaseDate)
                  // //console.log(movie[0].moviefromapi.runtime)
                  // console.log(movie[0].moviefromapi.top.titleText)
@@ -1594,29 +1586,21 @@ try{
                  const plot = movie[0].moviefromapi.top.plot.plotText;
                  const actors = movie[0].moviefromapi.short.actor;
                  const allcast = movie[0].moviefromapi.main.cast.edges;
-
                  const director= movie[0].moviefromapi.short.director;
                  const genres = movie[0].moviefromapi.top.genres;
                  const url = `http://localhost:4700/posters/${id}.jpg`
              
-         
+                const movierating = movie[0].totalMovieRatings;
+                const totalwatched= movie[0].totalWatched;
          
              //let short = movie.moviefromapi.short
-             res.send({release_date,name,runtime,plot, actors, director,genres,allcast, url,auth:req.session.Username})}
+             res.send({release_date,name,runtime,plot, actors, director,genres,allcast, url,auth:req.session.Username, movierating, totalwatched})}
 
 
         }
 
 
-
-
-
-
         catch(e){console.log(e)}
-    
-       
-
-
 
 }
 

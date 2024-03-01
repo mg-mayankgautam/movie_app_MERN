@@ -100,6 +100,8 @@ const DisplayPost = ({posts}) => {
   const [actors, setactors] = useState('');
   const [Directors, setDirectors] = useState('');
   const [Genres, setGenres] = useState('');
+  const [AvgRating, setAvgRating] = useState('');
+  const [totalWatched, setTotalWatched] = useState('');
 
 
   const { id } = useParams();
@@ -124,9 +126,14 @@ useEffect(() => {
                     setactors(response.data.allcast)
                     setDirectors(response.data.director)
                     setGenres(response.data.genres.genres)
-                  
-                  
-                  
+                    const totalStars = response.data.movierating.totalStars;
+                    const totalRatedBy =response.data.movierating.totalRatedBy;
+                    if(totalRatedBy!=0){
+                      const Avg=(totalStars/totalRatedBy)
+                      console.log(Avg, AvgRating)
+                      setAvgRating(Avg);
+                    }
+                    setTotalWatched(response.data.totalwatched)
                   }
 
 
@@ -143,6 +150,14 @@ useEffect(() => {
                     setactors(response.data.allcast)
                     setDirectors(response.data.director)
                     setGenres(response.data.genres.genres)
+                    const totalStars = response.data.movierating.totalStars;
+                    const totalRatedBy =response.data.movierating.totalRatedBy;
+                    if(totalRatedBy!=0){
+                      const Avg=(totalStars/totalRatedBy)
+                      // console.log(Avg)
+                      setAvgRating(Avg);
+                    }
+                    setTotalWatched(response.data.totalwatched)
                  }   
           
         } catch (err) {
@@ -176,6 +191,7 @@ useEffect(() => {
       {/* <Link to={`/post/${post.id}`}> */}
         <img src={MoviePoster} alt="poster"  className='movieImg' />
         {/* </Link> */}
+        <section>Avg Stars: {AvgRating}, Views: {totalWatched}</section>
     </article>
 
     <article className='AboutMovie'>
