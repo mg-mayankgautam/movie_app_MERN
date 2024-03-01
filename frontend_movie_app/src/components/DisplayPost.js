@@ -303,11 +303,11 @@ useEffect(()=>{
 
           <div className='PanelnotLogin'>
               <div className='PanelnotLoginDiv'>
-                Box Office!
-                lifetime: ${LifetimeGross}
-                worldwide: ${WorldwideGross}
-                opening weekend: ${OpeningWeekendGross}
-                updated on: ${AddedDate}
+                    <p>BOX OFFICE!</p>
+                    <div>lifetime: $ {LifetimeGross}</div>
+                    <div>worldwide: $ {WorldwideGross}</div>
+                    <div>opening wknd: $ {OpeningWeekendGross}</div>
+                    <div>updated on: {AddedDate}</div>
               </div>
           </div>
       </div>

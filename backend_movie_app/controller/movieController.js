@@ -1679,13 +1679,15 @@ module.exports.getBoxOffice = async(req,res)=>{
     try{
         
         let movie= await moviesDB.find({_id:id})
-  
+        
+        // console.log(movie[0].moviefromapi.main)
         const lifetimeGross = movie[0].moviefromapi.main.lifetimeGross.total.amount;
         const worldwideGross =movie[0].moviefromapi.main.worldwideGross.total.amount;
         const openingWeekendGross = movie[0].moviefromapi.main.openingWeekendGross.gross.total.amount;
         const addedDate = movie[0].addedDate;
+        console.log(lifetimeGross, worldwideGross, openingWeekendGross, addedDate)
 
-        res.send(lifetimeGross, worldwideGross, openingWeekendGross, addedDate);
+        res.send({lifetimeGross, worldwideGross, openingWeekendGross, addedDate});
     }
     catch(err){console.log(err)}
 }
