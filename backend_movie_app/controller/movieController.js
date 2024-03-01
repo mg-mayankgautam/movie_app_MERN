@@ -1625,8 +1625,11 @@ module.exports.postMovie = async(req,res) =>{
 
     if(!movie){
       //  console.log('inside')
-
-                      let newmovie = new moviesDB ({moviefromapi});
+      const addedDate = new Date();
+      //const datenow = Date.now();
+          console.log('datessss',addedDate);
+                     
+          let newmovie = new moviesDB ({moviefromapi,addedDate});
                       newmovie.save()
                       .then((saved)=>{
                         
@@ -1665,4 +1668,24 @@ module.exports.postMovie = async(req,res) =>{
     }   
     
                    
+}
+
+
+module.exports.getBoxOffice = async(req,res)=>{
+
+    // console.log('jei wala',req.query.id)
+    const id = req.query.id
+
+    try{
+        
+        let movie= await moviesDB.find({_id:id})
+  
+        const lifetimeGross = movie[0].moviefromapi.main.lifetimeGross.total.amount;
+        const worldwideGross =movie[0].moviefromapi.main.worldwideGross.total.amount;
+        const openingWeekendGross = movie[0].moviefromapi.main.openingWeekendGross.gross.total.amount;
+        const addedDate = movie[0].addedDate;
+
+        res.send(lifetimeGross, worldwideGross, openingWeekendGross, addedDate);
+    }
+    catch(err){console.log(err)}
 }

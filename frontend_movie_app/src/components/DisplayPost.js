@@ -102,6 +102,10 @@ const DisplayPost = ({posts}) => {
   const [Genres, setGenres] = useState('');
   const [AvgRating, setAvgRating] = useState('');
   const [totalWatched, setTotalWatched] = useState('');
+  const [LifetimeGross, setLifetimeGross] = useState('');
+  const [WorldwideGross, setWorldwideGross] = useState('');
+  const [OpeningWeekendGross, setOpeningWeekendGross] = useState('');
+  const [AddedDate, setAddedDate] = useState('');
 
 
   const { id } = useParams();
@@ -178,7 +182,39 @@ useEffect(() => {
  
 },[])
 
+useEffect(()=>{
+ 
+  const getBoxOfficeData = async () => {
+    try {
+          const URL =  `http://localhost:4700/boxoffice?id=${id}`;
+           
+          const response = await axios.get(URL);
 
+          console.log(response.data);
+          setLifetimeGross(response.data.lifetimeGross)
+          setWorldwideGross(response.data.worldwideGross)
+          setOpeningWeekendGross(response.data.openingWeekendGross)
+          setAddedDate(response.data.addedDate)
+
+           
+    } catch (err) {
+            if (err.response) {
+              // Not in the 200 response range 
+              console.log(err.response.data);
+              console.log(err.response.status);
+              console.log(err.response.headers);
+            } else {
+              console.log(`Error: ${err.message}`);
+            }
+    }
+  }
+
+
+
+  getBoxOfficeData();
+
+},[moviename]);
+//line 270
  //console.log(actors);
 
   return ( 
@@ -253,22 +289,34 @@ useEffect(() => {
         </div>
       </div>
 
-{auth?.user
-    ? 
-      <UserPanel moviename={moviename} Release_date={Release_date}  MoviePoster={MoviePoster} Directors={Directors}/>
-    :
-        <div className='PanelnotLogin'>
-          <div className='PanelnotLoginDiv'>
-            <Link to="/login" state={{prev:location}} >Login to Rate, Review, Add!</Link>
+      <div className="sidePanel">
+            {auth?.user
+            ? 
+              <UserPanel moviename={moviename} Release_date={Release_date}  MoviePoster={MoviePoster} Directors={Directors}/>
+            :
+                <div className='PanelnotLogin'>
+                  <div className='PanelnotLoginDiv'>
+                    <Link to="/login" state={{prev:location}} >Login to Rate, Review, Add!</Link>
+                  </div>
+                </div>
+            }
+
+          <div className='PanelnotLogin'>
+              <div className='PanelnotLoginDiv'>
+                Box Office!
+                lifetime: ${LifetimeGross}
+                worldwide: ${WorldwideGross}
+                opening weekend: ${OpeningWeekendGross}
+                updated on: ${AddedDate}
+              </div>
           </div>
-        </div>
-}
-    </section>
-    </article>
+      </div>
+  </section>
+</article>
 
 
   
-  </main>)
+</main>)
   :(                 <Stack spacing={3}>
     <br></br>
     {/* For variant="text", adjust the height via font-size */}

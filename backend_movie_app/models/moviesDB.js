@@ -7,7 +7,8 @@ const {Schema}=mongoose;
 const dataSchema = new Schema({
     moviefromapi: {type:Object},
     totalMovieRatings:{type:Object},
-    totalWatched:{type:Number}
+    totalWatched:{type:Number},
+    addedDate:{type:Object},
 });
 
 module.exports =mongoose.model('movies',dataSchema);
