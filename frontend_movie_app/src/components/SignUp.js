@@ -11,15 +11,25 @@ const SignUp = () => {
     //const [NewUsername, setNewUsername] = useState('');
     const [NewPassword, setNewPassword] = useState('');
 
-const USER_REGEX = /^[a-zA-Z]/;
-const USER2_REGEX = /[A-z0-9_]{5,10}/;
-const USER3_REGEX = /[A-z0-9_]{10}/;
+const USER_REGEX = /^[A-z]/;
+const USER2_REGEX = /^[a-zA-Z0-9]{4,10}/;
+const USER3_REGEX = /[a-zA-Z0-9_#!$^&*\s]{10}/;//limit
+const USER4_REGEX = /[^a-zA-Z0-9_#!$^&*\s]/;//specials chars
+const USER5_REGEX = /[\s]/;//space
+
 
   const userRef = useRef();
   const errRef = useRef();
     
   const [user, setUser] = useState('');
   const [validName, setValidName] = useState(false);
+  const [validName2, setValidName2] = useState(false);
+  const [validName3, setValidName3] = useState(false);
+  const [validName4, setValidName4] = useState(false);
+  const [validName5, setValidName5] = useState(false);
+
+
+
   const [userFocus, setUserFocus] = useState(false);
   const [pwd, setPwd] = useState('');
   const [validPwd, setValidPwd] = useState(false);
@@ -39,10 +49,19 @@ const USER3_REGEX = /[A-z0-9_]{10}/;
     const result = USER_REGEX.test(user);
     const result2 = USER2_REGEX.test(user);
     const result3 = USER3_REGEX.test(user);
-    //console.log(result,result2,result3);
-    console.log(result,result2,!result3);
+    const result4 = USER4_REGEX.test(user);
+    const result5 = USER5_REGEX.test(user);
 
-   // setValidName(result);
+
+    //console.log(result,result2,result3);
+    console.log(result,result2,!result3,result4,result5);
+
+    setValidName(result);
+    setValidName2(result2);
+    setValidName3(result3);
+    setValidName4(result4);
+    setValidName5(result5);
+
 
     
 
@@ -95,8 +114,23 @@ const USER3_REGEX = /[A-z0-9_]{10}/;
 
         {user && !validName?   (<p>
           username must start with a letter
-          username must be more than 4 chars</p>):<></>}
+          </p>):<></>}
 
+          {user && !validName2?   (<p>
+        
+          username must be more than 4 chars</p>):<></>}
+          {user && validName3?   (<p>
+          username cant be more than 10</p>):<></>}
+
+          {user  && validName4?   (<p>
+          
+          username cant have @,(,),
+          </p>):<></>}
+
+          {user  && validName5?   (<p>
+          username cant have space
+          
+          </p>):<></>}
 
 
         <input className='Input' type='password'
