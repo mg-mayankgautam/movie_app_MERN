@@ -1701,8 +1701,8 @@ module.exports.updateBoxOffice = async(req,res)=>{
         const todaymillisec = todaysdate.getTime();
 
         const find = await moviesDB.findOne({_id:id},{addedDate:1, 'moviefromapi.imdbId':1, 'moviefromapi.top.releaseDate':1})
-        // const addeddate= (find.addedDate)
-        // const imdbId = (find.moviefromapi.imdbId);
+        const addeddate= (find.addedDate)
+        const imdbId = (find.moviefromapi.imdbId);
         const releasedateDB = find.moviefromapi.top.releaseDate;
 
         const releasedate = Date.parse(`${releasedateDB.year}/${releasedateDB.month}/${releasedateDB.day}`);
@@ -1712,33 +1712,39 @@ module.exports.updateBoxOffice = async(req,res)=>{
         // var d = Math.floor(milisecondsdiff / (1000*3600*24));
         // var sixmonthsago = todaysdate.setMonth(todaysdate.getMonth()- 6);
         const sixmonthsago = todaymillisec - 15724800000
-        console.log(sixmonthsago, releasedate)
+        // const threedaysago = todaysdate.setDate(todaysdate.getDate()- 3)
+        const threedaysago = todaymillisec - 259200000
+        console.log(todaysdate)
         
         if(sixmonthsago < releasedate){
-            console.log('buriiii')
+            // console.log(addeddate.getTime());
+
+            if(addeddate>threedaysago){//testing for ulta sign rn
+                console.log('here');
+
+                    const URL = `https://search.imdbot.workers.dev/?tt=${imdbId}`;
+
+                    fetch(URL)
+                    .then((res)=>{
+                        return res.json();
+                    })
+                    .then(async(boxoffice)=>{
+                        const update= boxoffice.main.worldwideGross.total.amount;
+                        console.log(update, todaysdate)
+                            
+                        // await moviesDB.findOneAndUpdate({_id:id},{'moviefromapi.main.worldwideGross.total.amount': update, addedDate: todaysdate}, {returnDocument: 'after'})
+
+                        // .then((saved)=>{res.send(saved.moviefromapi.main.worldwideGross.total.amount)})
+                        // .catch((e)=>{console.log(e)})
+                        })  
+                    .catch((err)=> {console.log(err)})
+
+            }
+
         }
         else{
-            console.log('buri')
+            console.log('movie older than 6 months')
         }
-
-        
-        
-        // const URL = `https://search.imdbot.workers.dev/?tt=${imdbId}`;
-
-        //     fetch(URL)
-        //     .then((res)=>{
-        //         return res.json();
-        //     })
-        //     .then(async(boxoffice)=>{
-        //         const update= boxoffice.main.worldwideGross.total.amount;
-        //         try{  
-        //             await moviesDB.updateOne({_id:id},{'moviefromapi.main.worldwideGross.total.amount': update})      
-        //         } 
-        //         catch(e){console.log(e);}
-                
-        //         })  
-        //     .catch((err)=> {console.log(err)})
-
     }
     catch(err){console.log(err)}
 }

@@ -114,6 +114,8 @@ const DisplayPost = ({posts}) => {
       const URL =  `http://localhost:4700/updateboxoffice?id=${id}`;
       //console.log('url',URL);
       const response = await axios.get(URL);
+      console.log('response', response);
+      setWorldwideGross(response.data);
     }
 
   catch (err) {
