@@ -15,6 +15,7 @@ router.get('/top10', movieController.getTop10);
 router.get('/boxoffice', movieController.getBoxOffice);
 router.get('/updateboxoffice', movieController.updateBoxOffice);
 
+router.post('/checkusername',authController.checkUsername);
 
 
 module.exports = router;

@@ -2,6 +2,15 @@ const usersDB = require("../models/usersDB.js");
 const ratingDB = require("../models/ratingsDB.js");
 
 
+module.exports.checkUsername =async(req,res)=>{
+
+    const Username = req.body.Username;
+        console.log('usgernamer',Username);
+    const user = await usersDB.findOne({Username},{Username:1});
+    console.log(user);
+    res.send({user});
+}
+
 
 module.exports.signUp = async (req,res)=>{
 
@@ -33,6 +42,9 @@ module.exports.signUp = async (req,res)=>{
 
 
 }
+
+
+
 
 module.exports.logIn = async (req,res)=>{
 
