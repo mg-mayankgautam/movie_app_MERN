@@ -1508,14 +1508,14 @@ module.exports.getMovies = async(req, res)=>{
 
 module.exports.getMovie=async(req,res)=>{
 
-    const {id} = req.query
-//console.log('req.session.Username',req.session.Username)
-//console.log('req)
+const {id} = req.query
+console.log('req.session.Username',req.session.Username)
+console.log('req')
 
 
 // const SUBSCRIPTION_KEY = '05490cd5747c46dca9afff0183e9a92f';
 
-// function bingWebSearch(query) {
+// function bingWebSearch(query,bingdata) {
 //   https.get({
 //     hostname: 'api.bing.microsoft.com',
 //     path:     '/v7.0/search?q=' + encodeURIComponent(query),
@@ -1526,11 +1526,14 @@ module.exports.getMovie=async(req,res)=>{
 //     res.on('end', () => {
 //       for (var header in res.headers) {
 //         if (header.startsWith("bingapis-") || header.startsWith("x-msedge-")) {
-//           console.log(header + ": " + res.headers[header])
+//          // console.log(header + ": " + res.headers[header])
 //         }
 //       }
-//       console.log('\nJSON Response:\n')
-//       console.dir(JSON.parse(body), { colors: false, depth: null })
+//     //  console.log('\nJSON Response:\n')
+//      bingdata=body;
+//       //console.dir(JSON.parse(body), { colors: false, depth: null })
+//       console.log(bingdata,'bindata')
+
 //     })
 //     res.on('error', e => {
 //       console.log('Error: ' + e.message)
@@ -1539,7 +1542,7 @@ module.exports.getMovie=async(req,res)=>{
 //   })
 // }
 
-// const query = 'SAG awards'
+// const query = 'hollywood'
 // bingWebSearch(query);
 
 

@@ -7,15 +7,17 @@ import { Link, useNavigate, useLocation } from 'react-router-dom';
 // const PWD_SIGNUP = /^[a-zA-Z0-9][a-zA-Z0-9-_]{8,23}$/;
 
 const SignUp = () => {
-
+  const navigate = useNavigate();
     //const [NewUsername, setNewUsername] = useState('');
-    const [NewPassword, setNewPassword] = useState('');
+   // const [NewPassword, setNewPassword] = useState('');
 
 const USER_REGEX = /^[A-z]/;
-const USER2_REGEX = /^[a-zA-Z0-9]{4,10}/;
-const USER3_REGEX = /[a-zA-Z0-9_#!$^&*\s]{10}/;//limit
+const USER2_REGEX = /^[a-zA-Z0-9]{4,10}/;//lower limit
+const USER3_REGEX = /[a-zA-Z0-9_#!$^&*\s]{10}/;//upperlimit
 const USER4_REGEX = /[^a-zA-Z0-9_#!$^&*\s]/;//specials chars
 const USER5_REGEX = /[\s]/;//space
+
+const PASS_REGEX = /^[a-zA-Z0-9_`~(){}#!%@$^&*\s\]\[\\\/+:;"'<>,.?=|-]{6,10}$/;
 
 
   const userRef = useRef();
@@ -28,6 +30,7 @@ const USER5_REGEX = /[\s]/;//space
   const [validName4, setValidName4] = useState(false);
   const [validName5, setValidName5] = useState(false);
 
+  const [userfromDB, setUserfromDB] = useState(false);
 
 
   const [userFocus, setUserFocus] = useState(false);
@@ -54,13 +57,13 @@ const USER5_REGEX = /[\s]/;//space
 
 
     //console.log(result,result2,result3);
-    console.log(result,result2,!result3,result4,result5);
+    console.log(result,result2,!result3,!result4,!result5);
 
     setValidName(result);
     setValidName2(result2);
     setValidName3(result3);
-    setValidName4(result4);
-    setValidName5(result5);
+    setValidName4(!result4);
+    setValidName5(!result5);
 
 
     
@@ -68,32 +71,79 @@ const USER5_REGEX = /[\s]/;//space
 
   }, [user])
 
+
+  useEffect(() => {
+
+     const result = PASS_REGEX.test(pwd);
+   
+
+    console.log(result);
+    // console.log(result,result2,!result3,!result4,!result5);
+
+    setValidPwd(result);
+    
+
+
+    
+
+
+  }, [pwd])
 // const validate =async()=>{
-//     console.log('axios');
-//     const Username=user;
+//   console.log('axios');
+//   const Username=user;
 //   try{const valid = await axios.post('http://localhost:4700/checkusername',{Username})
-// console.log(valid.data);
-// }
-// catch(err){console.log(err);}
+//   console.log(valid.data);
+//   setUserfromDB(valid.data.user)
+//   }
+//   catch(err){console.log(err);}
+
 // }  
 
-// if(validName){
+useEffect(()=>{
+  
+  const validate =async()=>{
+    console.log('axios');
+    const Username=user;
+    try{const valid = await axios.post('http://localhost:4700/checkusername',{Username})
+    console.log(valid.data);
+    setUserfromDB(valid.data.user)
+    }
+    catch(err){console.log(err);}
+  
+  }  
+
+  if(validName && validName2 && !validName3 && validName4 && validName5  ){
+  console.log('axios');
+  validate();
+  }
+},[user])
+// if(validName && validName2 && !validName3 && validName4 && validName5  ){
+//   console.log('axios');
 //   validate();
 // }
 
     const submitNewUser = async (e) => {
         e.preventDefault();
 
+
         //console.log(NewUsername,NewPassword);
         const Username=user;
-        const Password=NewPassword;
+        const Password=pwd;
 
+      if(user && pwd && !userfromDB && validPwd ){ 
+        console.log('sub,it succeess')
         try{
           const data = await axios.post('http://localhost:4700/signup',{Username,Password})
       
-          console.log(data);
+          console.log(data.data);
+          if(data.data){
+            navigate(`/login`)
+
+          }
       }
       catch(err){console.log(err);}
+     }
+      
     };
 
 
@@ -112,31 +162,41 @@ const USER5_REGEX = /[\s]/;//space
                onBlur={() => setUserFocus(false)}
         />
 
-        {user && !validName?   (<p>
+          {user && userfromDB && validName && validName2 && !validName3 && validName4 && validName5?   (<p>
+          user exists
+          </p>):<></>}          
+          {user && !userfromDB && validName && validName2 && !validName3 && validName4 && validName5?   (<p>
+            username available
+          </p>):<></>}
+          {user && !validName?   (<p>
           username must start with a letter
           </p>):<></>}
-
-          {user && !validName2?   (<p>
-        
+          {user && !validName2?   (<p>        
           username must be more than 4 chars</p>):<></>}
           {user && validName3?   (<p>
           username cant be more than 10</p>):<></>}
-
-          {user  && validName4?   (<p>
-          
+          {user  && !validName4?   (<p>          
           username cant have @,(,),
           </p>):<></>}
-
-          {user  && validName5?   (<p>
-          username cant have space
-          
+          {user  && !validName5?   (<p>
+          username cant have space          
           </p>):<></>}
 
 
-        <input className='Input' type='password'
+        <input 
+            className='Input' type='password'
             placeholder='password' 
-            onChange={(e)=>setNewPassword(e.target.value)}
+            onChange={(e)=>setPwd(e.target.value)}  
+            // ref={userRef}
+            autoComplete='off'
+            required
+            // onFocus={() => setUserFocus(true)}
+            // onBlur={() => setUserFocus(false)}
         />
+         {pwd  && !validPwd?   (<p>
+          pwd must be between 6-10 letters        
+          </p>):<></>}
+
         <button type="submit" className='Submit'>Submit</button>
     </form>
     

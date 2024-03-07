@@ -120,7 +120,7 @@ useEffect(() => {
                //console.log('url',URL);
                const response = await axios.get(URL);
 
-                //console.log(response.data);
+                console.log(response);
                if(!response.data.auth){
                     setmoviename(response.data.name)
                     setPlot(response.data.plot.plainText)

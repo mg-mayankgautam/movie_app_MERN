@@ -25,6 +25,7 @@ import { useState } from 'react';
 
 const Login = ({UserName,setUserName}) => {
 
+    const [error, seterror] = useState(false)
     axios.defaults.withCredentials = true;
     const {setAuth}=useAuth();
     //const location = useLocation();
@@ -42,15 +43,17 @@ const Login = ({UserName,setUserName}) => {
         try{const data = await axios.post('http://localhost:4700/login',{Username,Password})
         //    console.log('/a/a/a',data);
             const axiosdata = data.data
-          //  console.log('/a/a/a',axiosdata);
-           // if(bool){console.log(bool);
-            const user = axiosdata.Username;
+           console.log('/a/a/a',axiosdata);
+            if(!axiosdata){console.log('nikl loveday');
+            seterror(true);
+        }
+            else{            const user = axiosdata.Username;
                 setAuth({user});
                 console.log('after login',user);
                 setUserName(user);
                 // navigate('/');
                 
-                navigate(`${state.prev.pathname}`)
+                navigate(`${state.prev.pathname}`)}
                 // <Navigate to="/" state={{ from: location }} replace />
                 
              
@@ -97,6 +100,7 @@ const Login = ({UserName,setUserName}) => {
         
     </form>
     
+    {error?<p>nikl loveday</p>:<></>}
     <Link to={`/signUp`}>
            
                new user? click to signup

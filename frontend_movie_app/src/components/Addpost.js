@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useState } from 'react'
 import axios from 'axios';
 import { v4 as uuidv4 } from 'uuid';
@@ -6,8 +6,24 @@ import { v4 as uuidv4 } from 'uuid';
 //     baseURL: 'http://localhost:3500'
 // });
 
+
+
+
 const Addpost = ({handleSubmit, postTitle, setPostTitle, postBody, setPostBody}) => {
+ 
+  useEffect(() => {
     
+  
+  const getblogdata =async () => {
+    try{
+      const data =await axios.get('http://localhost:4700/getblogs')
+      console.log(data);
+    }
+    catch(error){console.log(error)}}
+  
+    getblogdata();
+
+  }, [])
     //console.log(postTitle,postBody);
   return (
     <div className='Blog'>

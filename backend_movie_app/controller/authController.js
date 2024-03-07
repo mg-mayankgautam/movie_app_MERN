@@ -30,7 +30,7 @@ module.exports.signUp = async (req,res)=>{
 
 
                      console.log('rating added success');
-                    res.redirect('/');
+                    res.send(true);
                      })
                        .catch(err =>{console.log(err);});
         
@@ -106,6 +106,7 @@ module.exports.isauth=async (req,res)=>{
 
 
 }
+
 
 
 
