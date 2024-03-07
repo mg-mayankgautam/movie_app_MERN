@@ -14,6 +14,7 @@ import TabContext from '@mui/lab/TabContext';
 import TabPanel from '@mui/lab/TabPanel';
 import Skeleton from '@mui/material/Skeleton';
 import Stack from '@mui/material/Stack';
+import {Visibility, Star} from '@mui/icons-material';
 
 const StyledTabs = styled((props) => (
   <Tabs
@@ -245,7 +246,10 @@ useEffect(()=>{
       {/* <Link to={`/post/${post.id}`}> */}
         <img src={MoviePoster} alt="poster"  className='movieImg' />
         {/* </Link> */}
-        <section>Avg Stars: {AvgRating}, Views: {totalWatched} </section>
+        <section className='avgRatingDiv'>
+            <div className='avgRating'> <Star/> {AvgRating} </div> 
+            <div className='avgRating'><Visibility/> {totalWatched} </div>
+        </section>
     </article>
 
     <article className='AboutMovie'>
@@ -313,21 +317,27 @@ useEffect(()=>{
               <UserPanel moviename={moviename} Release_date={Release_date}  MoviePoster={MoviePoster} Directors={Directors}/>
             :
                 <div className='PanelnotLogin'>
-                  <div className='PanelnotLoginDiv'>
+              
                     <Link to="/login" state={{prev:location}} >Login to Rate, Review, Add!</Link>
-                  </div>
+
                 </div>
             }
 
           <div className='PanelnotLogin'>
-              <div className='PanelnotLoginDiv'>
-                    <p>BOX OFFICE!</p>
-                    <div>worldwide: $ {WorldwideGross} million</div>
-                    <div>budget: $ {ProductionBudget} million</div>
-                    <div>updated on: {AddedDate}</div>
+
+                    <div className='boxofficeHeading'>BOX OFFICE!</div>
+                    <div className='boxofficeText'>
+                      worldwide: $ {WorldwideGross} mil
+                    </div>
+                    <div className='boxofficeText'>
+                      budget: $ {ProductionBudget} mil
+                    </div>
+                    <div className='boxofficeText'>
+                      updated on: {AddedDate}
+                    </div>
                     <br />
-                    <button onClick={()=> updateBoxOffice()}>click to get updated data</button>
-              </div>
+                    <button className='updateboxofficeBtn' onClick={()=> updateBoxOffice()}>click to get updated data</button>
+          
           </div>
       </div>
   </section>

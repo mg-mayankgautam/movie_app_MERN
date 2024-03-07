@@ -201,7 +201,7 @@ a{text-decoration: none; color: #f39a9a;}
   justify-content: space-around;
   gap: 48px;
   margin: 130px 20px 50px;
-  max-width: 950px;
+  max-width: 1000px;
   text-align: left;
   /* flex-wrap: wrap; */
 }
@@ -214,6 +214,21 @@ a{text-decoration: none; color: #f39a9a;}
   border: 1.5px solid transparent;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 cursor: pointer;
+}
+
+.avgRatingDiv{
+  display:flex; 
+  align-items:center; 
+  gap: 30px; 
+  flex-direction: row;
+  padding-left: 8px;
+}
+
+.avgRating{
+  color: #f39a9a;
+  display: flex;
+  align-items: center;
+  gap:8px;
 }
 
 .AboutMovie{
@@ -280,9 +295,16 @@ cursor: pointer;
  box-shadow:rgba(0, 0, 0, 0.35) 0px 5px 15px;
  width: 200px;
  min-height: 50px;
+ text-align: center;
 }
 /* .PanelnotLoginDiv{
 } */
+.boxofficeText{
+  font-weight: 200;
+}
+.boxofficeHeading{
+  margin-bottom: 5px;
+}
 
 .signup{
   margin-top: 40vh;

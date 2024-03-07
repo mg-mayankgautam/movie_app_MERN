@@ -283,11 +283,11 @@ const UserPanel = (props) => {
                 <TabPanel value="1" sx={{p:0, bgcolor:'rgb(23, 29, 57)',fontFamily:'Montserrat', color:'white'}}>
                     <DialogContent dividers sx={{display:'flex', gap:'15px', flexDirection:'column'}}>
                       <Box sx={{display:'flex', justifyContent:'space-between'}}>
-                        <Box gutterBottom sx={{display:'flex', alignItems:'center'}}><AddIcon/>New List</Box> 
-                        <Box sx={{display:'flex', alignItems:'center'}}><InputBase sx={{color:'white', align:'right'}}/><SearchIcon/></Box>
+                          <Box gutterBottom sx={{display:'flex', alignItems:'center'}}><AddIcon/>New List</Box> 
+                          <Box sx={{display:'flex', alignItems:'center'}}><InputBase sx={{color:'white', align:'right'}}/><SearchIcon/></Box>
                       </Box>
                       <Box sx={{display:'flex', justifyContent:'space-between'}}>
-                        <Box>Hard Hitting Dramas</Box><Box>25 films</Box>
+                          <Box>Hard Hitting Dramas</Box><Box>25 films</Box>
                       </Box>
                       <Box sx={{display:'flex', justifyContent:'space-between'}}>
                         <Box>Hard Hitting Dramas</Box><Box>25 films</Box>
