@@ -4,19 +4,28 @@ import useAuth from "../hook/useAuth";
 import {Add, Star} from '@mui/icons-material';
 import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
 import VisibilityIcon from '@mui/icons-material/Visibility';
-// import AddToQueueIcon from '@mui/icons-material/AddToQueue';
-// import AddToQueueTwoToneIcon from '@mui/icons-material/AddToQueueTwoTone';
-// import RemoveFromQueueOutlinedIcon from '@mui/icons-material/RemoveFromQueueOutlined';
 import PlaylistAddOutlinedIcon from '@mui/icons-material/PlaylistAddOutlined';
 import PlaylistAddCheckOutlinedIcon from '@mui/icons-material/PlaylistAddCheckOutlined';
 import Rating from '@mui/material/Rating';
 import Box from '@mui/material/Box';
 import ClearIcon from '@mui/icons-material/Clear';
-
 import axios from 'axios'
-//import { flushSync } from 'react-dom'; 
 import { useParams, Link } from "react-router-dom";
-
+import Button from '@mui/material/Button';
+import { styled } from '@mui/material/styles';
+import Dialog from '@mui/material/Dialog';
+import DialogTitle from '@mui/material/DialogTitle';
+import DialogContent from '@mui/material/DialogContent';
+import DialogActions from '@mui/material/DialogActions';
+import IconButton from '@mui/material/IconButton';
+import CloseIcon from '@mui/icons-material/Close';
+import Typography from '@mui/material/Typography';
+import Tabs from '@mui/material/Tabs';
+import Tab from '@mui/material/Tab';
+import TabContext from '@mui/lab/TabContext';
+import TabPanel from '@mui/lab/TabPanel';
+import ToggleButton from '@mui/material/ToggleButton';
+import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 
 
 const labels = {
@@ -62,7 +71,21 @@ const UserPanel = (props) => {
   const [style4, setStyle4] = React.useState({display: 'block'});
   const { id } = useParams();
   const StarRating = useRef(0);
-  
+  const [open, setOpen] = React.useState(false);
+  const handleChange = (event, newValue) => { setValue(newValue);};
+
+  const [alignment, setAlignment] = React.useState('web');
+
+  const handleChangee = (event, newAlignment) => {
+    setAlignment(newAlignment);
+  };
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+  const handleClose = () => {
+    setOpen(false);
+  };  
   
   const handleWatched =async()=>{
 
@@ -150,7 +173,7 @@ const UserPanel = (props) => {
   return (
     // auth?.user
     //         ? 
-    <Box sx={{p:2, bgcolor:'#ffffff15', display:'flex', alignItems:'center', flexDirection:'column', borderRadius:'8px', gap: '10px', height:'max-content', width: 220, boxShadow:'rgba(0, 0, 0, 0.35) 0px 5px 15px'}}>
+    <Box sx={{p:2, bgcolor:'#ffffff15', display:'flex', alignItems:'center', flexDirection:'column', borderRadius:'8px', gap: '10px', height:'max-content', width: 200, boxShadow:'rgba(0, 0, 0, 0.35) 0px 5px 15px'}}>
 
         <Box sx={{display:'flex', justifyContent:'space-evenly', width: '100%'}}>
             
@@ -192,7 +215,7 @@ const UserPanel = (props) => {
             </div>
         </Box>
 
-        <Box sx={{ width: 220, display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+        <Box sx={{ width: 200, display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
             <ClearIcon onClick={()=> handleRating(0)} sx={{cursor:'pointer'}}/>
             <Rating
                 name="hover-feedback"
@@ -216,26 +239,85 @@ const UserPanel = (props) => {
             <Box sx={{ ml: 2 }}> {labels[hover !== -1 ? hover : value]} </Box>
         )} */}
         </Box>
+
+        <Box sx={{ width: 200, display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+           
+                     
+        <>
+            <Button onClick={handleClickOpen}>
+              Add to lists...
+            </Button>
+            <Dialog 
+              onClose={handleClose}
+              aria-labelledby="customized-dialog-title"
+              open={open}
+              transitionDuration={1}
+            >
+              <DialogTitle sx={{ m: 0, p: 2 }} id="customized-dialog-title">
+                      add movie to list
+              </DialogTitle>
+              <IconButton
+                aria-label="close"
+                onClick={handleClose}
+                sx={{
+                  position: 'absolute',
+                  right: 8,
+                  top: 8,
+                  color: (theme) => theme.palette.grey[500],
+                }}
+              >
+                <CloseIcon />
+              </IconButton>
+              <TabContext value={value}>
+                <Tabs onChange={handleChange} value={value}>
+                  <Tab label="Private" value="1"/>
+                  <Tab label="Public" value="2"/>
+                </Tabs>
+                {/* <ToggleButtonGroup
+                    color="primary"
+                    value={alignment}
+                    exclusive
+                    onChange={handleChangee}
+                    aria-label="Platform"
+                  >
+                    <ToggleButton value="web">Web</ToggleButton>
+                    <ToggleButton value="android">Android</ToggleButton>
+                    <ToggleButton value="ios">iOS</ToggleButton>
+                  </ToggleButtonGroup> */}
+                              
+                <TabPanel value="1" sx={{p:0, display:'flex', flexWrap:'wrap'}}>
+                    <DialogContent dividers>
+                      <Typography gutterBottom>
+                        Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
+                        dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac
+                        consectetur ac, vestibulum at eros.
+                      </Typography>
+                    </DialogContent>
+                </TabPanel>
+
+                <TabPanel value="2" sx={{p:0, display:'flex', flexWrap:'wrap'}}>
+                    <DialogContent dividers>
+                      <Typography gutterBottom>
+                        Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
+                        dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac
+                        consectetur ac, vestibulum at eros.
+                      </Typography>
+                    </DialogContent>
+                </TabPanel>
+             </TabContext>
+             <DialogActions>
+                <Button autoFocus onClick={handleClose}>
+                    Save changes
+                </Button>
+              </DialogActions>
+            </Dialog>
+          </>
+            
+        </Box>
   
   </Box>
             
                 
-  
-
-                // {/*  */}
-
-  // <Box sx={{p:2, bgcolor:'#ffffff15', display:'flex', alignItems:'center', flexDirection:'column', borderRadius:'8px', gap: '10px', justifyContent:'center',height:'max-content', width: 220,  boxShadow:'rgba(0, 0, 0, 0.35) 0px 5px 15px'}}>
-
-  //       {/* <button onClick={<Navigate to="/login" state={{ from: location }} replace />}>
-  //       Login to Rate, Review, Add!
-  //       </button> */}
-  //       <Box sx={{width:222, minHeight:50, display:'flex', alignItems:'center', gap: '10px', justifyContent:'center'}}>
-          
-  //       <Link to="/login" state={{prev:location}} >Login to Rate, Review, Add!</Link>
-  //       </Box>
-        
-
-  // </Box>
   )
 }
 

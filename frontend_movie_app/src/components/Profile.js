@@ -133,6 +133,8 @@ const Profile = () => {
             <StyledTabs onChange={handleChange} value={value}>
               <StyledTab label="FILMS" value="1"/>
               <StyledTab label="WATCHLIST" value="2"/>
+              <StyledTab label="LISTS" value="3"/>
+
             </StyledTabs>
 
             <TabPanel value="1" sx={{p:0, display:'flex', flexWrap:'wrap'}}>
@@ -163,6 +165,22 @@ const Profile = () => {
                 : (
                   <p style={{ marginTop: "2rem" }}>
                           No movies to display.
+                  </p>
+                  )}
+                </div>  
+            </TabPanel>
+
+            <TabPanel value="3" sx={{p:0, display:'flex', flexWrap:'wrap'}}>
+              <div className='userMovies'>
+                {UserWL.length ? (
+                      UserWL.map(Movie => (
+                        <UserMovie Movie ={Movie} key={Movie.movie}/>
+                      ))
+                  ) 
+                  
+                : (
+                  <p style={{ marginTop: "2rem" }}>
+                          NO LISTS TO DISPLAY
                   </p>
                   )}
                 </div>  
