@@ -1684,13 +1684,70 @@ module.exports.getBoxOffice = async(req,res)=>{
         let movie= await moviesDB.find({_id:id})
         
         // console.log(movie[0].moviefromapi.main)
-        const lifetimeGross = movie[0].moviefromapi.main.lifetimeGross.total.amount;
+        // const lifetimeGross = movie[0].moviefromapi.main.lifetimeGross.total.amount;
         const worldwideGross =movie[0].moviefromapi.main.worldwideGross.total.amount;
-        const openingWeekendGross = movie[0].moviefromapi.main.openingWeekendGross.gross.total.amount;
+        const productionBudget = movie[0].moviefromapi.main.productionBudget.budget.amount;
         const addedDate = movie[0].addedDate;
-        console.log(lifetimeGross, worldwideGross, openingWeekendGross, addedDate)
+        const seconds =addedDate.getTime()
+        // console.log(seconds)
 
-        res.send({lifetimeGross, worldwideGross, openingWeekendGross, addedDate});
+        res.send({ worldwideGross, productionBudget, addedDate, seconds});
+    }
+    catch(err){console.log(err)}
+}
+
+
+module.exports.updateBoxOffice = async(req,res)=>{
+    const id = req.query.id;
+    try{
+        const todaysdate = new Date();
+        const todaymillisec = todaysdate.getTime();
+
+        const find = await moviesDB.findOne({_id:id},{addedDate:1, 'moviefromapi.imdbId':1, 'moviefromapi.top.releaseDate':1})
+        const addeddate= (find.addedDate)
+        const imdbId = (find.moviefromapi.imdbId);
+        const releasedateDB = find.moviefromapi.top.releaseDate;
+
+        const releasedate = Date.parse(`${releasedateDB.year}/${releasedateDB.month}/${releasedateDB.day}`);
+        // var releasedateobj = new Date(releasedate);
+        // milisecondsdiff = (todaysdate.getTime()-releasedateobj.getTime());
+        // daysdiff=(secondsdiff/3600*24);
+        // var d = Math.floor(milisecondsdiff / (1000*3600*24));
+        // var sixmonthsago = todaysdate.setMonth(todaysdate.getMonth()- 6);
+        const sixmonthsago = todaymillisec - 15724800000
+        // const threedaysago = todaysdate.setDate(todaysdate.getDate()- 3)
+        const threedaysago = todaymillisec - 259200000
+        console.log(todaysdate)
+        
+        if(sixmonthsago < releasedate){
+            // console.log(addeddate.getTime());
+
+            if(addeddate>threedaysago){//testing for ulta sign rn
+                console.log('here');
+
+                    const URL = `https://search.imdbot.workers.dev/?tt=${imdbId}`;
+
+                    fetch(URL)
+                    .then((res)=>{
+                        return res.json();
+                    })
+                    .then(async(boxoffice)=>{
+                        const update= boxoffice.main.worldwideGross.total.amount;
+                        console.log(update, todaysdate)
+                            
+                        // await moviesDB.findOneAndUpdate({_id:id},{'moviefromapi.main.worldwideGross.total.amount': update, addedDate: todaysdate}, {returnDocument: 'after'})
+
+                        // .then((saved)=>{res.send(saved.moviefromapi.main.worldwideGross.total.amount)})
+                        // .catch((e)=>{console.log(e)})
+                        })  
+                    .catch((err)=> {console.log(err)})
+
+            }
+
+        }
+        else{
+            console.log('movie older than 6 months')
+        }
     }
     catch(err){console.log(err)}
 }

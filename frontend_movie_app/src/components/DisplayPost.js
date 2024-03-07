@@ -102,15 +102,33 @@ const DisplayPost = ({posts}) => {
   const [Genres, setGenres] = useState('');
   const [AvgRating, setAvgRating] = useState('');
   const [totalWatched, setTotalWatched] = useState('');
-  const [LifetimeGross, setLifetimeGross] = useState('');
   const [WorldwideGross, setWorldwideGross] = useState('');
-  const [OpeningWeekendGross, setOpeningWeekendGross] = useState('');
+  const [ProductionBudget, setProductionBudget] = useState('');
   const [AddedDate, setAddedDate] = useState('');
 
 
   const { id } = useParams();
-  // const post = posts.find(post => (post.id).toString() === id);
+  
+  const updateBoxOffice = async ()=>{
+    try {
+      const URL =  `http://localhost:4700/updateboxoffice?id=${id}`;
+      //console.log('url',URL);
+      const response = await axios.get(URL);
+      console.log('response', response);
+      setWorldwideGross(response.data);
+    }
 
+  catch (err) {
+    if (err.response) {
+      // Not in the 200 response range 
+      console.log(err.response.data);
+      console.log(err.response.status);
+      console.log(err.response.headers);
+    } else {
+      console.log(`Error: ${err.message}`);
+    }
+  }
+}
 
 
 useEffect(() => {
@@ -121,6 +139,7 @@ useEffect(() => {
                const response = await axios.get(URL);
 
                 console.log(response);
+                // console.log(response.data);
                if(!response.data.auth){
                     setmoviename(response.data.name)
                     setPlot(response.data.plot.plainText)
@@ -130,14 +149,13 @@ useEffect(() => {
                     setactors(response.data.allcast)
                     setDirectors(response.data.director)
                     setGenres(response.data.genres.genres)
-                    const totalStars = response.data.movierating.totalStars;
-                    const totalRatedBy =response.data.movierating.totalRatedBy;
-                    if(totalRatedBy!=0){
-                      const Avg=(totalStars/totalRatedBy)
-                      console.log(Avg, AvgRating)
+                    setTotalWatched(response.data.totalwatched)
+                    const movierating = response.data.movierating;
+                    if(movierating.totalRatedBy!=0){
+                      const Avg=(movierating.totalStars/ movierating.totalRatedBy)
+                      console.log(Avg)
                       setAvgRating(Avg);
                     }
-                    setTotalWatched(response.data.totalwatched)
                   }
 
 
@@ -154,14 +172,14 @@ useEffect(() => {
                     setactors(response.data.allcast)
                     setDirectors(response.data.director)
                     setGenres(response.data.genres.genres)
-                    const totalStars = response.data.movierating.totalStars;
-                    const totalRatedBy =response.data.movierating.totalRatedBy;
-                    if(totalRatedBy!=0){
-                      const Avg=(totalStars/totalRatedBy)
-                      // console.log(Avg)
+                    setTotalWatched(response.data.totalwatched)
+                    // console.log(response.data.movierating)
+                    const movierating = response.data.movierating;
+                    if(movierating.totalRatedBy!=0){
+                      const Avg=(movierating.totalStars/ movierating.totalRatedBy)
+                      console.log(Avg)
                       setAvgRating(Avg);
                     }
-                    setTotalWatched(response.data.totalwatched)
                  }   
           
         } catch (err) {
@@ -190,13 +208,15 @@ useEffect(()=>{
            
           const response = await axios.get(URL);
 
-          console.log(response.data);
-          setLifetimeGross(response.data.lifetimeGross)
-          setWorldwideGross(response.data.worldwideGross)
-          setOpeningWeekendGross(response.data.openingWeekendGross)
-          setAddedDate(response.data.addedDate)
+          const gross = response.data.worldwideGross/1000000;
+          const budget = response.data.productionBudget/1000000;
+          setWorldwideGross(gross.toFixed(1))
+          setProductionBudget(budget.toFixed(1))
+          setAddedDate(response.data.addedDate.slice(0, 10))
+          // const todaysdate = new Date().getTime();
+          // const updatedon = (response.data.seconds);
+          // console.log((todaysdate-updatedon)/(60*60*24*))
 
-           
     } catch (err) {
             if (err.response) {
               // Not in the 200 response range 
@@ -210,12 +230,10 @@ useEffect(()=>{
   }
 
 
-
   getBoxOfficeData();
 
 },[moviename]);
-//line 270
- //console.log(actors);
+
 
   return ( 
  
@@ -227,7 +245,7 @@ useEffect(()=>{
       {/* <Link to={`/post/${post.id}`}> */}
         <img src={MoviePoster} alt="poster"  className='movieImg' />
         {/* </Link> */}
-        <section>Avg Stars: {AvgRating}, Views: {totalWatched}</section>
+        <section>Avg Stars: {AvgRating}, Views: {totalWatched} </section>
     </article>
 
     <article className='AboutMovie'>
@@ -304,10 +322,11 @@ useEffect(()=>{
           <div className='PanelnotLogin'>
               <div className='PanelnotLoginDiv'>
                     <p>BOX OFFICE!</p>
-                    <div>lifetime: $ {LifetimeGross}</div>
-                    <div>worldwide: $ {WorldwideGross}</div>
-                    <div>opening wknd: $ {OpeningWeekendGross}</div>
+                    <div>worldwide: $ {WorldwideGross} million</div>
+                    <div>budget: $ {ProductionBudget} million</div>
                     <div>updated on: {AddedDate}</div>
+                    <br />
+                    <button onClick={()=> updateBoxOffice()}>click to get updated data</button>
               </div>
           </div>
       </div>
