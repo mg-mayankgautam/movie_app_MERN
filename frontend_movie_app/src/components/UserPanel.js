@@ -26,6 +26,9 @@ import TabContext from '@mui/lab/TabContext';
 import TabPanel from '@mui/lab/TabPanel';
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
+import AddIcon from '@mui/icons-material/Add';
+import SearchIcon from '@mui/icons-material/Search';
+import { InputBase, TextField } from '@mui/material';
 
 
 const labels = {
@@ -72,7 +75,8 @@ const UserPanel = (props) => {
   const { id } = useParams();
   const StarRating = useRef(0);
   const [open, setOpen] = React.useState(false);
-  const handleChange = (event, newValue) => { setValue(newValue);};
+  const [tabValue, setTabValue] = React.useState('1');
+  const handleChange = (event, newValue) => { setTabValue(newValue);};
 
   const [alignment, setAlignment] = React.useState('web');
 
@@ -252,9 +256,10 @@ const UserPanel = (props) => {
               aria-labelledby="customized-dialog-title"
               open={open}
               transitionDuration={1}
+              // sx={{width:'600px'}}
             >
-              <DialogTitle sx={{ m: 0, p: 2 }} id="customized-dialog-title">
-                      add movie to list
+              <DialogTitle sx={{ m: 0, p: 2, fontFamily:'Montserrat', bgcolor:'rgb(23, 29, 57)', color:"white"}}id="customized-dialog-title" >
+                      Add Movie to List:
               </DialogTitle>
               <IconButton
                 aria-label="close"
@@ -268,44 +273,55 @@ const UserPanel = (props) => {
               >
                 <CloseIcon />
               </IconButton>
-              <TabContext value={value}>
-                <Tabs onChange={handleChange} value={value}>
-                  <Tab label="Private" value="1"/>
-                  <Tab label="Public" value="2"/>
+              <TabContext value={tabValue}>
+
+                <Tabs onChange={handleChange} value={tabValue} centered sx={{fontFamily:'Montserrat', bgcolor:'rgb(23, 29, 57)'}}>
+                  <Tab label="Private" value="1" sx={{width:'250px',height:'10px' ,fontFamily:'Montserrat', color:'white'}}/>
+                  <Tab label="Public" value="2" sx={{width:'250px',height:'10px' ,fontFamily:'Montserrat', color:'white'}}/>
                 </Tabs>
-                {/* <ToggleButtonGroup
-                    color="primary"
-                    value={alignment}
-                    exclusive
-                    onChange={handleChangee}
-                    aria-label="Platform"
-                  >
-                    <ToggleButton value="web">Web</ToggleButton>
-                    <ToggleButton value="android">Android</ToggleButton>
-                    <ToggleButton value="ios">iOS</ToggleButton>
-                  </ToggleButtonGroup> */}
                               
-                <TabPanel value="1" sx={{p:0, display:'flex', flexWrap:'wrap'}}>
-                    <DialogContent dividers>
-                      <Typography gutterBottom>
-                        Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
-                        dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac
-                        consectetur ac, vestibulum at eros.
-                      </Typography>
+                <TabPanel value="1" sx={{p:0, bgcolor:'rgb(23, 29, 57)',fontFamily:'Montserrat', color:'white'}}>
+                    <DialogContent dividers sx={{display:'flex', gap:'15px', flexDirection:'column'}}>
+                      <Box sx={{display:'flex', justifyContent:'space-between'}}>
+                        <Box gutterBottom sx={{display:'flex', alignItems:'center'}}><AddIcon/>New List</Box> 
+                        <Box sx={{display:'flex', alignItems:'center'}}><InputBase sx={{color:'white', align:'right'}}/><SearchIcon/></Box>
+                      </Box>
+                      <Box sx={{display:'flex', justifyContent:'space-between'}}>
+                        <Box>Hard Hitting Dramas</Box><Box>25 films</Box>
+                      </Box>
+                      <Box sx={{display:'flex', justifyContent:'space-between'}}>
+                        <Box>Hard Hitting Dramas</Box><Box>25 films</Box>
+                      </Box>
+                      <Box sx={{display:'flex', justifyContent:'space-between'}}>
+                        <Box>Hard Hitting Dramas</Box><Box>25 films</Box>
+                      </Box>
+
                     </DialogContent>
                 </TabPanel>
 
-                <TabPanel value="2" sx={{p:0, display:'flex', flexWrap:'wrap'}}>
-                    <DialogContent dividers>
-                      <Typography gutterBottom>
-                        Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
-                        dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac
-                        consectetur ac, vestibulum at eros.
+                <TabPanel value="2" sx={{p:0, bgcolor:'rgb(23, 29, 57)',fontFamily:'Montserrat', color:'white'}}>
+                <DialogContent dividers sx={{display:'flex', gap:'15px', flexDirection:'column'}}>
+                      <Box sx={{display:'flex', justifyContent:'space-between'}}>
+                        <Box gutterBottom sx={{display:'flex', alignItems:'center'}}><AddIcon/>New List </Box> 
+                        <Box sx={{display:'flex', alignItems:'center'}}><InputBase sx={{color:'white', align:'right'}}/><SearchIcon/></Box>
+                      </Box>
+                      <Box sx={{display:'flex', justifyContent:'space-between'}}>
+                        <Box>Hard Hitting Dramas</Box><Box>25 films</Box>
+                      </Box>
+                      <Box sx={{display:'flex', justifyContent:'space-between'}}>
+                        <Box>Hard Hitting Dramas</Box><Box>25 films</Box>
+                      </Box>
+                      <Box sx={{display:'flex', justifyContent:'space-between'}}>
+                        <Box>Hard Hitting Dramas</Box><Box>25 films</Box>
+                      </Box>
+
+                      <Typography gutterBottom sx={{fontFamily:'Montserrat', color:'white'}}>
+                        
                       </Typography>
                     </DialogContent>
                 </TabPanel>
              </TabContext>
-             <DialogActions>
+             <DialogActions sx={{bgcolor:'rgb(23, 29, 57)', color:'white'}}>
                 <Button autoFocus onClick={handleClose}>
                     Save changes
                 </Button>
