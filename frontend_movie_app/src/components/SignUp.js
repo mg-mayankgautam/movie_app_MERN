@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import { useState,useRef,useEffect } from 'react';
-import { Link, useNavigate, useLocation } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';import image from './utils/login.png';
 
 // const USER_SIGNUP = /^[a-zA-Z][a-zA-Z0-9-_]{3,23}$/;
 // const PWD_SIGNUP = /^[a-zA-Z0-9][a-zA-Z0-9-_]{8,23}$/;
@@ -32,16 +32,12 @@ const PASS_REGEX = /^[a-zA-Z0-9_`~(){}#!%@$^&*\s\]\[\\\/+:;"'<>,.?=|-]{6,10}$/;
 
   const [userfromDB, setUserfromDB] = useState(false);
 
-
   const [userFocus, setUserFocus] = useState(false);
   const [pwd, setPwd] = useState('');
   const [validPwd, setValidPwd] = useState(false);
-  const [pwdFocus, setPwdFocus] = useState(false);
-  const [matchPwd, setMatchPwd] = useState('');
-  const [validMatch, setValidMatch] = useState(false);
-  const [matchFocus, setMatchFocus] = useState(false);
-  const [errMsg, setErrMsg] = useState('');
-  const [success, setSuccess] = useState(false);
+  // const [pwdFocus, setPwdFocus] = useState(false);
+  const [inputStyle, setinputStyle] = useState('');
+  const [inputStyle1, setinputStyle1] = useState('');
 
   useEffect(() => {
       userRef.current.focus();
@@ -55,8 +51,6 @@ const PASS_REGEX = /^[a-zA-Z0-9_`~(){}#!%@$^&*\s\]\[\\\/+:;"'<>,.?=|-]{6,10}$/;
     const result4 = USER4_REGEX.test(user);
     const result5 = USER5_REGEX.test(user);
 
-
-    //console.log(result,result2,result3);
     console.log(result,result2,!result3,!result4,!result5);
 
     setValidName(result);
@@ -64,10 +58,6 @@ const PASS_REGEX = /^[a-zA-Z0-9_`~(){}#!%@$^&*\s\]\[\\\/+:;"'<>,.?=|-]{6,10}$/;
     setValidName3(result3);
     setValidName4(!result4);
     setValidName5(!result5);
-
-
-    
-
 
   }, [user])
 
@@ -81,23 +71,9 @@ const PASS_REGEX = /^[a-zA-Z0-9_`~(){}#!%@$^&*\s\]\[\\\/+:;"'<>,.?=|-]{6,10}$/;
     // console.log(result,result2,!result3,!result4,!result5);
 
     setValidPwd(result);
-    
-
-
-    
-
 
   }, [pwd])
-// const validate =async()=>{
-//   console.log('axios');
-//   const Username=user;
-//   try{const valid = await axios.post('http://localhost:4700/checkusername',{Username})
-//   console.log(valid.data);
-//   setUserfromDB(valid.data.user)
-//   }
-//   catch(err){console.log(err);}
 
-// }  
 
 useEffect(()=>{
   
@@ -116,13 +92,36 @@ useEffect(()=>{
   console.log('axios');
   validate();
   }
+
 },[user])
+
+useEffect(() => {
+  if (pwd) {
+    if (!validPwd) {
+      setinputStyle('invalid');
+    } else {
+      setinputStyle('valid');
+    }
+  }
+}, [pwd, validPwd]);
+
+useEffect(()=> {
+  if(user){
+    if(validName && validName2 && !validName3 && validName4 && validName5 && !userfromDB){
+      setinputStyle1('valid')
+    }
+    else{
+      setinputStyle1('invalid')
+    }
+  }  
+}, [user,validName, validName2, validName3, validName4, validName5, userfromDB ])
+
 // if(validName && validName2 && !validName3 && validName4 && validName5  ){
 //   console.log('axios');
 //   validate();
 // }
 
-    const submitNewUser = async (e) => {
+const submitNewUser = async (e) => {
         e.preventDefault();
 
 
@@ -144,74 +143,83 @@ useEffect(()=>{
       catch(err){console.log(err);}
      }
       
-    };
+};
 
 
   return (
-    <div className="signup">this is the SignUp page
+    <>
+    <div className='signupContainer'>
+      <img src={image} alt="" className='LoginBg' />
     
-    <form  onSubmit={submitNewUser}>
-        <input className='Input'
-               type='text'    
-               placeholder='username'
-               onChange={(e)=>setUser(e.target.value)}
-               ref={userRef}
-               autoComplete='off'
-               required
-               onFocus={() => setUserFocus(true)}
-               onBlur={() => setUserFocus(false)}
-        />
 
-          {user && userfromDB && validName && validName2 && !validName3 && validName4 && validName5?   (<p>
-          user exists
-          </p>):<></>}          
-          {user && !userfromDB && validName && validName2 && !validName3 && validName4 && validName5?   (<p>
-            username available
-          </p>):<></>}
-          {user && !validName?   (<p>
-          username must start with a letter
-          </p>):<></>}
-          {user && !validName2?   (<p>        
-          username must be more than 4 chars</p>):<></>}
-          {user && validName3?   (<p>
-          username cant be more than 10</p>):<></>}
-          {user  && !validName4?   (<p>          
-          username cant have @,(,),
-          </p>):<></>}
-          {user  && !validName5?   (<p>
-          username cant have space          
-          </p>):<></>}
+      <div className="signup">
+        <h2>SignUp</h2>
+      
+      <form  onSubmit={submitNewUser} className='signupForm'>
 
+        <div className='UsernameDiv'>
+          <input className={`Input ${inputStyle1}`}
+                type='text'    
+                placeholder='username'
+                onChange={(e)=>setUser(e.target.value)}
+                ref={userRef}
+                autoComplete='off'
+                required
+                onFocus={() => setUserFocus(true)}
+                onBlur={() => setUserFocus(false)}
+          />
 
-        <input 
-            className='Input' type='password'
-            placeholder='password' 
-            onChange={(e)=>setPwd(e.target.value)}  
-            // ref={userRef}
-            autoComplete='off'
-            required
-            // onFocus={() => setUserFocus(true)}
-            // onBlur={() => setUserFocus(false)}
-        />
-         {pwd  && !validPwd?   (<p>
-          pwd must be between 6-10 letters        
-          </p>):<></>}
+            {user && userfromDB && validName && validName2 && !validName3 && validName4 && validName5?   (<p>
+            user exists
+            </p>):<></>}          
+            {user && !userfromDB && validName && validName2 && !validName3 && validName4 && validName5?   (<p style={{color:'#299158'}}>
+              username available
+            </p>):<></>}
+            {user && !validName?   (<p>
+            username must start with a letter
+            </p>):<></>}
+            {user && !validName2?   (<p> username must be more than 4 chars</p>):<></>}
+            {user && validName3?   (<p> username cant be more than 10</p>):<></>}
+            {user  && !validName4?   (<p>          
+            username cant have @,(,),
+            </p>):<></>}
+            {user  && !validName5?   (<p>
+            username cant have space          
+            </p>):<></>}
+        </div>
 
-        <button type="submit" className='Submit'>Submit</button>
-    </form>
-    
-    <Link to={`/login`}>
-           
-              click to login
-               
-    </Link>
-    
-    
- 
-    
-    
+        <div className='PasswordDiv'>
+          <input 
+              className={`Input ${inputStyle}`}
+              type='password'
+              placeholder='password' 
+              onChange={(e)=>setPwd(e.target.value)}  
+              // ref={userRef}
+              autoComplete='off' required
+              // onFocus={() => setUserFocus(true)}
+              // onBlur={() => setUserFocus(false)}
+          />
+          {pwd  && !validPwd? (<p>
+            pwd must be between 6-10 letters        
+            </p>): <></>}
+          </div>
+
+          <button type="submit" className='Submit'>Submit</button>
+      </form>
+      
+      <Link to={`/login`} className='linktoLogin'>
+            
+                already a user? 
+                click here to login
+                
+      </Link>
+      
+      
+  
+      
+      </div>
     </div>
-
+    </>
     
   )
 }

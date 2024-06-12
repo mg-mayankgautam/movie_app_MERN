@@ -24,7 +24,8 @@ module.exports.signUp = async (req,res)=>{
                        const Username = saved.Username;
                        const watchedmovie=[];
                        const WatchList=[]; 
-                     let rating = new ratingDB ({UserID,Username,watchedmovie,WatchList});
+                       const Lists=[];
+                     let rating = new ratingDB ({UserID,Username,watchedmovie,WatchList, Lists});
                      rating.save()
                       .then(()=>{
 

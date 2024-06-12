@@ -9,6 +9,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background-image: linear-gradient(to bottom right, rgb(17, 6, 6), rgb(23, 29, 57));
   color: white;
+  max-width: 100%;
 }
 /* rgb(32, 40, 74) */
 code {
@@ -59,7 +60,7 @@ code {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  max-width: 950px;
+  max-width: 1000px;
   height: 100%;
   padding-right: 8px;
 }
@@ -87,29 +88,6 @@ color: #f39a9a;}
 .logo{
   height: 40px;
 }
-
-.Input{
-  background-color: transparent;
-  border: 1px solid rgba(255, 255, 255, 0.712);
-  border-radius: 20px;
-  padding: 10px 10px;
-  margin: 20px 5px;
-  color: white;
-}
-.Input:focus{
-  outline: none;
-  border: 1px solid #f39a9a;
-}
-.Submit{
-  background-color: transparent;
-  border: 1px solid  rgba(255, 255, 255, 0.712);
-  border-radius: 20px;
-  padding: 10px 15px;
-  margin: 5px 5px;
-  color: white;
-  cursor: pointer;
-}
-a{text-decoration: none; color: #f39a9a;}
 
 .bannerdiv{
   height: 100vh;
@@ -149,6 +127,131 @@ a{text-decoration: none; color: #f39a9a;}
   -webkit-mask-image: linear-gradient( rgb(0 0 0/1), rgb(0 0 0/ 0.5) 70%, rgb(0 0 0/ 0.2) 85%, rgb(0 0 0/ 0) 98%); 
   mask-image: linear-gradient( rgb(0 0 0/1), rgb(0 0 0/ 0.5) 70%, rgb(0 0 0/ 0.2) 85%, rgb(0 0 0/ 0) 98%); 
   } */
+.signupContainer{
+  /* opacity: 0; */
+  transition: opacity 1000ms ease;
+    /* margin-top: 130px; */
+    height: 100vh;
+    /* background-size: 100vh; */
+    width: 100%;
+    background: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    background-color: #000000;
+  /* background-repeat: no-repeat; */
+    /* background-image: url(./components/utils/login.png); */
+  }
+
+  .signup{
+    position: absolute;
+    background-color: rgb(0 0 0/ 0.75);
+    padding: 0 10px 20px;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.591) 0px 5px 15px
+  }
+
+  .Login{
+    position: absolute;
+    background-color: rgb(0 0 0/ 0.75);
+    padding: 0 10px 20px;
+     border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.591) 0px 5px 15px
+  }
+
+.LoginBg{
+  object-fit:contain;
+  /* background-repeat: no-repeat; */
+  height: 100%;
+  width: 100%;
+}
+
+.signupForm, .LoginForm{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.UsernameDiv, .PasswordDiv, .LoginForm{
+  position: relative;
+}
+.UsernameDiv > p, .PasswordDiv > p{
+    font-size: 11px;
+    margin: 0;
+    color: #d22323;
+    position: absolute;
+    bottom: 0;
+    right: 10px;
+    font-weight: 400;
+  }
+
+.error{
+  font-size: 12px;
+  margin: 0;
+  color: #d22323;
+  position: absolute;
+  bottom: 60px;
+  left: 10px;
+  font-weight: 400;
+  /* font-family:; */
+}
+
+.Input{
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.712);
+    /* border-radius: 10px; */
+    padding: 10px 10px;
+    margin: 14px 4px;
+    color: white;
+    width: 210px;
+  }
+.Input:focus{
+    outline: none;
+    /* border: 1px solid #f39a9a; */
+    border: none;
+    border-bottom: 1px solid #c45c17;
+  }
+
+  .invalid, .invalid:focus{
+    outline: none;
+    /* border-color: #9b2b2b; */
+    border-color: #d22323;
+}
+.valid, .valid:focus{
+  outline: none;
+  border-color: #299158;
+  /* border: 1px solid #299158; */
+}
+
+.Submit{
+    background-color:#c45c17 ;
+    border: 1px solid transparent;
+    border-radius: 10px;
+    padding: 8px 14px;
+    /* margin: 14px 4px; */
+    margin: 20px 4px 14px;
+    color:white;
+    cursor: pointer;
+    font-weight: 600;
+    font-family: inherit;
+}
+
+.Submit:hover{
+  background-color: #000000;
+  color: #c45c17;
+  border: 1px solid #c45c17;
+}
+
+a{text-decoration: none; color: #f39a9a;}
+
+.linktoLogin{
+  font-size: 12px;
+  color: #fff;
+}
+.linktoLogin:hover{
+  color: #c45c17
+}
 
 .Home{
   display: flex;
@@ -257,7 +360,10 @@ cursor: pointer;
   gap: 48px;
 }
 
-.moviePlot{font-family: "Quattrocento", serif;}
+.moviePlot{
+  font-family: "Quattrocento", serif;
+  line-height: 1.4;
+}
 
 .CastGenre{
   font-weight: 200;
@@ -279,15 +385,12 @@ cursor: pointer;
 .TabPanel{
   padding: 0;
 }
-/* p{margin: 0;} */
-/* F39A9A */
-/* 0D1925 */
-/*, width: 220,   */
-.PanelnotLogin{
+
+.PanelnotLogin, .BoxOffice{
  padding: 16px 16px;
  background-color: #ffffff15;
  display: flex;
- align-items: center;
+ /* align-items: center; */
  border-radius: 8px;
  justify-content: center;
  height: max-content;
@@ -297,24 +400,45 @@ cursor: pointer;
  min-height: 50px;
  text-align: center;
 }
-/* .PanelnotLoginDiv{
-} */
+
+.BoxOffice{
+  margin-top: 10px;
+  position: relative;
+}
+
 .boxofficeText{
-  font-weight: 200;
+  font-weight: 300;
+  font-size: 14px;
+  text-align: left;
+  margin: 2px 0;
+  display: grid;
+  grid-template-columns: 90px 80px;
+  row-gap: 1px;
 }
 .boxofficeHeading{
   margin-bottom: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
-.signup{
-  margin-top: 40vh;
-  /* align-items: center; */
+.updateboxofficeBtn{
+  width: max-content;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  margin: 0px;
+  color: gray;
+  padding: 0;
+  align-self: flex-end;
 }
-
-.Login{
-  margin-top: 40vh;
-  /* align-items: center; */
-justify-self: center;
+.updatebtnHover{
+  position: absolute;
+  bottom: -20px;
+  font-size: 12px;
+  right: 0;
+  /* color: rgb(0, 0, 0); */
+  /* background-color: rgba(114, 93, 93, 0.457); */
 }
 
 .SearchList{
@@ -363,7 +487,7 @@ justify-self: center;
 
 .Profile{
   margin-top: 130px;
-  max-width: 950px;
+  max-width: 1000px;
   width: 100%;
   padding: 0px 20px 20px;
 }
@@ -432,6 +556,39 @@ justify-self: center;
 .watchedicontext{
   font-weight: 200;
 }
+
+.newList{
+   margin: 0 5px;
+  /* border: none; */
+  /* height: 20px; */
+  background-color: grey;
+  padding: 5px 5px;
+  font-size: 13px;
+  border-radius: 4px;
+  /* line-height: 1.5; */
+  /* padding: 5px 10px; */
+  transition: box-shadow 100ms ease-in, border 100ms ease-in, background-color 100ms ease-in;
+  border: 2px solid #dee1e2;
+  color: rgb(14, 14, 16);
+  background: #dee1e2;
+  display: block;
+  /* height: 30px; */
+}
+.newList:hover {
+    border-color: #ccc;
+}
+.newList:focus{
+    border-color: #9147ff;
+    outline: none;
+    background: #fff;
+}
+.listNames{
+  display: flex;
+  /* justify-content: space-between; */
+  flex-direction: column;
+  gap: 5px;
+}
+.addListBtn{cursor: pointer;}
 
 .Blog{
   margin-top: 130px;

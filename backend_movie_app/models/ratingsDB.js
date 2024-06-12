@@ -9,6 +9,7 @@ const dataSchema = new Schema({
     Username: {type:String},
     watchedmovie:{type:Array},
     WatchList:{type:Array},
+    Lists:{type:Array}
     //movie: {type:String}
 
 });

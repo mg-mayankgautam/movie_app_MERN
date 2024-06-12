@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useLocation} from "react-router-dom";
 import useAuth from "../hook/useAuth";
 import {Add, Star} from '@mui/icons-material';
@@ -19,17 +19,56 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogActions from '@mui/material/DialogActions';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
-import Typography from '@mui/material/Typography';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import TabContext from '@mui/lab/TabContext';
 import TabPanel from '@mui/lab/TabPanel';
-import ToggleButton from '@mui/material/ToggleButton';
-import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import AddIcon from '@mui/icons-material/Add';
 import SearchIcon from '@mui/icons-material/Search';
 import { InputBase, TextField } from '@mui/material';
+import FormControl from '@mui/material/FormControl';
+import FormGroup from '@mui/material/FormGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Checkbox from '@mui/material/Checkbox';
 
+const StyledTabs = styled((props) => (
+  <Tabs
+    {...props}
+    TabIndicatorProps={{ children: <span className="MuiTabs-indicatorSpan" /> }}
+  /> )) ({ 
+    '& .MuiTabs-indicator': {
+    display: 'flex',
+    width:'100%',
+    justifyContent: 'center',
+    backgroundColor: 'transparent',
+  },
+  '& .MuiTabs-indicatorSpan': {
+    maxWidth: '100%',
+    width: '100%',
+    backgroundColor: '#f39a9a',
+  },
+});
+
+const StyledTab = styled((props) => <Tab disableRipple {...props} />)(
+  ({ theme }) => ({
+    textTransform: 'none',
+    fontWeight: '400',
+    alignItems: 'center',
+    padding:'0',
+    // height:'90px',
+    fontSize: theme.typography.pxToRem(15),
+    marginRight: theme.spacing(1),
+    marginLeft: theme.spacing(1),
+    color: 'rgba(255, 255, 255, 0.7)',
+    '&.Mui-selected': {
+      color: '#f39a9a',
+      // backgroundColor:'rgb(16, 21, 40)'
+    },
+    '&.Mui-focusVisible': {
+      backgroundColor: 'rgba(100, 95, 228, 0.32)',
+    },
+  }),
+);
 
 const labels = {
     0.25: 'kyu hi-',
@@ -64,25 +103,35 @@ const UserPanel = (props) => {
 
   const { auth } = useAuth();
   const location = useLocation();
-  const [value, setValue] = React.useState(0);
-  const [hover, setHover] = React.useState(-1);
-  const [isActive, setIsActive] = React.useState(false);
-  const [isActive2, setIsActive2] = React.useState(false);
-  const [style, setStyle] = React.useState({display: 'none'});
-  const [style2, setStyle2] = React.useState({display: 'block'});
-  const [style3, setStyle3] = React.useState({display: 'none'});
-  const [style4, setStyle4] = React.useState({display: 'block'});
+  const [value, setValue] = useState(0);
+  const [hover, setHover] = useState(-1);
+  const [isActive, setIsActive] = useState(false);
+  const [isActive2, setIsActive2] = useState(false);
+  const [style, setStyle] = useState({display: 'none'});
+  const [style2, setStyle2] = useState({display: 'block'});
+  const [style3, setStyle3] = useState({display: 'none'});
+  const [style4, setStyle4] = useState({display: 'block'});
+  const [style5, setStyle5] = useState({display: 'none'});
   const { id } = useParams();
   const StarRating = useRef(0);
-  const [open, setOpen] = React.useState(false);
-  const [tabValue, setTabValue] = React.useState('1');
+  const [open, setOpen] = useState(false);
+  const [tabValue, setTabValue] = useState('1');
   const handleChange = (event, newValue) => { setTabValue(newValue);};
+  const [ListName, setListName] = useState('');
+  const [ListDesc, setListDesc] = useState('');
+  const [privateLists, setprivateLists] = useState('');
+  const [publicLists, setpublicLists] = useState('');
+  const [ListNumber, setListNumber] = useState('');
+  const [checked, setChecked] = React.useState(false);
 
-  const [alignment, setAlignment] = React.useState('web');
-
-  const handleChangee = (event, newAlignment) => {
-    setAlignment(newAlignment);
+  const handleCheckList = (event) => {
+    console.log(event.target.value, event.target.checked)
+    // const checklist = event.target.checked;
+    // if()
+    setChecked(!checked);
   };
+
+
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -144,12 +193,27 @@ const UserPanel = (props) => {
     catch(e){console.log(e)}; 
   } 
 
+  const handleNewLists = async(type)=>{
+    console.log(ListName, ListDesc, type);
+    try{
+      const data = await axios.post('http://localhost:4700/addnewlist', {ListName, ListDesc, type})
+      const lists= data.data;
+      
+      let privatelists= lists.filter(x => x.type =='private');
+      let publiclists= lists.filter(x => x.type =='private');
+      // console.log(privatelists, publiclists)
+      setprivateLists(privatelists);
+      setpublicLists(publiclists);
+    }
+    catch(e){console.log(e)};
+  }
+
   useEffect(()=>{
 
     const getWatched=async()=>{
       try{
        const data = await axios.get('http://localhost:4700/getwatched', {params:{movie: id}});
-        console.log(data, ' data: get watched func')
+        // console.log(data, ' data: get watched func')
        const state = data.data.watched;
         setIsActive2(state);
         // console.log(data.data.userrating)
@@ -163,15 +227,25 @@ const UserPanel = (props) => {
         // if(data.data.WL.length >= 1)setIsActive(true)
        
     }
+
+    const getLists= async()=>{
+      try{
+        const data = await axios.get('http://localhost:4700/getlists');
+        const lists = data.data
+        let privatelists= lists.filter(x => x.type =='private');
+        let publiclists= lists.filter(x => x.type =='public');
+        setprivateLists(privatelists);
+        setpublicLists(publiclists);
+      }
+      catch(err){console.log(err);}
+    }
+
     getWatched();
+    getLists()
   
   },[]);
 
-//console.log(isActive)
-//  useEffect(async()=>{
-//   console.log(isActive)
 
-//  },[isActive]);
 
 
   return (
@@ -248,7 +322,7 @@ const UserPanel = (props) => {
            
                      
         <>
-            <Button onClick={handleClickOpen}>
+            <Button onClick={handleClickOpen} sx={{color:'white', fontFamily:"work sans", fontWeight:'300'}}>
               Add to lists...
             </Button>
             <Dialog 
@@ -256,7 +330,7 @@ const UserPanel = (props) => {
               aria-labelledby="customized-dialog-title"
               open={open}
               transitionDuration={1}
-              // sx={{width:'600px'}}
+              sx={{backgroundColor:'#00000075'}}
             >
               <DialogTitle sx={{ m: 0, p: 2, fontFamily:'Montserrat', bgcolor:'rgb(23, 29, 57)', color:"white"}}id="customized-dialog-title" >
                       Add Movie to List:
@@ -275,26 +349,45 @@ const UserPanel = (props) => {
               </IconButton>
               <TabContext value={tabValue}>
 
-                <Tabs onChange={handleChange} value={tabValue} centered sx={{fontFamily:'Montserrat', bgcolor:'rgb(23, 29, 57)'}}>
-                  <Tab label="Private" value="1" sx={{width:'250px',height:'10px' ,fontFamily:'Montserrat', color:'white'}}/>
-                  <Tab label="Public" value="2" sx={{width:'250px',height:'10px' ,fontFamily:'Montserrat', color:'white'}}/>
-                </Tabs>
+                <StyledTabs onChange={handleChange} value={tabValue} centered sx={{fontFamily:'Montserrat', bgcolor:'rgb(23, 29, 57)'}} 
+                >
+                  <StyledTab label="Private" value="1" sx={{width:'250px',height:'10px' ,fontFamily:'Montserrat', color:'white'}}/>
+                  <StyledTab label="Public" value="2" sx={{width:'250px',height:'10px' ,fontFamily:'Montserrat', color:'white'}}/>
+                </StyledTabs>
                               
                 <TabPanel value="1" sx={{p:0, bgcolor:'rgb(23, 29, 57)',fontFamily:'Montserrat', color:'white'}}>
                     <DialogContent dividers sx={{display:'flex', gap:'15px', flexDirection:'column'}}>
                       <Box sx={{display:'flex', justifyContent:'space-between'}}>
-                          <Box gutterBottom sx={{display:'flex', alignItems:'center'}}><AddIcon/>New List</Box> 
+
+                          <Box sx={{display:'flex', alignItems:'center', cursor:'pointer'}} onClick={(e)=>{setStyle5({display:'flex'})}}>
+                            <AddIcon/>New List
+                          </Box> 
                           <Box sx={{display:'flex', alignItems:'center'}}><InputBase sx={{color:'white', align:'right'}}/><SearchIcon/></Box>
                       </Box>
-                      <Box sx={{display:'flex', justifyContent:'space-between'}}>
-                          <Box>Hard Hitting Dramas</Box><Box>25 films</Box>
-                      </Box>
-                      <Box sx={{display:'flex', justifyContent:'space-between'}}>
-                        <Box>Hard Hitting Dramas</Box><Box>25 films</Box>
-                      </Box>
-                      <Box sx={{display:'flex', justifyContent:'space-between'}}>
-                        <Box>Hard Hitting Dramas</Box><Box>25 films</Box>
-                      </Box>
+
+                      <div style={style5} className=''>
+                        <input className='newList' placeholder='List Name' onChange={(e)=>setListName(e.target.value)}/>
+                        <input className='newList' placeholder='Description' onChange={(e)=>setListDesc(e.target.value)}/>
+                        <button onClick={()=> handleNewLists('private')}className='addListBtn'>Add</button>
+                      </div>
+
+                      <div className='listNames' onClick={handleCheckList}>
+                          <div>
+                            Hard Hitting Dramas: 25 films
+                          </div> 
+                          {/* <> */}
+                              {privateLists && privateLists.map((list)=>{return( 
+                              <div>
+                                <label>
+                                  <input type="checkbox" checked={checked} value={list.name}
+                                  // onChange={handleCheckList}
+                                  />
+                                  {list.name}
+                                </label>
+                              </div>)
+                              })}
+                          {/* </> */}
+                      </div>
 
                     </DialogContent>
                 </TabPanel>
@@ -302,28 +395,36 @@ const UserPanel = (props) => {
                 <TabPanel value="2" sx={{p:0, bgcolor:'rgb(23, 29, 57)',fontFamily:'Montserrat', color:'white'}}>
                 <DialogContent dividers sx={{display:'flex', gap:'15px', flexDirection:'column'}}>
                       <Box sx={{display:'flex', justifyContent:'space-between'}}>
-                        <Box gutterBottom sx={{display:'flex', alignItems:'center'}}><AddIcon/>New List </Box> 
-                        <Box sx={{display:'flex', alignItems:'center'}}><InputBase sx={{color:'white', align:'right'}}/><SearchIcon/></Box>
-                      </Box>
-                      <Box sx={{display:'flex', justifyContent:'space-between'}}>
-                        <Box>Hard Hitting Dramas</Box><Box>25 films</Box>
-                      </Box>
-                      <Box sx={{display:'flex', justifyContent:'space-between'}}>
-                        <Box>Hard Hitting Dramas</Box><Box>25 films</Box>
-                      </Box>
-                      <Box sx={{display:'flex', justifyContent:'space-between'}}>
-                        <Box>Hard Hitting Dramas</Box><Box>25 films</Box>
+
+                          <Box sx={{display:'flex', alignItems:'center', cursor:'pointer'}} onClick={(e)=>{setStyle5({display:'flex'})}}>
+                            <AddIcon/>New List
+                          </Box> 
+                          <Box sx={{display:'flex', alignItems:'center'}}><InputBase sx={{color:'white', align:'right'}}/><SearchIcon/></Box>
                       </Box>
 
-                      <Typography gutterBottom sx={{fontFamily:'Montserrat', color:'white'}}>
-                        
-                      </Typography>
+                      <div style={style5} className=''>
+                        <input className='newList' placeholder='List Name' onChange={(e)=>setListName(e.target.value)}/>
+                        <input className='newList' placeholder='Description' onChange={(e)=>setListDesc(e.target.value)}/>
+                        <button onClick={()=> handleNewLists('public')}className='addListBtn'>Add</button>
+                      </div>
+
+                      <div className='listNames'>
+                      {publicLists && publicLists.map((list)=>{return(<div>
+                              <label>
+                                  <input type="checkbox" checked={checked} onChange={handleCheckList}/>
+                                  {list.name}
+                               </label>
+                               </div>
+                      )
+                              })}
+                      </div>
+
                     </DialogContent>
                 </TabPanel>
              </TabContext>
              <DialogActions sx={{bgcolor:'rgb(23, 29, 57)', color:'white'}}>
-                <Button autoFocus onClick={handleClose}>
-                    Save changes
+                <Button autoFocus onClick={handleClose} sx={{color:'#f39a9a'}}>
+                    Add to this list
                 </Button>
               </DialogActions>
             </Dialog>

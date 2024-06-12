@@ -1,25 +1,9 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import axios from 'axios';
 import useAuth from '../hook/useAuth';
 import { useState } from 'react';
-// import FormControl, { useFormControl } from '@mui/material/FormControl';
-// import OutlinedInput from '@mui/material/OutlinedInput';
-// import FormHelperText from '@mui/material/FormHelperText';
-
-// function MyFormHelperText() {
-//     const { focused } = useFormControl() || {};
-  
-//     const helperText = React.useMemo(() => {
-//       if (focused) {
-//         return 'This field is being focused';
-//       }
-  
-//       return 'Helper text';
-//     }, [focused]);
-  
-//     return <FormHelperText>{helperText}</FormHelperText>;
-//   }
+import image from './utils/login.png';
 
 
 
@@ -32,9 +16,23 @@ const Login = ({UserName,setUserName}) => {
     const navigate = useNavigate();
     const [Username, setUsername] = useState('');
     const [Password, setPassword] = useState('');
+    const [inputStyle, setinputStyle] = useState('');
+    const [Style, setStyle] = useState({opacity:0});
     let { state } = useLocation();
     
     //console.log(state.prev);
+
+    useEffect(()=>{
+
+        if(error){
+            setinputStyle('invalid');
+        }
+        else{
+            setinputStyle('');
+        }
+        setStyle({opacity:1});
+    
+    }, [error])
 
     const submitUser = async (e) => {
         e.preventDefault();
@@ -67,49 +65,40 @@ const Login = ({UserName,setUserName}) => {
 
 
 
-
-
   return (
-    <div className="Login"  > 
+    <>
+    <div className='signupContainer' style={Style}>
+      <img src={image} alt="" className='LoginBg' />
+
+        <div className="Login"  >
+        <h2>Login</h2> 
     
-    <form  onSubmit={submitUser} >
-        {/* <FormControl sx={{ width: '25ch' }}>
+    <form  onSubmit={submitUser} className='LoginForm'>
 
-            <TextField placeholder='username' onChange={(e)=>setUsername(e.target.value)} sx={{ color:'white', outline: 'none',
-            "& .MuiOutlinedInput-notchedOutline" : { borderColor : "white",},
-            "&:hover > .MuiOutlinedInput-notchedOutline" : {    borderColor : "#F39A9A"},
-            "&:focus > .MuiOutlinedInput-notchedOutline" : { borderColor : "#F39A9A"}
-            }}/>
-
-            <MyFormHelperText />
-        </FormControl>
-        <FormControl sx={{ width: '25ch' }}>
-            <OutlinedInput placeholder='password' onChange={(e)=>setPassword(e.target.value)} sx={{color:'white'}} />
-            <MyFormHelperText />
-        </FormControl> */}
-
-        <input className='Input' type='text'    
+        <input className={`Input ${inputStyle}`} type='text'    
             placeholder='username'
             onChange={(e)=>setUsername(e.target.value)}
         />
-        <input className='Input' type='password'
+        <input className={`Input ${inputStyle}`} type='password'
             placeholder='password' 
             onChange={(e)=>setPassword(e.target.value)}
         />
         <button type="submit" className='Submit'>Submit</button>
+
+        {error?<p className='error'>Invalid Username or Password.</p>:<></>}
         
     </form>
-    
-    {error?<p>nikl loveday</p>:<></>}
-    <Link to={`/signUp`}>
+
+    <Link to={`/signUp`} className='linktoLogin'>
            
                new user? click to signup
                
     </Link>
-
    
     
-     </div>
+        </div>
+    </div>
+    </>
   )
 }
 

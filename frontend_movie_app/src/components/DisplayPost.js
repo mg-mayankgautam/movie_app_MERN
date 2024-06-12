@@ -14,7 +14,7 @@ import TabContext from '@mui/lab/TabContext';
 import TabPanel from '@mui/lab/TabPanel';
 import Skeleton from '@mui/material/Skeleton';
 import Stack from '@mui/material/Stack';
-import {Visibility, Star} from '@mui/icons-material';
+import {Visibility, Star, Theaters, Sync} from '@mui/icons-material';
 
 const StyledTabs = styled((props) => (
   <Tabs
@@ -106,6 +106,7 @@ const DisplayPost = ({posts}) => {
   const [WorldwideGross, setWorldwideGross] = useState('');
   const [ProductionBudget, setProductionBudget] = useState('');
   const [AddedDate, setAddedDate] = useState('');
+  const [style, setStyle] = useState({display: 'none'});
 
 
   const { id } = useParams();
@@ -298,18 +299,9 @@ useEffect(()=>{
              </TabContext>
               
 
-            
-        
-            
-                    {/* <div>
-                       
-                    </div>
-                    <div>
-                        Genres: 
-                         
-                    </div> */}
         </div>
       </div>
+
 
       <div className="sidePanel">
             {auth?.user
@@ -317,27 +309,28 @@ useEffect(()=>{
               <UserPanel moviename={moviename} Release_date={Release_date}  MoviePoster={MoviePoster} Directors={Directors}/>
             :
                 <div className='PanelnotLogin'>
-              
-                    <Link to="/login" state={{prev:location}} >Login to Rate, Review, Add!</Link>
-
+                    <Link to="/login" state={{prev:location}} >Login to Rate, Review or Log!</Link>
                 </div>
             }
 
-          <div className='PanelnotLogin'>
+          <div className='BoxOffice'>
 
-                    <div className='boxofficeHeading'>BOX OFFICE!</div>
-                    <div className='boxofficeText'>
-                      worldwide: $ {WorldwideGross} mil
+                    <div className='boxofficeHeading'> 
+                        <div>BOX OFFICE</div> 
+                        <button className='updateboxofficeBtn' onClick={()=> updateBoxOffice()} 
+                        onMouseEnter={e => { setStyle({display: 'block'}) }}
+                        onMouseLeave={e => { setStyle({display: 'none'}) }}>
+                          <Sync/></button>
                     </div>
+                    <div style={style} className='updatebtnHover'>click to get updated data</div>
                     <div className='boxofficeText'>
-                      budget: $ {ProductionBudget} mil
+                      <div>worldwide:</div>
+                      <div>$ {WorldwideGross} mil</div>
+                      <div>budget: </div>
+                      <div>$ {ProductionBudget} mil</div>
+                      <div>updated on:</div> 
+                      <div>{AddedDate}</div>
                     </div>
-                    <div className='boxofficeText'>
-                      updated on: {AddedDate}
-                    </div>
-                    <br />
-                    <button className='updateboxofficeBtn' onClick={()=> updateBoxOffice()}>click to get updated data</button>
-          
           </div>
       </div>
   </section>

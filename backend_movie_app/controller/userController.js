@@ -304,6 +304,46 @@ module.exports.getWatched=async(req,res)=>{
     }
 }
 
+module.exports.addNewList= async(req,res)=>{
+  
+
+  const Username = req.session.Username;
+  const UserID = req.session.UserID; 
+  const {ListName , ListDesc , type} = req.body;
+ 
+  const Lists = {name: ListName, description: ListDesc, type, movies:[]}
+  //  req.session.movie = movie;    
+  
+  if( Username){                  
+           await ratingDB.findOneAndUpdate({UserID},{$push:{Lists}}, { returnDocument: "after" })
+           .then((saved)=>{
+             console.log('added', saved);
+            //  const confirm = saved.Lists.some(({movie})=> movie === movie);
+             const lists = saved.Lists
+            //  console.log(updated, 'wuuhuu')
+             res.send(lists);
+           })
+           // console.log('added',add);
+     
+           //  }
+           .catch((e)=>{console.log(e)})        
+    
+         }
+  
+
+}
+
+module.exports.getLists= async(req,res)=>{
+  const UserID = req.session.UserID; 
+  if(UserID){
+  try{
+    const data = await ratingDB.findOne({UserID},{Lists:1})
+    const lists = (data.Lists)
+    res.send(lists)
+  }
+  catch(e){console.log(e)}
+}
+}
 
 
 module.exports.getUserData =async(req,res)=>{
@@ -322,4 +362,3 @@ try{
 catch(e){console.log(e)}
 
 }
-
