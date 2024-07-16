@@ -1510,7 +1510,7 @@ module.exports.getMovie=async(req,res)=>{
 
 const {id} = req.query
 console.log('req.session.Username',req.session.Username)
-console.log('req')
+// console.log('req')
 
 
 // const SUBSCRIPTION_KEY = '05490cd5747c46dca9afff0183e9a92f';
@@ -1622,7 +1622,7 @@ module.exports.postMovie = async(req,res) =>{
 //     }
 
     const movie = await moviesDB.findOne({moviefromapi});
-    console.log(movie);
+    // console.log(movie);
  
      
 
@@ -1733,7 +1733,7 @@ module.exports.updateBoxOffice = async(req,res)=>{
                     })
                     .then(async(boxoffice)=>{
                         const update= boxoffice.main.worldwideGross.total.amount;
-                        console.log(update, todaysdate)
+                        // console.log(update, todaysdate)
                             
                         // await moviesDB.findOneAndUpdate({_id:id},{'moviefromapi.main.worldwideGross.total.amount': update, addedDate: todaysdate}, {returnDocument: 'after'})
 

@@ -7,7 +7,7 @@ module.exports.checkUsername =async(req,res)=>{
     const Username = req.body.Username;
         console.log('usgernamer',Username);
     const user = await usersDB.findOne({Username},{Username:1});
-    console.log(user);
+    // console.log(user);
     res.send({user});
 }
 
@@ -60,6 +60,7 @@ module.exports.logIn = async (req,res)=>{
     if(user){
         
         req.session.Username=Username;
+        console.log(req.session.Username);
         req.session.UserID=user._id.toString();
         res.json({Username:req.session.Username})}
     else if(!user){res.json(false)}
@@ -84,25 +85,18 @@ module.exports.logout = async (req,res)=>{
 
 
 module.exports.isauth=async (req,res)=>{
-// console.log('isauth controller');
+console.log(req.session);
+
     if(!req.session.Username){
-     
-
-       
     
+        res.send({auth:false})
+    }
 
 
-    
-    res.send({auth:false})}
+    else if(req.session.Username){
 
-
-        else if(req.session.Username){
-
-          
-         
-         
-           
-             res.send({auth:req.session.Username})}
+        res.send({auth:req.session.Username})
+    }
 
 
 

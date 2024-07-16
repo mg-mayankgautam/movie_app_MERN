@@ -2,7 +2,7 @@ const https = require('https');
 
 module.exports.getblogs =async (req,resp)=>{
    
-    console.log('idhr')
+    // console.log('idhr')
     var bingdata;
     var bangdata;
 
