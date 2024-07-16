@@ -1,0 +1,26 @@
+{
+  "name": "express-starter-template",
+  "version": "1.0.0",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "connect-mongodb-session": "^5.0.0",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.2",
+    "express": "^4.18.2",
+    "express-session": "^1.18.0",
+    "hbs": "^4.2.0",
+    "image-downloader": "^4.3.0",
+    "mongo": "^0.1.0",
+    "mongoose": "^8.1.1",
+    "nodemon": "^3.0.3"
+  },
+  "description": ""
+}
