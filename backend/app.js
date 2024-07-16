@@ -18,8 +18,8 @@ const cookieParser = require('cookie-parser');
 app.use(cors( 
     {
         // origin: process.env.FRONTEND_URL, 
-        // origin: 'https://covendx.com', 
-        origin: 'http://localhost:3000', 
+        origin: 'https://movieboxd.onrender.com', 
+        // origin: 'http://localhost:3000', 
         credentials: true, 
         withCredentials: true
     }
@@ -28,7 +28,7 @@ app.use(cors(
 app.use((req, res, next)=>{
     res.setHeader(
         "Access-Control-Allow-Origin",
-        "http://localhost:3000"
+        "https://movieboxd.onrender.com"
         // "http://localhost:3000"
     );
     res.setHeader(
