@@ -13,7 +13,7 @@ const Films = () => {
     useEffect(() => {
         const fetchPosts = async () => {
           try {
-            const response = await axios.get('http://localhost:4700/films');
+            const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/films`);
            // console.log(response.data);
             setFilms(response.data);
           } catch (err) {

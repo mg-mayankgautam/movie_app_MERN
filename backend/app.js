@@ -15,11 +15,31 @@ const bodyparser = require('body-parser');//use with axios
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
 
-app.use(cors( {
-origin: 'http://localhost:3000', credentials: true,
-withCredentials: true
-}))
+app.use(cors( 
+    {
+        // origin: process.env.FRONTEND_URL, 
+        // origin: 'https://covendx.com', 
+        origin: 'http://localhost:3000', 
+        credentials: true, 
+        withCredentials: true
+    }
+))
 
+app.use((req, res, next)=>{
+    res.setHeader(
+        "Access-Control-Allow-Origin",
+        "https://covendx.com"
+    );
+    res.setHeader(
+        "Access-Control-Allow-Headers",
+        "Origin, X-Requested-With, Content-Type, Accept, Authorization"
+    );
+    res.setHeader(
+        "Access-Control-Allow-Methods",
+        "GET, POST, PUT, DELETE, OPTIONS"
+    );
+    next();
+})
 
 const mongoose = require('mongoose');
 const { mongoConnect } = require('./database/database.js');
@@ -191,7 +211,7 @@ const download = require('image-downloader');
  //= await moviesDB.find({moviename});
 //  let movie= await moviesDB.find({}, {'moviefromapi.short.name':1})
 
-//  let name = movie.map(e=>({ id: e._id.toString(), name: e.moviefromapi.short.name, img:`http://localhost:4700/utils/${e._id.toString()}.jpg`}));
+//  let name = movie.map(e=>({ id: e._id.toString(), name: e.moviefromapi.short.name, img:`${process.env.REACT_APP_BACKEND_URL}/utils/${e._id.toString()}.jpg`}));
 
  
 // //  ,e.moviefromapi.short.name

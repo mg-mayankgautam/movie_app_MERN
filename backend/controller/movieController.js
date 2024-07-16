@@ -7,7 +7,7 @@ const https = require('https');
 module.exports.getTop10 = async(req,res)=>{
     let movie= await moviesDB.find({}, {'moviefromapi.short.name':1}).limit(10);
 
-    let name = movie.map(e=>({ id: e._id.toString(), name: e.moviefromapi.short.name, img:`http://localhost:4700/posters/${e._id.toString()}.jpg`}));
+    let name = movie.map(e=>({ id: e._id.toString(), name: e.moviefromapi.short.name, img:`${process.env.REACT_APP_BACKEND_URL}/posters/${e._id.toString()}.jpg`}));
 
    // console.log(name);
 
@@ -1495,7 +1495,7 @@ module.exports.getMovies = async(req, res)=>{
 
     let movie= await moviesDB.find({}, {'moviefromapi.short.name':1})
 
-    let name = movie.map(e=>({ id: e._id.toString(), name: e.moviefromapi.short.name, img:`http://localhost:4700/posters/${e._id.toString()}.jpg`}));
+    let name = movie.map(e=>({ id: e._id.toString(), name: e.moviefromapi.short.name, img:`${process.env.REACT_APP_BACKEND_URL}/posters/${e._id.toString()}.jpg`}));
 
     //  ,e.moviefromapi.short.name
     // console.log(name);
@@ -1562,7 +1562,7 @@ try{
         const allcast = movie[0].moviefromapi.main.cast.edges;
         const director= movie[0].moviefromapi.short.director;
         const genres = movie[0].moviefromapi.top.genres;
-        const url = `http://localhost:4700/posters/${id}.jpg`
+        const url = `${process.env.REACT_APP_BACKEND_URL}/posters/${id}.jpg`
     
         const movierating = movie[0].totalMovieRatings;
         const totalwatched= movie[0].totalWatched;
@@ -1591,7 +1591,7 @@ try{
                  const allcast = movie[0].moviefromapi.main.cast.edges;
                  const director= movie[0].moviefromapi.short.director;
                  const genres = movie[0].moviefromapi.top.genres;
-                 const url = `http://localhost:4700/posters/${id}.jpg`
+                 const url = `${process.env.REACT_APP_BACKEND_URL}/posters/${id}.jpg`
              
                 const movierating = movie[0].totalMovieRatings;
                 const totalwatched= movie[0].totalWatched;

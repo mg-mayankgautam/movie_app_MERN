@@ -59,7 +59,7 @@ function App() {
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const response = await axios.get('http://localhost:4700/top10');
+        const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/top10`);
        // console.log(response.data);
         setPosts(response.data);
       } catch (err) {

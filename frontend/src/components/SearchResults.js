@@ -40,7 +40,7 @@ const handleMoviePost = async(IMDBid)=>{
     // console.log(moviefromapi);
       
      try{
-     const data = await axios.post('http://localhost:4700/movie/addmovie', {moviefromapi: moviefromapi});   
+     const data = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/movie/addmovie`, {moviefromapi: moviefromapi});   
      
      const movieID = data.data;
       navigate(`/film/${movieID}`)

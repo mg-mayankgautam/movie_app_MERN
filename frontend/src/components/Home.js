@@ -17,7 +17,7 @@ const Home = ({ posts }) => {
       
         const verifyAuth = async ()=>{
             try {
-                const URL =  `http://localhost:4700/isauth`;
+                const URL =  `${process.env.REACT_APP_BACKEND_URL}/isauth`;
                 //console.log('url',URL);
                 const response = await axios.get(URL);
  

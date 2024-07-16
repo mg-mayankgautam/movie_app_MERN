@@ -64,7 +64,7 @@ const Profile = () => {
         
     const verifyAuth = async ()=>{
         try {
-            const URL =  `http://localhost:4700/isauth`;
+            const URL =  `${process.env.REACT_APP_BACKEND_URL}/isauth`;
             //console.log('url',URL);
             const response = await axios.get(URL);
 
@@ -100,7 +100,7 @@ const Profile = () => {
     
     const getUserData = async()=>{
       try{
-      const data = await axios.get(`http://localhost:4700/getuserdata?username=${id}`)
+      const data = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/getuserdata?username=${id}`)
       console.log(data.data.watchlist, 'getuser data')
 
       setUserMovies(data.data.movieswatched);

@@ -7,7 +7,7 @@ import image from './utils/login.png';
 
 
 
-const Login = ({UserName,setUserName}) => {
+const Login = ({UserName, setUserName}) => {
 
     const [error, seterror] = useState(false)
     axios.defaults.withCredentials = true;
@@ -38,7 +38,7 @@ const Login = ({UserName,setUserName}) => {
         e.preventDefault();
        
 
-        try{const data = await axios.post('http://localhost:4700/login',{Username,Password})
+        try{const data = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/login`,{Username,Password})
         //    console.log('/a/a/a',data);
             const axiosdata = data.data
            console.log('/a/a/a',axiosdata);

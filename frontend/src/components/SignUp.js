@@ -80,7 +80,7 @@ useEffect(()=>{
   const validate =async()=>{
     console.log('axios');
     const Username=user;
-    try{const valid = await axios.post('http://localhost:4700/checkusername',{Username})
+    try{const valid = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/checkusername`,{Username})
     console.log(valid.data);
     setUserfromDB(valid.data.user)
     }
@@ -132,7 +132,7 @@ const submitNewUser = async (e) => {
       if(user && pwd && !userfromDB && validPwd ){ 
         console.log('sub,it succeess')
         try{
-          const data = await axios.post('http://localhost:4700/signup',{Username,Password})
+          const data = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/signup`,{Username,Password})
       
           console.log(data.data);
           if(data.data){

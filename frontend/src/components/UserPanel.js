@@ -148,7 +148,7 @@ const UserPanel = (props) => {
      // setIsActive2(isActive2 => !isActive2);
     // })
     try{
-    const data = await axios.post('http://localhost:4700/addwatched', {watched: !isActive2,movie:id, moviename: props.moviename.text, releasedate: props.Release_date.year, movieposter: props.MoviePoster, director: props.Directors})
+    const data = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/addwatched`, {watched: !isActive2,movie:id, moviename: props.moviename.text, releasedate: props.Release_date.year, movieposter: props.MoviePoster, director: props.Directors})
       
     // console.log(data);
 
@@ -171,7 +171,7 @@ const UserPanel = (props) => {
     try{
       
       console.log('rating',StarRating.current);
-      const data = await axios.post('http://localhost:4700/addrating', {rating: StarRating.current, movie: id, moviename: props.moviename.text, releasedate: props.Release_date.year, movieposter: props.MoviePoster, director: props.Directors})
+      const data = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/addrating`, {rating: StarRating.current, movie: id, moviename: props.moviename.text, releasedate: props.Release_date.year, movieposter: props.MoviePoster, director: props.Directors})
       
       console.log(data, 'post rating data');
       setIsActive2(isActive2 => data.data.watched);
@@ -185,7 +185,7 @@ const UserPanel = (props) => {
   const handleWatchlist =async()=>{
     //  setIsActive(!isActive)
     try{
-     const data = await axios.post('http://localhost:4700/addwatchlist', {watchlist: !isActive,movie:id, moviename: props.moviename.text, releasedate: props.Release_date.year, movieposter: props.MoviePoster, director: props.Directors})
+     const data = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/addwatchlist`, {watchlist: !isActive,movie:id, moviename: props.moviename.text, releasedate: props.Release_date.year, movieposter: props.MoviePoster, director: props.Directors})
 
     //  console.log(data, 'watchlist post data');
      setIsActive(data.data.watchlist);
@@ -196,7 +196,7 @@ const UserPanel = (props) => {
   const handleNewLists = async(type)=>{
     console.log(ListName, ListDesc, type);
     try{
-      const data = await axios.post('http://localhost:4700/addnewlist', {ListName, ListDesc, type})
+      const data = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/addnewlist`, {ListName, ListDesc, type})
       const lists= data.data;
       
       let privatelists= lists.filter(x => x.type =='private');
@@ -212,7 +212,7 @@ const UserPanel = (props) => {
 
     const getWatched=async()=>{
       try{
-       const data = await axios.get('http://localhost:4700/getwatched', {params:{movie: id}});
+       const data = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/getwatched`, {params:{movie: id}});
         // console.log(data, ' data: get watched func')
        const state = data.data.watched;
         setIsActive2(state);
@@ -230,7 +230,7 @@ const UserPanel = (props) => {
 
     const getLists= async()=>{
       try{
-        const data = await axios.get('http://localhost:4700/getlists');
+        const data = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/getlists`);
         const lists = data.data
         let privatelists= lists.filter(x => x.type =='private');
         let publiclists= lists.filter(x => x.type =='public');

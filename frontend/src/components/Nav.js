@@ -88,7 +88,7 @@ const Nav = ({UserName,setUserName}) => {
       
     const verifyAuth = async ()=>{
         try {
-            const URL =  `http://localhost:4700/isauth`;
+            const URL =  `${process.env.REACT_APP_BACKEND_URL}/isauth`;
             //console.log('url',URL);
             const response = await axios.get(URL);
 
@@ -131,7 +131,7 @@ const Nav = ({UserName,setUserName}) => {
   const handleLogout = async() =>{
     console.log('logout');
     try{
-      const data = await axios.post('http://localhost:4700/logout');
+      const data = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/logout`);
       // console.log(data)
       if(!data.data){
         // console.log('data.data',data.data)

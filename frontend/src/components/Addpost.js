@@ -16,7 +16,7 @@ const Addpost = ({handleSubmit, postTitle, setPostTitle, postBody, setPostBody})
   
   const getblogdata =async () => {
     try{
-      const data =await axios.get('http://localhost:4700/getblogs')
+      const data =await axios.get(`${process.env.REACT_APP_BACKEND_URL}/getblogs`)
       console.log(data);
     }
     catch(error){console.log(error)}}
