@@ -28,7 +28,8 @@ app.use(cors(
 app.use((req, res, next)=>{
     res.setHeader(
         "Access-Control-Allow-Origin",
-        "https://covendx.com"
+        "http://localhost:3000"
+        // "http://localhost:3000"
     );
     res.setHeader(
         "Access-Control-Allow-Headers",
